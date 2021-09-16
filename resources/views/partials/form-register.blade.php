@@ -4,22 +4,23 @@
         <div class="card border-0 shadow rounded-3 my-5">
         <div class="card-body p-4 p-sm-5">
             <h5 class="card-title text-center mb-5 fw-light fs-5">Daftar</h5>
-            <form>
-            <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="floatingInput" placeholder="Nama Lengkap">
-                <label for="floatingInput">Nama Lengkap</label>
-            </div>
-            <div class="form-floating mb-3">
-                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-                <label for="floatingInput">Email address</label>
-            </div>
-            <div class="form-floating mb-3">
-                <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-                <label for="floatingPassword">Password</label>
-            </div>
-            <div class="d-grid">
-                <button class="btn btn-primary btn-login text-uppercase fw-bold" type="submit">Daftar</button>
-            </div>
+            <form action="/register-user" method="POST">
+                @csrf
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="floatingInput" placeholder="Nama Lengkap" name="name">
+                    <label for="floatingInput">Nama Lengkap</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" name="email">
+                    <label for="floatingInput">Email address</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password">
+                    <label for="floatingPassword">Password</label>
+                </div>
+                <div class="d-grid">
+                    <button class="btn btn-primary btn-login text-uppercase fw-bold" type="submit">Daftar</button>
+                </div>
             </form>
             <h5 class="text-center mt-5 fw-light fs-5">Sudah Punya Akun? <a href="/login">Masuk</a></h5>
         </div>

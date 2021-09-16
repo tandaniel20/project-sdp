@@ -17,12 +17,22 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->rememberToken();
+            $table->bigInteger('point')->default(0);
+            $table->bigInteger('saldo_refund')->default(0);
             $table->timestamps();
         });
     }
+
+    /*
+
+        User::create([
+        'name'=>'Tan, Daniel',
+        'email'=>'tan.d20@mhs.istts.ac.id',
+        'password'=>bcrypt('kekw')
+        ])
+
+    */
 
     /**
      * Reverse the migrations.

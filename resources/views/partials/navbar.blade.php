@@ -29,32 +29,43 @@
                 <button class="btn btn-outline-primary" type="submit">Search</button>
             </form>
             <ul class="navbar-nav col-3">
-                <li class="nav-item dropdown me-auto w-100 text-center">
-                    <a class="nav-link dropdown-toggle px-5" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Masuk
-                    </a>
-                    <div class="dropdown-menu p-4">
-                        <form>
-                            <div class="form-group">
-                                <label for="exampleDropdownFormEmail2">Email</label>
-                                <input type="email" class="form-control" id="exampleDropdownFormEmail2" placeholder="email@example.com">
+                @if (session("loggedIn"))
+                    <li class="nav-item dropdown text-center">
+                        <a class="nav-link dropdown-toggle px-5" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            {{ session("loggedIn") }}
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="#">Pemesanan</a></li>
+                            <li><a class="dropdown-item" href="/logout-user">Keluar</a></li>
+                        </ul>
+                    </li>
+                @else
+                    <li class="nav-item dropdown me-auto w-100 text-center">
+                        <a class="nav-link dropdown-toggle px-5" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Masuk
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end p-4">
+                            <form action="/login-user" method="POST">
+                                @csrf
+                                <div class="form-group">
+                                    <label for="exampleDropdownFormEmail2">Email</label>
+                                    <input type="email" class="form-control" id="exampleDropdownFormEmail2" placeholder="email@example.com" name="email">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleDropdownFormPassword2">Password</label>
+                                    <input type="password" class="form-control" id="exampleDropdownFormPassword2" placeholder="Password" name="password">
+                                </div>
+                                <div class="text-center my-2">
+                                    <button type="submit" class="btn btn-primary">Sign in</button>
+                                </div>
+                            </form>
+                            <div class="dropdown-divider"></div>
+                            <div class="text-center">
+                                Belum mendaftar? <a href="/register">Daftar</a>
                             </div>
-                            <div class="form-group">
-                                <label for="exampleDropdownFormPassword2">Password</label>
-                                <input type="password" class="form-control" id="exampleDropdownFormPassword2" placeholder="Password">
-                            </div>
-                            <div class="text-center my-2">
-                                <button type="submit" class="btn btn-primary">Sign in</button>
-                            </div>
-                        </form>
-                        <div class="dropdown-divider"></div>
-                        <div class="text-center">
-                            Belum mendaftar? <a href="/register">Daftar</a>
                         </div>
-                    </div>
-
-
-                </li>
+                    </li>
+                @endif
                 <li class="navbar-brand col-xs-2">
                     <a href="" class="">
                         <img src="img/cart-logo.png" alt="Cart" width="24" height="24">

@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AdminViewController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,29 +31,17 @@ Route::get('/register', function () {
     return view('register');
 });
 
+Route::post('/register-user', [UserController::class,'create']);
+Route::post('/login-user', [UserController::class,'checkLogin']);
+Route::get('/logout-user', [UserController::class,'logOut']);
+
 Route::prefix('admin')->group(function(){
-    Route::get('/', function () {return view('admin.home',[
-        'title' => "Home"
-    ]);});
-    Route::get('/kategori', function () {return view('admin.kategori',[
-        'title' => "Kategori"
-    ]);});
-    Route::get('/buku', function () {return view('admin.buku',[
-        'title' => "Buku"
-    ]);});
-    Route::get('/promo', function () {return view('admin.promo',[
-        'title' => "Promo"
-    ]);});
-    Route::get('/bukti-transfer', function () {return view('admin.bukti-transfer',[
-        'title' => "Bukti Transfer"
-    ]);});
-    Route::get('/pengantaran', function () {return view('admin.pengantaran',[
-        'title' => "Pengantaran"
-    ]);});
-    Route::get('/retur', function () {return view('admin.retur',[
-        'title' => "Retur"
-    ]);});
-    Route::get('/voucher', function () {return view('admin.voucher',[
-        'title' => "Manajemen Kode Voucher"
-    ]);});
+    Route::get('/', [AdminViewController::class,'home']);
+    Route::get('/kategori', [AdminViewController::class,'kategori']);
+    Route::get('/buku', [AdminViewController::class,'buku']);
+    Route::get('/promo', [AdminViewController::class,'promo']);
+    Route::get('/bukti-transfer', [AdminViewController::class,'bukti_transfer']);
+    Route::get('/pengantaran', [AdminViewController::class,'pengantaran']);
+    Route::get('/retur', [AdminViewController::class,'retur']);
+    Route::get('/voucher', [AdminViewController::class,'voucher']);
 });
