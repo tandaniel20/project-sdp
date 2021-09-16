@@ -10,43 +10,43 @@
 <body>
     <div class="d-flex flex-row">
         <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark vh-100 sticky-top" style="width: 280px;">
-            <a href="home" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+            <a href="/admin/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
             <span class="fs-4">Admin Page</span>
             </a>
             <hr>
             <ul class="nav nav-pills flex-column mb-auto">
             <li class="nav-item">
-                <a href="kategori" class="nav-link {{ $title === "Kategori" ? "active" : "text-white" }}">
+                <a href="/admin/kategori" class="nav-link {{ $title === "Kategori" ? "active" : "text-white" }}">
                 Kategori
                 </a>
             </li>
             <li>
-                <a href="buku" class="nav-link {{ $title === "Buku" ? "active" : "text-white" }}">
+                <a href="/admin/buku" class="nav-link {{ $title === "Buku" ? "active" : "text-white" }}">
                 Buku
                 </a>
             </li>
             <li>
-                <a href="promo" class="nav-link {{ $title === "Promo" ? "active" : "text-white" }}">
+                <a href="/admin/promo" class="nav-link {{ $title === "Promo" ? "active" : "text-white" }}">
                 Promo
                 </a>
             </li>
             <li>
-                <a href="bukti-transfer" class="nav-link {{ $title === "Bukti Transfer" ? "active" : "text-white" }}">
+                <a href="/admin/bukti-transfer" class="nav-link {{ $title === "Bukti Transfer" ? "active" : "text-white" }}">
                 Konfirmasi Bukti Transfer
                 </a>
             </li>
             <li>
-                <a href="pengantaran" class="nav-link {{ $title === "Pengantaran" ? "active" : "text-white" }}">
+                <a href="/admin/pengantaran" class="nav-link {{ $title === "Pengantaran" ? "active" : "text-white" }}">
                 Konfirmasi Pengantaran
                 </a>
             </li>
             <li>
-                <a href="retur" class="nav-link {{ $title === "Retur" ? "active" : "text-white" }}">
+                <a href="/admin/retur" class="nav-link {{ $title === "Retur" ? "active" : "text-white" }}">
                 Konfirmasi Retur
                 </a>
             </li>
             <li>
-                <a href="voucher" class="nav-link {{ $title === "Manajemen Kode Voucher" ? "active" : "text-white" }}">
+                <a href="/admin/voucher" class="nav-link {{ $title === "Manajemen Kode Voucher" ? "active" : "text-white" }}">
                 Manajemen Kode Voucher
                 </a>
             </li>
