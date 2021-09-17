@@ -7,7 +7,7 @@
             <form action="/login-user" method="POST">
                 @csrf
                 <div class="form-floating mb-3">
-                    <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" name="email">
+                    <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com" name="email">
                     <label for="floatingInput">Email address</label>
                 </div>
                 <div class="form-floating mb-3">

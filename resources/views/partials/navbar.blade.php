@@ -49,7 +49,7 @@
                                 @csrf
                                 <div class="form-group">
                                     <label for="exampleDropdownFormEmail2">Email</label>
-                                    <input type="email" class="form-control" id="exampleDropdownFormEmail2" placeholder="email@example.com" name="email">
+                                    <input type="text" class="form-control" id="exampleDropdownFormEmail2" placeholder="email@example.com" name="email">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleDropdownFormPassword2">Password</label>

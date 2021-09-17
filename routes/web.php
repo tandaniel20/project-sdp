@@ -34,6 +34,7 @@ Route::get('/register', function () {
 Route::post('/register-user', [UserController::class,'create']);
 Route::post('/login-user', [UserController::class,'checkLogin']);
 Route::get('/logout-user', [UserController::class,'logOut']);
+Route::get('/logout-admin', [UserController::class,'logOut']);
 
 Route::prefix('admin')->group(function(){
     Route::get('/', [AdminViewController::class,'home']);
