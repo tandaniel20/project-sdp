@@ -19,14 +19,6 @@ class UserController extends Controller
     }
 
     public function checkLogin(Request $request){
-        // User::where('email','tan.d20@mhs.istts.ac.id')->where('password',bcrypt('kekw'))
-        /*
-
-            User::where([
-            ['email', '=', 'tan.d20@mhs.istts.ac.id']
-        ])->get()
-
-        */
         if ($request->email == 'admin' && $request->password == 'admin'){
             $request->session()->put("loggedIn", 'admin');
             return redirect('/admin');
@@ -35,12 +27,14 @@ class UserController extends Controller
         $user = User::where([
             ['email', $request->email],
         ])->first();
-        // dd($user->password);
-        if (Hash::check($request->password,$user->password)) {
-            $request->session()->put("loggedIn", $user->email);
-            $request->session()->flash("status_login", "Login Sukses ".$user->name);
-        }
-        else $request->session()->flash("status_login", "Login Gagal");
+        // dd($user);
+
+        if ($user != null){
+            if (Hash::check($request->password,$user->password)){
+                $request->session()->put("loggedIn", $user->email);
+                $request->session()->flash("status_login", "Login Sukses ".$user->name);
+            }else $request->session()->flash("status_login", "Password salah");
+        }else $request->session()->flash("status_login", "User Not Found!");
         return redirect('/');
     }
 
