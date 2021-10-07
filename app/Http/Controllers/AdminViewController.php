@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kategori;
 use Illuminate\Http\Request;
 
 class AdminViewController extends Controller
@@ -14,8 +15,10 @@ class AdminViewController extends Controller
     }
 
     public function kategori(){
+        $kategoris = Kategori::all();
         return view('admin.kategori',[
-            'title' => "Kategori"
+            'title' => "Kategori",
+            'kategori' => $kategoris,
         ]);
     }
 
@@ -52,6 +55,21 @@ class AdminViewController extends Controller
     public function voucher(){
         return view('admin.voucher',[
             'title' => "Manajemen Kode Voucher"
+        ]);
+    }
+
+    public function addKategori(){
+        return view('admin.addKategori',[
+            'title' => "Kategori",
+        ]);
+    }
+
+    public function updateKategori($id){
+        $kategori = Kategori::where('id',$id)->first();
+        // dd($kategori);
+        return view('admin.updateKategori',[
+            'title' => "Kategori",
+            'kategori' => $kategori,
         ]);
     }
 }

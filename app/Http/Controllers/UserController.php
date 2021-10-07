@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -13,33 +14,47 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+
     public function index()
     {
         //
     }
 
     public function checkLogin(Request $request){
+        $test = $request->validate([
+            'email' => ['required'],
+            'password' => ['required']
+        ]);
+
+        if (Auth::attempt($test)){
+            // dd(Auth::user());
+            return redirect('/');
+        }
+
         if ($request->email == 'admin' && $request->password == 'admin'){
             $request->session()->put("loggedIn", 'admin');
             return redirect('/admin');
         }
 
-        $user = User::where([
-            ['email', $request->email],
-        ])->first();
-        // dd($user);
-
-        if ($user != null){
-            if (Hash::check($request->password,$user->password)){
-                $request->session()->put("loggedIn", $user->email);
-                $request->session()->flash("status_login", "Login Sukses ".$user->name);
-            }else $request->session()->flash("status_login", "Password salah");
-        }else $request->session()->flash("status_login", "User Not Found!");
         return redirect('/');
+
+        // $user = User::where([
+        //     ['email', $request->email],
+        // ])->first();
+        // // dd($user);
+
+        // if ($user != null){
+        //     if (Hash::check($request->password,$user->password)){
+        //         $request->session()->put("loggedIn", $user->email);
+        //         $request->session()->flash("status_login", "Login Sukses ".$user->name);
+        //     }else $request->session()->flash("status_login", "Password salah");
+        // }else $request->session()->flash("status_login", "User Not Found!");
+        // return redirect('/');
     }
 
     function logOut(Request $request){
-        $request->session()->forget("loggedIn");
+        Auth::logout();
         return redirect('/');
     }
 
@@ -53,15 +68,17 @@ class UserController extends Controller
         //
         $validatedData = $request->validate([
             'name' => 'required',
-            'email' => 'required|email',
+            'email' => 'required|email|unique:users,email',
             'password' => 'required',
         ]);
         $user = new User;
         $user->name = $validatedData["name"];
         $user->email = $validatedData["email"];
-        $user->password = bcrypt($validatedData["password"]);
+        $user->password = Hash::make($validatedData["password"]);
         $user->save();
-        $request->session()->put("loggedIn", $validatedData["email"]);
+        if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){
+            return redirect('/');
+        }
         return redirect('/');
     }
 

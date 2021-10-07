@@ -29,10 +29,10 @@
                 <button class="btn btn-outline-primary" type="submit">Search</button>
             </form>
             <ul class="navbar-nav col-3">
-                @if (session("loggedIn"))
+                @if (Auth::check())
                     <li class="nav-item dropdown text-center">
                         <a class="nav-link dropdown-toggle px-5" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            {{ session("loggedIn") }}
+                            {{ Auth::user()->email }}
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" href="#">Pemesanan</a></li>
@@ -40,20 +40,26 @@
                         </ul>
                     </li>
                 @else
-                    <li class="nav-item dropdown me-auto w-100 text-center">
+                    <li class="nav-item dropdown {{ $errors->any()?'open':'' }} me-auto w-100 text-center">
                         <a class="nav-link dropdown-toggle px-5" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Masuk
                         </a>
-                        <div class="dropdown-menu dropdown-menu-end p-4">
+                        <div class="dropdown-menu dropdown-menu-end p-4" id="modalLogin">
                             <form action="/login-user" method="POST">
                                 @csrf
                                 <div class="form-group">
                                     <label for="exampleDropdownFormEmail2">Email</label>
                                     <input type="text" class="form-control" id="exampleDropdownFormEmail2" placeholder="email@example.com" name="email">
+                                    @error('email')
+                                        <span style='color: red'>{{ $message }}</span>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleDropdownFormPassword2">Password</label>
                                     <input type="password" class="form-control" id="exampleDropdownFormPassword2" placeholder="Password" name="password">
+                                    @error('password')
+                                        <span style='color: red'>{{ $message }}</span>
+                                    @enderror
                                 </div>
                                 <div class="text-center my-2">
                                     <button type="submit" class="btn btn-primary">Sign in</button>
@@ -67,7 +73,7 @@
                     </li>
                 @endif
                 <li class="navbar-brand col-xs-2">
-                    <a href="" class="">
+                    <a href="/register" class="">
                         <img src="img/cart-logo.png" alt="Cart" width="24" height="24">
                     </a>
                 </li>

@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\AdminViewController;
+use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\UserController;
+use App\Models\Kategori;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -38,7 +40,14 @@ Route::get('/logout-admin', [UserController::class,'logOut']);
 
 Route::prefix('admin')->group(function(){
     Route::get('/', [AdminViewController::class,'home']);
-    Route::get('/kategori', [AdminViewController::class,'kategori']);
+    Route::prefix('kategori')->group(function(){
+        Route::get('/', [AdminViewController::class,'kategori']);
+        Route::get('/add', [AdminViewController::class,'addKategori']);
+        Route::post('/add-kategori', [KategoriController::class, 'store']);
+        Route::get('/{id}/update', [AdminViewController::class, 'updateKategori']);
+        Route::post('/{id}/update-kategori', [KategoriController::class, 'cekUpdate']);
+    });
+    // Route::get('/kategori', [AdminViewController::class,'kategori']);
     Route::get('/buku', [AdminViewController::class,'buku']);
     Route::get('/promo', [AdminViewController::class,'promo']);
     Route::get('/bukti-transfer', [AdminViewController::class,'bukti_transfer']);

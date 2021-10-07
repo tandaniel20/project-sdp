@@ -9,14 +9,23 @@
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="floatingInput" placeholder="Nama Lengkap" name="name">
                     <label for="floatingInput">Nama Lengkap</label>
+                    @error('name')
+                        <span style='color: red'>{{ $message }}</span>
+                    @enderror
                 </div>
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com" name="email">
                     <label for="floatingInput">Email address</label>
+                    @error('email')
+                        <span style='color: red'>{{ $message }}</span>
+                    @enderror
                 </div>
                 <div class="form-floating mb-3">
                     <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password">
                     <label for="floatingPassword">Password</label>
+                    @error('password')
+                        <span style='color: red'>{{ $message }}</span>
+                    @enderror
                 </div>
                 <div class="d-grid">
                     <button class="btn btn-primary btn-login text-uppercase fw-bold" type="submit">Daftar</button>
