@@ -34,7 +34,7 @@
                                     Kode : {{ $current["kode"] }}
                                 </div>
                                 <div>
-                                    Batas : {{ $current["batas"] }} hari
+                                    Batas : sisa {{ $current["batas"] }} pakai
                                 </div>
                                 <div>
                                     Jumlah Point : {{ $current["jumlahpoint"] }}

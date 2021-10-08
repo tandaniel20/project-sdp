@@ -37,7 +37,7 @@
                             Batas
                         </div>
                         <div class="col" style="text-align: left; vertical-align: middle;">
-                            <input class="w-50" type="text" name="batas" id="" placeholder="hari">
+                            <input class="w-50" type="text" name="batas" id="" placeholder="Batas Pakai">
                         </div>
                         @error('batas')
                             <span style='color: red'>{{ $message }}</span>
@@ -59,7 +59,7 @@
                     <div class="row" style="text-align: center;">
                         <div class="col"></div>
                         <div class="col-2">
-                            <button type="submit" class="btn btn-success btn-block">Add Buku</button>
+                            <button type="submit" class="btn btn-success btn-block">Add Voucher</button>
                         </div>
                         <div class="col"></div>
                     </div>
