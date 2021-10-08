@@ -15,6 +15,7 @@ class CreateVouchersTable extends Migration
     {
         Schema::create('vouchers', function (Blueprint $table) {
             $table->id();
+            $table->string('judul');
             $table->string('kode');
             $table->bigInteger('batas');
             $table->bigInteger('jumlahpoint');

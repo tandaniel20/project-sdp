@@ -36,6 +36,24 @@ class VoucherController extends Controller
     public function store(Request $request)
     {
         //
+        $validatedData = $request->validate([
+            'judul' => 'required|unique:vouchers,judul',
+            'kode' => 'required | string | min:11 | max:11 | unique:vouchers,kode',
+            'batas' => 'required | numeric',
+            'jumlahpoint' => 'required | numeric',
+        ]);
+
+        $voucher = new voucher;
+        $voucher->judul = $request->judul;
+        $voucher->kode = $request->kode;
+        $voucher->batas = $request->batas;
+        $voucher->jumlahpoint = $request->jumlahpoint;
+        $voucher->save();
+        return view('admin.voucher',[
+            "title" => 'Voucher',
+            'voucher' => voucher::all(),
+            'current' => voucher::first(),
+        ]);
     }
 
     /**

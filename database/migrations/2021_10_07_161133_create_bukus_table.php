@@ -24,7 +24,7 @@ class CreateBukusTable extends Migration
             $table->bigInteger('berat');
             $table->string('dimensi');
             $table->string('cover');
-            $table->string('deskripsi');
+            $table->text('deskripsi');
             $table->integer('stock')->default(0);
             $table->timestamps();
         });
