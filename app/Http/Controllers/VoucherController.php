@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\voucher;
+use App\Models\Voucher;
 use Illuminate\Http\Request;
 
 class VoucherController extends Controller
@@ -37,8 +37,8 @@ class VoucherController extends Controller
     {
         //
         $validatedData = $request->validate([
-            'judul' => 'required|unique:vouchers,judul',
-            'kode' => 'required | string | min:11 | max:11 | unique:vouchers,kode',
+            'judul' => 'required|unique:voucher,judul',
+            'kode' => 'required | string | min:11 | max:11 | unique:voucher,kode',
             'batas' => 'required | numeric',
             'jumlahpoint' => 'required | numeric',
         ]);

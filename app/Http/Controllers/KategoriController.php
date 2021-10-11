@@ -37,7 +37,7 @@ class KategoriController extends Controller
     {
         //
         $validatedData = $request->validate([
-            'namakategori' => 'required|unique:kategoris,namakategori,',
+            'namakategori' => 'required|unique:kategori,namakategori,',
             'deskripsikategori' => 'required'
         ]);
         $kategori = new Kategori;
@@ -90,7 +90,7 @@ class KategoriController extends Controller
 
     public function cekUpdate(Request $request, $id){
         $validatedData = $request->validate([
-            'namakategori' => 'required|unique:kategoris,namakategori,'.$id,
+            'namakategori' => 'required|unique:kategori,namakategori,'.$id,
             'deskripsikategori' => 'required'
         ]);
         $kategori = Kategori::where('id',$id)->first();

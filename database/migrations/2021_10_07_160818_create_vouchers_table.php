@@ -13,13 +13,14 @@ class CreateVouchersTable extends Migration
      */
     public function up()
     {
-        Schema::create('vouchers', function (Blueprint $table) {
+        Schema::create('voucher', function (Blueprint $table) {
             $table->id();
             $table->string('judul');
             $table->string('kode');
             $table->bigInteger('batas');
             $table->bigInteger('jumlahpoint');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -30,6 +31,6 @@ class CreateVouchersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('vouchers');
+        Schema::dropIfExists('voucher');
     }
 }

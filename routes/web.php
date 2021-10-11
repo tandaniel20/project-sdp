@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminViewController;
 use App\Http\Controllers\BukuController;
+use App\Http\Controllers\BukuKategoriController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VoucherController;
@@ -54,6 +55,10 @@ Route::prefix('admin')->group(function(){
         Route::get('/', [AdminViewController::class,'buku']);
         Route::get('/add', [AdminViewController::class, 'addBuku']);
         Route::post('/add-buku', [BukuController::class, 'store']);
+        Route::get('/{id}/kategori', [AdminViewController::class, 'kategoriBuku']);
+        Route::post('/{id}/kategori-added', [BukuKategoriController::class, 'store']);
+        Route::get('/{id}/update', [AdminViewController::class, 'updateBuku']);
+        Route::get('/{id}/delete', [BukuController::class, 'store']);
     });
     Route::get('/buku', [AdminViewController::class,'buku']);
     Route::get('/promo', [AdminViewController::class,'promo']);

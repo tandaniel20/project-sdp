@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\voucher;
+use App\Models\Voucher;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class VoucherFactory extends Factory
@@ -12,7 +12,7 @@ class VoucherFactory extends Factory
      *
      * @var string
      */
-    protected $model = voucher::class;
+    protected $model = Voucher::class;
 
     /**
      * Define the model's default state.

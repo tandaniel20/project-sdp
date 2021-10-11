@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\buku;
+use App\Models\Buku;
 use Illuminate\Http\Request;
 
 class BukuController extends Controller
@@ -37,7 +37,7 @@ class BukuController extends Controller
     {
         //
         $validatedData = $request->validate([
-            'judul' => 'required|unique:bukus,judul',
+            'judul' => 'required|unique:buku,judul',
             'harga' => 'required',
             'penulis' => 'required',
             'berat' => 'required | numeric',

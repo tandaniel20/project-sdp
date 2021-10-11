@@ -27,9 +27,13 @@ class UserController extends Controller
             'password' => ['required']
         ]);
 
-        if (Auth::attempt($test)){
-            // dd(Auth::user());
-            return redirect('/');
+        $users = User::all();
+        // dd($users);
+        if (count($users)>0){
+            if (Auth::attempt($test)){
+                // dd(Auth::user());
+                return redirect('/');
+            }
         }
 
         if ($request->email == 'admin' && $request->password == 'admin'){
@@ -68,7 +72,7 @@ class UserController extends Controller
         //
         $validatedData = $request->validate([
             'name' => 'required',
-            'email' => 'required|email|unique:users,email',
+            'email' => 'required|email|unique:user,email',
             'password' => 'required',
         ]);
         $user = new User;

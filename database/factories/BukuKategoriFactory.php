@@ -2,17 +2,17 @@
 
 namespace Database\Factories;
 
-use App\Models\Buku;
+use App\Models\Buku_Kategori;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class BukuFactory extends Factory
+class BukuKategoriFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Buku::class;
+    protected $model = Buku_Kategori::class;
 
     /**
      * Define the model's default state.

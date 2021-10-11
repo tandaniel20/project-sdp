@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\buku;
+use App\Models\Buku;
 use App\Models\Kategori;
-use App\Models\voucher;
+use App\Models\Voucher;
 use Illuminate\Http\Request;
 
 class AdminViewController extends Controller
@@ -27,7 +27,21 @@ class AdminViewController extends Controller
     public function buku(){
         return view('admin.buku',[
             'title' => "Buku",
-            'buku' => buku::all()
+            'buku' => Buku::all()
+        ]);
+    }
+
+    public function addBuku(){
+        return view('admin.addBuku',[
+            'title' => "Buku",
+        ]);
+    }
+
+    public function kategoriBuku($id){
+        return view('admin.bukuKategori',[
+            'bukuSelected' => Buku::where('id',$id)->first(),
+            'kategori' => Kategori::all(),
+            'title' => "Buku",
         ]);
     }
 
@@ -58,16 +72,16 @@ class AdminViewController extends Controller
     public function voucher(){
         return view('admin.voucher',[
             'title' => "Manajemen Kode Voucher",
-            'voucher' => voucher::all(),
-            'current' => voucher::first(),
+            'voucher' => Voucher::all(),
+            'current' => Voucher::first(),
         ]);
     }
 
     public function selectVoucher($id){
         return view('admin.voucher',[
             'title' => "Manajemen Kode Voucher",
-            'voucher' => voucher::all(),
-            'current' => voucher::where('id',$id)->first(),
+            'voucher' => Voucher::all(),
+            'current' => Voucher::where('id',$id)->first(),
         ]);
     }
 
@@ -83,12 +97,6 @@ class AdminViewController extends Controller
         return view('admin.updateKategori',[
             'title' => "Kategori",
             'kategori' => $kategori,
-        ]);
-    }
-
-    public function addBuku(){
-        return view('admin.addBuku',[
-            'title' => "Buku",
         ]);
     }
 

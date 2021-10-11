@@ -13,7 +13,7 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('user', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->bigInteger('point')->default(0);
             $table->bigInteger('saldo_refund')->default(0);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -41,6 +42,6 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('user');
     }
 }
