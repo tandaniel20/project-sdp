@@ -1,11 +1,11 @@
 @extends('layouts.admin')
 @section('container')
     <div class="container pt-4" style="text-align: center">
-        <form action="/admin/buku/add-buku" method="post">
+        <form action="update-buku" method="post">
             @csrf
             <div class="card text-center">
                 <div class="card-header">
-                    <h2>Add Buku</h2>
+                    <h2>Update Buku</h2>
                 </div>
                 <div class="card-body">
                     <div class="row">
@@ -13,7 +13,7 @@
                             Judul Buku
                         </div>
                         <div class="col" style="text-align: left; vertical-align: middle;">
-                            <input class="w-50" type="text" name="judul" id="" placeholder="Judul Buku">
+                            <input class="w-50" type="text" name="judul" id="" placeholder="Judul Buku" value="{{ $buku["judul"] }}">
                         </div>
                         @error('judul')
                             <span style='color: red'>{{ $message }}</span>
@@ -25,7 +25,7 @@
                             Harga
                         </div>
                         <div class="col" style="text-align: left; vertical-align: middle;">
-                            <input type="text" class="w-50" name="harga" id="" placeholder="Harga Buku">
+                            <input type="text" class="w-50" name="harga" id="" placeholder="Harga Buku" value="{{ $buku["harga"] }}">
                         </div>
                         @error('harga')
                             <span style='color: red'>{{ $message }}</span>
@@ -37,7 +37,7 @@
                             Penulis
                         </div>
                         <div class="col" style="text-align: left; vertical-align: middle;">
-                            <input class="w-50" type="text" name="penulis" id="" placeholder="Penulis">
+                            <input class="w-50" type="text" name="penulis" id="" placeholder="Penulis" value="{{ $buku["penulis"] }}">
                         </div>
                         @error('penulis')
                             <span style='color: red'>{{ $message }}</span>
@@ -49,7 +49,7 @@
                             Penerbit
                         </div>
                         <div class="col" style="text-align: left; vertical-align: middle;">
-                            <input class="w-50" type="text" name="penerbit" id="" placeholder="Penerbit">
+                            <input class="w-50" type="text" name="penerbit" id="" placeholder="Penerbit" value="{{ $buku["penerbit"] }}">
                         </div>
                         @error('penerbit')
                             <span style='color: red'>{{ $message }}</span>
@@ -61,7 +61,7 @@
                             Tahun
                         </div>
                         <div class="col" style="text-align: left; vertical-align: middle;">
-                            <input type="text" class="w-50" name="tahun" id="" placeholder="Tahun">
+                            <input type="text" class="w-50" name="tahun" id="" placeholder="Tahun" value="{{ $buku["tahun"] }}">
                         </div>
                         @error('tahun')
                             <span style='color: red'>{{ $message }}</span>
@@ -74,9 +74,9 @@
                         </div>
                         <div class="col" style="text-align: left; vertical-align: middle;">
                             <select name="bahasa" id="">
-                                <option value="Bahasa Indonesia">Indonesia</option>
-                                <option value="Bahasa Inggris">Inggris</option>
-                                <option value="Bahasa Jepang">Jepang</option>
+                                <option value="Bahasa Indonesia" {{ $buku["bahasa"] === "Bahasa Indonesia" ? "selected" : "" }}>Indonesia</option>
+                                <option value="Bahasa Inggris"  {{ $buku["bahasa"] === "Bahasa Inggris" ? "selected" : "" }}>Inggris</option>
+                                <option value="Bahasa Jepang"  {{ $buku["bahasa"] === "Bahasa Jepang" ? "selected" : "" }}>Jepang</option>
                             </select>
                         </div>
                         @error('bahasa')
@@ -89,7 +89,7 @@
                             Berat
                         </div>
                         <div class="col" style="text-align: left; vertical-align: middle;">
-                            <input type="text" class="w-50" name="berat" id="" placeholder="gram">
+                            <input type="text" class="w-50" name="berat" id="" placeholder="gram" value="{{ $buku["berat"] }}">
                         </div>
                         @error('tahun')
                             <span style='color: red'>{{ $message }}</span>
@@ -101,8 +101,8 @@
                             Dimensi
                         </div>
                         <div class="col" style="text-align: left; vertical-align: middle;">
-                            <input class="w-25" type="text" name="dimensi1" id="" placeholder="panjang"> x
-                            <input class="w-25" type="text" name="dimensi2" id="" placeholder="lebar">
+                            <input class="w-25" type="text" name="dimensi1" id="" placeholder="panjang" value="{{ explode(" x ", $buku["dimensi"])[0] }}"> x
+                            <input class="w-25" type="text" name="dimensi2" id="" placeholder="lebar" value="{{ explode(" x ", $buku["dimensi"])[1] }}">
                         </div>
                         @error('dimensi1')
                             <span style='color: red'>{{ $message }}</span>
@@ -118,9 +118,9 @@
                         </div>
                         <div class="col" style="text-align: left; vertical-align: middle;">
                             <select name="cover" id="">
-                                <option value="Cover Plastik">Plastik</option>
-                                <option value="Cover Kertas Keras">Kertas Keras</option>
-                                <option value="Cover Buffalo">Buffalo</option>
+                                <option value="Cover Plastik" {{ $buku["cover"] === "Cover Plastik" ? "selected" : "" }}>Plastik</option>
+                                <option value="Cover Kertas Keras" {{ $buku["cover"] === "Cover Kertas Keras" ? "selected" : "" }}>Kertas Keras</option>
+                                <option value="Cover Buffalo" {{ $buku["cover"] === "Cover Buffalo" ? "selected" : "" }}>Buffalo</option>
                             </select>
                         </div>
                         @error('cover')
@@ -134,7 +134,7 @@
                         </div>
                         <div class="col" style="text-align: left; vertical-align: middle;">
                             <div class="form-floating">
-                                <textarea class="form-control w-50" placeholder="" id="floatingTextarea2" style="height: 100px" name="deskripsi"></textarea>
+                                <textarea class="form-control w-50" placeholder="" id="floatingTextarea2" style="height: 100px" name="deskripsi">{{ $buku["deskripsi"] }}</textarea>
                                 <label for="floatingTextarea2">Deskripsi</label>
                             </div>
                         </div>

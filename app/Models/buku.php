@@ -12,6 +12,7 @@ class Buku extends Model
     use SoftDeletes;
 
     protected $table = "buku";
+    protected $primaryKey = "id";
 
     public function kategori(){
         return $this->belongsToMany(Kategori::class, "buku_kategori", "id_buku", "id_kategori");

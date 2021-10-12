@@ -68,6 +68,48 @@ class BukuController extends Controller
         ]);
     }
 
+    public function cekUpdate(Request $request, $id){
+        $validatedData = $request->validate([
+            'judul' => 'required|unique:buku,judul,'.$id,
+            'harga' => 'required',
+            'penulis' => 'required',
+            'berat' => 'required | numeric',
+            'tahun' => 'required | numeric | digits:4',
+            'bahasa' => 'required',
+            'berat' => 'required | numeric',
+            'dimensi1' => 'required | numeric',
+            'dimensi2' => 'required | numeric',
+            'cover' => 'required',
+            'deskripsi' => 'required',
+        ]);
+        $buku = Buku::where('id',$id)->first();
+        $buku->judul = $request->judul;
+        $buku->harga = $request->harga;
+        $buku->penulis = $request->penulis;
+        $buku->penerbit = $request->penerbit;
+        $buku->tahun = $request->tahun;
+        $buku->bahasa = $request->bahasa;
+        $buku->berat = $request->berat;
+        $buku->dimensi = $request->dimensi1.' x '.$request->dimensi2;
+        $buku->cover = $request->cover;
+        $buku->deskripsi = $request->deskripsi;
+        $buku->save();
+        return view('admin.buku',[
+            "title" => 'Buku',
+            'buku' => Buku::all(),
+        ]);
+    }
+
+    public function delete($id){
+        $buku = Buku::find($id);
+        // dd($kategori);
+        $buku->delete();
+        return view('admin.buku',[
+            'title' => "Buku",
+            'buku' => Buku::all(),
+        ]);
+    }
+
     /**
      * Display the specified resource.
      *

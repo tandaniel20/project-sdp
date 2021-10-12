@@ -24,6 +24,21 @@ class AdminViewController extends Controller
         ]);
     }
 
+    public function addKategori(){
+        return view('admin.addKategori',[
+            'title' => "Kategori",
+        ]);
+    }
+
+    public function updateKategori($id){
+        $kategori = Kategori::where('id',$id)->first();
+        // dd($kategori);
+        return view('admin.updateKategori',[
+            'title' => "Kategori",
+            'kategori' => $kategori,
+        ]);
+    }
+
     public function buku(){
         return view('admin.buku',[
             'title' => "Buku",
@@ -42,6 +57,14 @@ class AdminViewController extends Controller
             'bukuSelected' => Buku::where('id',$id)->first(),
             'kategori' => Kategori::all(),
             'title' => "Buku",
+        ]);
+    }
+
+    public function updateBuku($id){
+        $buku = Buku::where('id',$id)->first();
+        return view('admin.updateBuku',[
+            'title' => "Buku",
+            'buku' => $buku,
         ]);
     }
 
@@ -82,21 +105,6 @@ class AdminViewController extends Controller
             'title' => "Manajemen Kode Voucher",
             'voucher' => Voucher::all(),
             'current' => Voucher::where('id',$id)->first(),
-        ]);
-    }
-
-    public function addKategori(){
-        return view('admin.addKategori',[
-            'title' => "Kategori",
-        ]);
-    }
-
-    public function updateKategori($id){
-        $kategori = Kategori::where('id',$id)->first();
-        // dd($kategori);
-        return view('admin.updateKategori',[
-            'title' => "Kategori",
-            'kategori' => $kategori,
         ]);
     }
 
