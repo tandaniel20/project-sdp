@@ -146,7 +146,7 @@
                     <div class="row" style="text-align: center;">
                         <div class="col"></div>
                         <div class="col-2">
-                            <button type="submit" class="btn btn-success btn-block">Add Buku</button>
+                            <button type="submit" class="btn btn-success btn-block">Update Buku</button>
                         </div>
                         <div class="col"></div>
                     </div>

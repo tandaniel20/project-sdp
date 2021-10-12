@@ -113,4 +113,12 @@ class AdminViewController extends Controller
             'title' => "Voucher",
         ]);
     }
+
+    public function updateVoucher($id){
+        $voucher = Voucher::where('id',$id)->first();
+        return view('admin.updateVoucher',[
+            'title' => "Voucher",
+            'voucher' => $voucher,
+        ]);
+    }
 }

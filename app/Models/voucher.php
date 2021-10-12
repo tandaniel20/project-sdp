@@ -12,4 +12,5 @@ class Voucher extends Model
     use SoftDeletes;
 
     protected $table = "voucher";
+    protected $primaryKey = "id";
 }

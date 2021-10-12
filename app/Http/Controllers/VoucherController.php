@@ -56,6 +56,37 @@ class VoucherController extends Controller
         ]);
     }
 
+    public function cekUpdate(Request $request, $id){
+        $validatedData = $request->validate([
+            'judul' => 'required|unique:voucher,judul,'.$id,
+            'kode' => 'required | string | min:11 | max:11 | unique:voucher,kode,'.$id,
+            'batas' => 'required | numeric',
+            'jumlahpoint' => 'required | numeric',
+        ]);
+
+        $voucher = Voucher::where('id',$id)->first();
+        $voucher->judul = $request->judul;
+        $voucher->kode = $request->kode;
+        $voucher->batas = $request->batas;
+        $voucher->jumlahpoint = $request->jumlahpoint;
+        $voucher->save();
+        return view('admin.voucher',[
+            "title" => 'Voucher',
+            'voucher' => voucher::all(),
+            'current' => voucher::first(),
+        ]);
+    }
+
+    public function delete($id){
+        $voucher = Voucher::find($id);
+        $voucher->delete();
+        return view('admin.voucher',[
+            'title' => "Manajemen Kode Voucher",
+            'voucher' => Voucher::all(),
+            'current' => Voucher::first(),
+        ]);
+    }
+
     /**
      * Display the specified resource.
      *

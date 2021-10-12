@@ -72,5 +72,8 @@ Route::prefix('admin')->group(function(){
         Route::get('/add', [AdminViewController::class, 'addVoucher']);
         Route::get('/{id}', [AdminViewController::class,'selectVoucher']);
         Route::post('/add-voucher', [VoucherController::class, 'store']);
+        Route::get('/{id}/update', [AdminViewController::class, 'updateVoucher']);
+        Route::post('/{id}/update-voucher', [VoucherController::class, 'cekUpdate']);
+        Route::get('/{id}/delete', [VoucherController::class, 'delete']);
     });
 });

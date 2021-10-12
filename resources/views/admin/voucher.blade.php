@@ -42,6 +42,10 @@
                                 <div>
                                     Created at : {{ $current["created_at"] }}
                                 </div>
+                                <div>
+                                    <a href="/admin/voucher/{{ $current["id"] }}/update"><button class="btn btn-warning">Edit</button></a>
+                                    <a href="/admin/voucher/{{ $current["id"] }}/delete"><button class="btn btn-danger">Delete</button></a>
+                                </div>
                             </li>
                         </ul>
                     </div>
