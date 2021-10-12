@@ -14,7 +14,7 @@ class CreateDPromosTable extends Migration
     public function up()
     {
         Schema::create('d_promo', function (Blueprint $table) {
-            $table->bigInteger('id_promo')->primary();
+            $table->bigInteger('id_promo');
             $table->bigInteger('id_buku');
             $table->bigInteger('harga_promo');
             $table->timestamps();

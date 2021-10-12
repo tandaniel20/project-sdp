@@ -10,5 +10,4 @@ class DPromo extends Model
     use HasFactory;
 
     protected $table = "d_promo";
-    protected $primaryKey = "id_promo";
 }

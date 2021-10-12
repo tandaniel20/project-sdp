@@ -14,7 +14,7 @@ class CreateBukuKategorisTable extends Migration
     public function up()
     {
         Schema::create('buku_kategori', function (Blueprint $table) {
-            $table->bigInteger('id_kategori')->primary();
+            $table->bigInteger('id_kategori');
             $table->bigInteger('id_buku');
             $table->timestamps();
         });
