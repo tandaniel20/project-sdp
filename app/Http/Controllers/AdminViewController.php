@@ -74,6 +74,12 @@ class AdminViewController extends Controller
         ]);
     }
 
+    public function addPromo(){
+        return view('admin.addPromo',[
+            'title' => "Promo"
+        ]);
+    }
+
     public function bukti_transfer(){
         return view('admin.bukti-transfer',[
             'title' => "Bukti Transfer"

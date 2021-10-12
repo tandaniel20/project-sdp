@@ -17,4 +17,8 @@ class Buku extends Model
     public function kategori(){
         return $this->belongsToMany(Kategori::class, "buku_kategori", "id_buku", "id_kategori");
     }
+
+    public function promo(){
+        return $this->belongsToMany(Promo::class, "d_promo", "id_buku", "id_promo")->withPivot("harga_promo");
+    }
 }

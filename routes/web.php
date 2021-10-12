@@ -62,8 +62,12 @@ Route::prefix('admin')->group(function(){
         Route::post('/{id}/update-buku', [BukuController::class, 'cekUpdate']);
         Route::get('/{id}/delete', [BukuController::class, 'delete']);
     });
-    Route::get('/buku', [AdminViewController::class,'buku']);
-    Route::get('/promo', [AdminViewController::class,'promo']);
+
+    Route::prefix('promo')->group(function(){
+        Route::get('/', [AdminViewController::class,'promo']);
+        Route::get('/add', [AdminViewController::class, 'addPromo']);
+    });
+
     Route::get('/bukti-transfer', [AdminViewController::class,'bukti_transfer']);
     Route::get('/pengantaran', [AdminViewController::class,'pengantaran']);
     Route::get('/retur', [AdminViewController::class,'retur']);
