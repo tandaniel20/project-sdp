@@ -88,6 +88,16 @@ class KategoriController extends Controller
         $kategori->save();
     }
 
+    public function delete($id){
+        $kategori = Kategori::find($id);
+        // dd($kategori);
+        $kategori->delete();
+        return view('admin.kategori',[
+            'title' => "Kategori",
+            'kategori' => Kategori::all(),
+        ]);
+    }
+
     public function cekUpdate(Request $request, $id){
         $validatedData = $request->validate([
             'namakategori' => 'required|unique:kategori,namakategori,'.$id,

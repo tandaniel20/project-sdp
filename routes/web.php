@@ -49,6 +49,7 @@ Route::prefix('admin')->group(function(){
         Route::post('/add-kategori', [KategoriController::class, 'store']);
         Route::get('/{id}/update', [AdminViewController::class, 'updateKategori']);
         Route::post('/{id}/update-kategori', [KategoriController::class, 'cekUpdate']);
+        Route::get('/{id}/delete', [KategoriController::class, 'delete']);
     });
 
     Route::prefix('buku')->group(function(){
