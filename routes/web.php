@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminViewController;
 use App\Http\Controllers\BukuController;
 use App\Http\Controllers\BukuKategoriController;
+use App\Http\Controllers\HPromoController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VoucherController;
@@ -66,6 +67,9 @@ Route::prefix('admin')->group(function(){
     Route::prefix('promo')->group(function(){
         Route::get('/', [AdminViewController::class,'promo']);
         Route::get('/add', [AdminViewController::class, 'addPromo']);
+        Route::get('/{id}', [AdminViewController::class,'selectPromo']);
+        Route::post('/add-promo', [HPromoController::class, 'store']);
+
     });
 
     Route::get('/bukti-transfer', [AdminViewController::class,'bukti_transfer']);

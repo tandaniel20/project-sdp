@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Buku;
+use App\Models\HPromo;
 use App\Models\Kategori;
 use App\Models\Voucher;
 use Illuminate\Http\Request;
@@ -70,13 +71,24 @@ class AdminViewController extends Controller
 
     public function promo(){
         return view('admin.promo',[
-            'title' => "Promo"
+            'title' => "Promo",
+            'promo' => HPromo::all(),
+            'current' => HPromo::first(),
         ]);
     }
 
     public function addPromo(){
         return view('admin.addPromo',[
-            'title' => "Promo"
+            'title' => "Promo",
+            'buku' => Buku::all(),
+        ]);
+    }
+
+    public function selectPromo($id){
+        return view('admin.promo',[
+            'title' => "Promo",
+            'promo' => HPromo::all(),
+            'current' => HPromo::where('id',$id)->first(),
         ]);
     }
 

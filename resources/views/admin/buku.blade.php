@@ -12,7 +12,7 @@
             </div>
         </div>
         <hr>
-        <div class="d-flex flex-row gap-3 justify-content-center">
+        <div class="d-flex flex-wrap gap-3 justify-content-center">
             @foreach ($buku as $b)
             <div class="card flex" style="width: 18rem;">
                 <img class="card-img-top" src="/img/dummy.jpg" alt="Card image cap">

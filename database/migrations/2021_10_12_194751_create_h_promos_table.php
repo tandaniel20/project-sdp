@@ -18,6 +18,7 @@ class CreateHPromosTable extends Migration
             $table->string('judul');
             $table->bigInteger('jangkawaktu');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

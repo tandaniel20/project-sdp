@@ -12,7 +12,7 @@
             </div>
         </div>
         <hr>
-        <div class="d-flex flex-row gap-3 justify-content-center">
+        <div class="d-flex flex-wrap gap-3 justify-content-center">
             @foreach ($kategori as $k)
                 <div class="card flex">
                     <div class="card-body">

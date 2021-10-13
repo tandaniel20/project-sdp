@@ -21,12 +21,105 @@
                     </div>
                     <br>
                     <div class="row">
+                        <div class="col-12" style="text-align: center;">
+                            List Promo
+                        </div>
+                    </div>
+                    <div class="row">
                         <div class="col-5" style="text-align: right;">
-                            Banyak buku
+                            <select name="buku1" id="">
+                                <option value="null">-</option>
+                                @foreach ($buku as $b)
+                                    <option value="{{ $b["id"] }}">{{ $b["judul"] }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="col" style="text-align: left; vertical-align: middle">
+                            <input type="number" name="harga1" id="" placeholder="Harga">
+                        </div>
+                    </div>
+                    @error('harga1')
+                        <span style='color: red'>{{ $message }}</span>
+                    @enderror
+                    <br>
+                    <div class="row">
+                        <div class="col-5" style="text-align: right;">
+                            <select name="buku2" id="">
+                                <option value="null">-</option>
+                                @foreach ($buku as $b)
+                                    <option value="{{ $b["id"] }}">{{ $b["judul"] }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="col" style="text-align: left; vertical-align: middle">
+                            <input type="number" name="harga2" id="" placeholder="Harga">
+                        </div>
+                    </div>
+                    @error('harga2')
+                        <span style='color: red'>{{ $message }}</span>
+                    @enderror
+                    <br>
+                    <div class="row">
+                        <div class="col-5" style="text-align: right;">
+                            <select name="buku3" id="">
+                                <option value="null">-</option>
+                                @foreach ($buku as $b)
+                                    <option value="{{ $b["id"] }}">{{ $b["judul"] }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="col" style="text-align: left; vertical-align: middle">
+                            <input type="number" name="harga3" id="" placeholder="Harga">
+                        </div>
+                    </div>
+                    @error('harga3')
+                        <span style='color: red'>{{ $message }}</span>
+                    @enderror
+                    <br>
+                    <div class="row">
+                        <div class="col-5" style="text-align: right;">
+                            <select name="buku4" id="">
+                                <option value="null">-</option>
+                                @foreach ($buku as $b)
+                                    <option value="{{ $b["id"] }}">{{ $b["judul"] }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="col" style="text-align: left; vertical-align: middle">
+                            <input type="number" name="harga4" id="" placeholder="Harga">
+                        </div>
+                    </div>
+                    @error('harga4')
+                        <span style='color: red'>{{ $message }}</span>
+                    @enderror
+                    <br>
+                    <div class="row">
+                        <div class="col-5" style="text-align: right;">
+                            <select name="buku5" id="">
+                                <option value="null">-</option>
+                                @foreach ($buku as $b)
+                                    <option value="{{ $b["id"] }}">{{ $b["judul"] }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="col" style="text-align: left; vertical-align: middle">
+                            <input type="number" name="harga5" id="" placeholder="Harga">
+                        </div>
+                    </div>
+                    @error('harga5')
+                        <span style='color: red'>{{ $message }}</span>
+                    @enderror
+                    <br>
+                    <div class="row">
+                        <div class="col-5" style="text-align: right;">
+                            Jangka Waktu
                         </div>
                         <div class="col" style="text-align: left; vertical-align: middle;">
-                            <input class="w-50" type="number" name="banyak" id="banyak_buku" placeholder="Banyak buku">
+                            <input class="w-25" type="number" name="jangkawaktu" id="" placeholder="Hari">
                         </div>
+                        @error('jangkawaktu')
+                            <span style='color: red'>{{ $message }}</span>
+                        @enderror
                     </div>
                     <br>
                     <div class="row" style="text-align: center;">
