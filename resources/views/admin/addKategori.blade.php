@@ -13,7 +13,7 @@
                             Nama Kategori
                         </div>
                         <div class="col" style="text-align: left; vertical-align: middle;">
-                            <input class="w-50" type="text" name="namakategori" id="" placeholder="Nama Kategori">
+                            <input class="w-50" type="text" name="namakategori" id="" placeholder="Nama Kategori" value="{{ old('namakategori') }}">
                         </div>
                         @error('namakategori')
                             <span style='color: red'>{{ $message }}</span>
@@ -26,7 +26,7 @@
                         </div>
                         <div class="col" style="text-align: left; vertical-align: middle;">
                             <div class="form-floating">
-                                <textarea class="form-control w-50" placeholder="" id="floatingTextarea2" style="height: 100px" name="deskripsikategori"></textarea>
+                                <textarea class="form-control w-50" placeholder="" id="floatingTextarea2" style="height: 100px" name="deskripsikategori">{{ old('deskripsikategori') }}</textarea>
                                 <label for="floatingTextarea2">Deskripsi</label>
                             </div>
                         </div>

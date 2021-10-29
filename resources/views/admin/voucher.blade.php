@@ -44,7 +44,7 @@
                                 </div>
                                 <div>
                                     <a href="/admin/voucher/{{ $current["id"] }}/update"><button class="btn btn-warning">Edit</button></a>
-                                    <a href="/admin/voucher/{{ $current["id"] }}/delete"><button class="btn btn-danger">Delete</button></a>
+                                    <a href="/admin/voucher/{{ $current["id"] }}/delete"><button class="btn btn-danger" onclick="return confirm('Yakin ingin delete?');">Delete</button></a>
                                 </div>
                             </li>
                         </ul>

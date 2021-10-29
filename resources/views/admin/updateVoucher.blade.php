@@ -37,7 +37,7 @@
                             Batas
                         </div>
                         <div class="col" style="text-align: left; vertical-align: middle;">
-                            <input class="w-50" type="text" name="batas" id="" placeholder="Batas Pakai" value="{{ $voucher["batas"] }}">
+                            <input class="w-50" type="number" name="batas" id="" placeholder="Batas Pakai" value="{{ $voucher["batas"] }}">
                         </div>
                         @error('batas')
                             <span style='color: red'>{{ $message }}</span>
@@ -49,9 +49,21 @@
                             Jumlah Point
                         </div>
                         <div class="col" style="text-align: left; vertical-align: middle;">
-                            <input class="w-50" type="text" name="jumlahpoint" id="" placeholder="Jumlah Point" value="{{ $voucher["jumlahpoint"] }}">
+                            <input class="w-50" type="number" name="jumlahpoint" id="" placeholder="Jumlah Point" value="{{ $voucher["jumlahpoint"] }}">
                         </div>
                         @error('jumlahpoint')
+                            <span style='color: red'>{{ $message }}</span>
+                        @enderror
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-5" style="text-align: right;">
+                            Durasi
+                        </div>
+                        <div class="col" style="text-align: left; vertical-align: middle;">
+                            <input class="w-50" type="number" name="durasi" id="" placeholder="Hari" value="{{ $voucher["durasi"] }}">
+                        </div>
+                        @error('durasi')
                             <span style='color: red'>{{ $message }}</span>
                         @enderror
                     </div>

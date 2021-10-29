@@ -19,7 +19,7 @@
                         <h5 class="card-title">{{ $k["namakategori"] }}</h5>
                         <p class="card-text">{{ $k["deskripsikategori"] }}</p>
                         <a href="/admin/kategori/{{ $k["id"] }}/update" class="btn btn-warning">Update</a>
-                        <a href="/admin/kategori/{{ $k["id"] }}/delete" class="btn btn-danger">Delete</a>
+                        <a href="/admin/kategori/{{ $k["id"] }}/delete" class="btn btn-danger" onclick="return confirm('Yakin ingin delete?');">Delete</a>
                     </div>
                 </div>
             @endforeach

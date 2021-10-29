@@ -7,6 +7,7 @@ use App\Http\Controllers\HPromoController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VoucherController;
+use App\Models\Buku;
 use App\Models\Kategori;
 use Illuminate\Support\Facades\Route;
 
@@ -26,7 +27,13 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('/', function () {
-    return view('home');
+    return redirect('home');
+});
+
+Route::get('/home', function(){
+    return view('home',[
+        'buku' => Buku::all(),
+    ]);
 });
 
 Route::get('/login', function () {
@@ -41,6 +48,10 @@ Route::post('/register-user', [UserController::class,'create']);
 Route::post('/login-user', [UserController::class,'checkLogin']);
 Route::get('/logout-user', [UserController::class,'logOut']);
 Route::get('/logout-admin', [UserController::class,'logOut']);
+
+Route::prefix('buku')->group(function(){
+    Route::get('/{id}', [BukuController::class, 'detailBuku']);
+});
 
 Route::prefix('admin')->group(function(){
     Route::get('/', [AdminViewController::class,'home']);
@@ -69,7 +80,7 @@ Route::prefix('admin')->group(function(){
         Route::get('/add', [AdminViewController::class, 'addPromo']);
         Route::get('/{id}', [AdminViewController::class,'selectPromo']);
         Route::post('/add-promo', [HPromoController::class, 'store']);
-
+        Route::get('/{id}/delete', [HPromoController::class, 'deletePromo']);
     });
 
     Route::get('/bukti-transfer', [AdminViewController::class,'bukti_transfer']);

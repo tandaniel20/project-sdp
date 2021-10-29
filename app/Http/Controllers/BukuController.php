@@ -110,6 +110,13 @@ class BukuController extends Controller
         ]);
     }
 
+    public function detailBuku($id){
+        $buku = Buku::where('id',$id)->first();
+        return view('buku',[
+            'buku' => $buku,
+        ]);
+    }
+
     /**
      * Display the specified resource.
      *

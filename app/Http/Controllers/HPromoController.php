@@ -30,6 +30,17 @@ class HPromoController extends Controller
         //
     }
 
+    public function deletePromo(Request $request, $id){
+        $deletedRows = DPromo::where('id_promo',$id)->delete();
+        $deletedRows = HPromo::where('id',$id)->delete();
+
+        return view('admin.promo',[
+            'title' => "Promo",
+            'promo' => HPromo::all(),
+            'current' => HPromo::first(),
+        ]);
+    }
+
     /**
      * Store a newly created resource in storage.
      *

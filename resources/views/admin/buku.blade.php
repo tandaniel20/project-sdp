@@ -24,9 +24,12 @@
                         <button class="btn btn-outline-dark btn-sm my-1 rounded-pill">{{ $kategori["namakategori"] }}</button>
                     @endforeach
                     </p>
-                    <a href="/admin/buku/{{ $b["id"] }}/kategori" class="btn btn-primary">Kategori</a>
-                    <a href="/admin/buku/{{ $b["id"] }}/update" class="btn btn-warning">Edit</a>
-                    <a href="/admin/buku/{{ $b["id"] }}/delete" class="btn btn-danger">Delete</a>
+                    <a href="/admin/buku/{{ $b["id"] }}/kategori" class="btn btn-primary m-1" style="float: left">Kategori</a>
+                    <a href="/admin/buku/{{ $b["id"] }}/update" class="btn btn-warning m-1" style="float: left">Edit</a>
+                    <form action="/admin/buku/{{ $b["id"] }}/delete" method="get" onsubmit="return confirm('Yakin ingin delete?');" style="float: left">
+                        @csrf
+                        <button type="submit" class="btn btn-danger m-1">Delete</button>
+                    </form>
                 </div>
             </div>
             @endforeach

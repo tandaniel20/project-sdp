@@ -13,7 +13,7 @@
                             Judul Buku
                         </div>
                         <div class="col" style="text-align: left; vertical-align: middle;">
-                            <input class="w-50" type="text" name="judul" id="" placeholder="Judul Buku">
+                            <input class="w-50" type="text" name="judul" id="" placeholder="Judul Buku" value="{{ old('judul') }}">
                         </div>
                         @error('judul')
                             <span style='color: red'>{{ $message }}</span>
@@ -25,7 +25,7 @@
                             Harga
                         </div>
                         <div class="col" style="text-align: left; vertical-align: middle;">
-                            <input type="text" class="w-50" name="harga" id="" placeholder="Harga Buku">
+                            <input type="number" class="w-50" name="harga" id="" placeholder="Harga Buku" value="{{ old('harga') }}">
                         </div>
                         @error('harga')
                             <span style='color: red'>{{ $message }}</span>
@@ -37,7 +37,7 @@
                             Penulis
                         </div>
                         <div class="col" style="text-align: left; vertical-align: middle;">
-                            <input class="w-50" type="text" name="penulis" id="" placeholder="Penulis">
+                            <input class="w-50" type="text" name="penulis" id="" placeholder="Penulis" value="{{ old('penulis') }}">
                         </div>
                         @error('penulis')
                             <span style='color: red'>{{ $message }}</span>
@@ -49,7 +49,7 @@
                             Penerbit
                         </div>
                         <div class="col" style="text-align: left; vertical-align: middle;">
-                            <input class="w-50" type="text" name="penerbit" id="" placeholder="Penerbit">
+                            <input class="w-50" type="text" name="penerbit" id="" placeholder="Penerbit" value="{{ old('penerbit') }}">
                         </div>
                         @error('penerbit')
                             <span style='color: red'>{{ $message }}</span>
@@ -61,7 +61,7 @@
                             Tahun
                         </div>
                         <div class="col" style="text-align: left; vertical-align: middle;">
-                            <input type="text" class="w-50" name="tahun" id="" placeholder="Tahun">
+                            <input type="number" class="w-50" name="tahun" id="" placeholder="Tahun" value="{{ old('tahun') }}">
                         </div>
                         @error('tahun')
                             <span style='color: red'>{{ $message }}</span>
@@ -89,9 +89,9 @@
                             Berat
                         </div>
                         <div class="col" style="text-align: left; vertical-align: middle;">
-                            <input type="text" class="w-50" name="berat" id="" placeholder="gram">
+                            <input type="number" class="w-50" name="berat" id="" placeholder="gram" value="{{ old('berat') }}">
                         </div>
-                        @error('tahun')
+                        @error('berat')
                             <span style='color: red'>{{ $message }}</span>
                         @enderror
                     </div>
@@ -101,8 +101,8 @@
                             Dimensi
                         </div>
                         <div class="col" style="text-align: left; vertical-align: middle;">
-                            <input class="w-25" type="text" name="dimensi1" id="" placeholder="panjang"> x
-                            <input class="w-25" type="text" name="dimensi2" id="" placeholder="lebar">
+                            <input class="w-25" type="number" name="dimensi1" id="" placeholder="panjang" value="{{ old('dimensi1') }}"> x
+                            <input class="w-25" type="number" name="dimensi2" id="" placeholder="lebar" value="{{ old('dimensi2') }}">
                         </div>
                         @error('dimensi1')
                             <span style='color: red'>{{ $message }}</span>
@@ -134,7 +134,7 @@
                         </div>
                         <div class="col" style="text-align: left; vertical-align: middle;">
                             <div class="form-floating">
-                                <textarea class="form-control w-50" placeholder="" id="floatingTextarea2" style="height: 100px" name="deskripsi"></textarea>
+                                <textarea class="form-control w-50" placeholder="" id="floatingTextarea2" style="height: 100px" name="deskripsi">{{ old('deskripsi') }}</textarea>
                                 <label for="floatingTextarea2">Deskripsi</label>
                             </div>
                         </div>

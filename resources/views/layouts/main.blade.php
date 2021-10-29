@@ -29,6 +29,14 @@
         background-color: #3b5998;
         }
 
+        a:link {
+            text-decoration: none;
+        }
+
+        .linkBuku{
+            color: #000000;
+        }
+
         *{
             font-family: 'Nunito Sans';
         }

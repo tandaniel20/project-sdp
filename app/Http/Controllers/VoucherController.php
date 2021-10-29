@@ -41,6 +41,7 @@ class VoucherController extends Controller
             'kode' => 'required | string | min:11 | max:11 | unique:voucher,kode',
             'batas' => 'required | numeric',
             'jumlahpoint' => 'required | numeric',
+            'durasi' => 'required | numeric',
         ]);
 
         $voucher = new voucher;
@@ -48,6 +49,7 @@ class VoucherController extends Controller
         $voucher->kode = $request->kode;
         $voucher->batas = $request->batas;
         $voucher->jumlahpoint = $request->jumlahpoint;
+        $voucher->durasi = $request->durasi;
         $voucher->save();
         return view('admin.voucher',[
             "title" => 'Voucher',
@@ -62,6 +64,7 @@ class VoucherController extends Controller
             'kode' => 'required | string | min:11 | max:11 | unique:voucher,kode,'.$id,
             'batas' => 'required | numeric',
             'jumlahpoint' => 'required | numeric',
+            'durasi' => 'required | numeric',
         ]);
 
         $voucher = Voucher::where('id',$id)->first();
@@ -69,6 +72,7 @@ class VoucherController extends Controller
         $voucher->kode = $request->kode;
         $voucher->batas = $request->batas;
         $voucher->jumlahpoint = $request->jumlahpoint;
+        $voucher->durasi = $request->durasi;
         $voucher->save();
         return view('admin.voucher',[
             "title" => 'Voucher',

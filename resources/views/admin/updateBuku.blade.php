@@ -25,7 +25,7 @@
                             Harga
                         </div>
                         <div class="col" style="text-align: left; vertical-align: middle;">
-                            <input type="text" class="w-50" name="harga" id="" placeholder="Harga Buku" value="{{ $buku["harga"] }}">
+                            <input type="number" class="w-50" name="harga" id="" placeholder="Harga Buku" value="{{ $buku["harga"] }}">
                         </div>
                         @error('harga')
                             <span style='color: red'>{{ $message }}</span>
@@ -61,7 +61,7 @@
                             Tahun
                         </div>
                         <div class="col" style="text-align: left; vertical-align: middle;">
-                            <input type="text" class="w-50" name="tahun" id="" placeholder="Tahun" value="{{ $buku["tahun"] }}">
+                            <input type="number" class="w-50" name="tahun" id="" placeholder="Tahun" value="{{ $buku["tahun"] }}">
                         </div>
                         @error('tahun')
                             <span style='color: red'>{{ $message }}</span>
@@ -89,7 +89,7 @@
                             Berat
                         </div>
                         <div class="col" style="text-align: left; vertical-align: middle;">
-                            <input type="text" class="w-50" name="berat" id="" placeholder="gram" value="{{ $buku["berat"] }}">
+                            <input type="number" class="w-50" name="berat" id="" placeholder="gram" value="{{ $buku["berat"] }}">
                         </div>
                         @error('tahun')
                             <span style='color: red'>{{ $message }}</span>
@@ -101,8 +101,8 @@
                             Dimensi
                         </div>
                         <div class="col" style="text-align: left; vertical-align: middle;">
-                            <input class="w-25" type="text" name="dimensi1" id="" placeholder="panjang" value="{{ explode(" x ", $buku["dimensi"])[0] }}"> x
-                            <input class="w-25" type="text" name="dimensi2" id="" placeholder="lebar" value="{{ explode(" x ", $buku["dimensi"])[1] }}">
+                            <input class="w-25" type="number" name="dimensi1" id="" placeholder="panjang" value="{{ explode(" x ", $buku["dimensi"])[0] }}"> x
+                            <input class="w-25" type="number" name="dimensi2" id="" placeholder="lebar" value="{{ explode(" x ", $buku["dimensi"])[1] }}">
                         </div>
                         @error('dimensi1')
                             <span style='color: red'>{{ $message }}</span>
