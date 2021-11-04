@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Buku;
+use App\Models\DPromo;
 use App\Models\Kategori;
 use App\Models\Wishlist;
 use Illuminate\Http\Request;
@@ -117,12 +118,27 @@ class BukuController extends Controller
         $buku = Buku::where('id',$id)->first();
         if (Auth::check()){
             if (count(Wishlist::where('id_user',Auth::user()->id)->where('id_buku',$id)->get()) > 0){
+                if (count(DPromo::where('id_buku',$id)->get()) > 0){
+                    return view('buku',[
+                        'buku' => $buku,
+                        'kategori' => Kategori::all(),
+                        'wishlist' => 'true',
+                        'dpromo' => DPromo::where('id_buku',$id)->orderBy('harga_promo','ASC')->first(),
+                    ]);
+                }
                 return view('buku',[
                     'buku' => $buku,
                     'kategori' => Kategori::all(),
                     'wishlist' => 'true',
                 ]);
             }
+        }
+        if (count(DPromo::where('id_buku',$id)->get()) > 0){
+            return view('buku',[
+                'buku' => $buku,
+                'kategori' => Kategori::all(),
+                'dpromo' => DPromo::where('id_buku',$id)->orderBy('harga_promo','ASC')->first(),
+            ]);
         }
         return view('buku',[
             'buku' => $buku,

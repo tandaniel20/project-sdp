@@ -55,6 +55,8 @@ Route::get('/logout-admin', [UserController::class,'logOut']);
 
 Route::prefix('home')->group(function(){
     Route::get('/', [HomeController::class, 'homeAll']);
+    Route::get('/promo', [HomeController::class, 'homePromo']);
+    Route::post('/search', [HomeController::class, 'homeSearch']);
     Route::get('/{id}', [HomeController::class, 'homeKategori']);
 });
 

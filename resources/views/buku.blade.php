@@ -32,8 +32,14 @@
                     @endif
                 </h2>
             </span>
-
-            <span class="fw-bold"><h4>Rp. {{ $buku["harga"] }}</h4></span>
+            @if (isset($dpromo))
+                <h4>
+                    <span class="fw-bold" style="text-decoration: line-through">Rp. {{ $buku["harga"] }}</span>
+                    <span class="fw-bold text-danger">Rp. {{ $dpromo["harga_promo"] }}</span>
+                </h4>
+            @else
+                <h4><span class="fw-bold">Rp. {{ $buku["harga"] }}</span></h4>
+            @endif
             <hr>
             <span>{{ $buku["deskripsi"] }}</span>
             <hr>
@@ -118,6 +124,7 @@
                         <span id="subtotal">0</span>
                         <hr>
                         <input type="hidden" name="hargaBarang" id="hargaBarang" value="{{ $buku["harga"] }}">
+                        <input type="hidden" name="hargaDiskon" id="hargaDiskon" value="{{ isset($dpromo) ? $dpromo["harga_promo"] : -1 }}">
                         <input type="hidden" name="totalBarang" id="totalBarang" value="0">
                         <div class="text-center">
                             <button class="btn btn-success rounded">Add to Cart</button>
@@ -129,7 +136,12 @@
     </div>
     <script>
         function ubahNilai(){
-            var harga = document.getElementById("hargaBarang").value;
+            var harga
+            if (document.getElementById("hargaDiskon").value == -1){
+                harga = document.getElementById("hargaBarang").value;
+            }else{
+                harga = document.getElementById("hargaDiskon").value;
+            }
             var banyak = document.getElementById("inp_jumlah").value;
             var total = parseInt(harga)*parseInt(banyak);
             document.getElementById("subtotal").innerHTML = total;

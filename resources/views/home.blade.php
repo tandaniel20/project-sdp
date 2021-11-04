@@ -5,8 +5,10 @@
 @section('container')
     {{-- <div class="container m-auto flex" style="justify-content: center;">
         <div class="flex d-flex flex-wrap gap-3 m-5" style="justify-content: flex-start;"> --}}
+    <div class="mt-3"><h1>Buku-buku</h1></div>
+    <hr>
     <div style="display: flex; justify-content: center">
-        <div class="container gap-3 mt-5" style="display: flex; justify-content: flex-start; flex-wrap: wrap;">
+        <div class="container gap-3" style="display: flex; justify-content: flex-start; flex-wrap: wrap;">
             @foreach ($buku as $b)
             <a href="/buku/{{ $b["id"] }}">
                 <div class="card flex linkBuku" style="width: 15rem;height: 24rem">
@@ -21,7 +23,18 @@
                         </div>
                         <div>
                             <p class="card-text">
-                                Rp. {{ $b["harga"] }}
+                                <span
+                                @foreach ($dpromo as $dp)
+                                    @if ($dp["id_buku"] == $b["id"])
+                                        style="text-decoration: line-through"
+                                    @endif
+                                @endforeach
+                                >Rp. {{ $b["harga"] }}</span>
+                                @foreach ($dpromo as $dp)
+                                    @if ($dp["id_buku"] == $b["id"])
+                                        <span class="text-danger"> Rp. {{ $dp["harga_promo"] }} </span>
+                                    @endif
+                                @endforeach
                             </p>
                         </div>
                     </div>

@@ -3,11 +3,11 @@
     @include('partials.navbar')
 @endsection
 @section('container')
-    <div class="container mt-5">
+    <div class="container mt-3">
         <h1>Wishlist</h1>
         <hr>
         <div style="display: flex; justify-content: center">
-            <div class="container gap-3 mt-5" style="display: flex; justify-content: flex-start; flex-wrap: wrap;">
+            <div class="container gap-3" style="display: flex; justify-content: flex-start; flex-wrap: wrap;">
                 @foreach ($buku as $b)
                 <a href="/buku/{{ $b["id"] }}">
                     <div class="card flex linkBuku" style="width: 15rem;height: 24rem">
