@@ -63,14 +63,20 @@ class HPromoController extends Controller
 
         $addPromo = new HPromo;
         $addPromo->judul = $request->judul;
-        $addPromo->jangkawaktu = $request->jangkawaktu;
+        // $addPromo->jangkawaktu = $request->jangkawaktu;
         $addPromo->save();
+
+        $hPromo = HPromo::where('judul',$request->judul)->first();
+        $hPromo->tanggal_exp = $hPromo->updated_at->addDays($request->jangkawaktu);
+        $hPromo->save();
+        $hPromo = HPromo::where('judul',$request->judul)->first();
 
         if ($request->buku1 != "null"){
             $addDPromo = new DPromo;
             $addDPromo->id_promo = $addPromo->id;
             $addDPromo->id_buku = $request->buku1;
             $addDPromo->harga_promo = $request->harga1;
+            $addDPromo->tanggal_exp = $hPromo->tanggal_exp;
             $addDPromo->save();
         }
         if ($request->buku2 != "null"){
@@ -78,6 +84,7 @@ class HPromoController extends Controller
             $addDPromo->id_promo = $addPromo->id;
             $addDPromo->id_buku = $request->buku2;
             $addDPromo->harga_promo = $request->harga2;
+            $addDPromo->tanggal_exp = $hPromo->tanggal_exp;
             $addDPromo->save();
         }
         if ($request->buku3 != "null"){
@@ -85,6 +92,7 @@ class HPromoController extends Controller
             $addDPromo->id_promo = $addPromo->id;
             $addDPromo->id_buku = $request->buku3;
             $addDPromo->harga_promo = $request->harga3;
+            $addDPromo->tanggal_exp = $hPromo->tanggal_exp;
             $addDPromo->save();
         }
         if ($request->buku4 != "null"){
@@ -92,6 +100,7 @@ class HPromoController extends Controller
             $addDPromo->id_promo = $addPromo->id;
             $addDPromo->id_buku = $request->buku4;
             $addDPromo->harga_promo = $request->harga4;
+            $addDPromo->tanggal_exp = $hPromo->tanggal_exp;
             $addDPromo->save();
         }
         if ($request->buku5 != "null"){
@@ -99,6 +108,7 @@ class HPromoController extends Controller
             $addDPromo->id_promo = $addPromo->id;
             $addDPromo->id_buku = $request->buku5;
             $addDPromo->harga_promo = $request->harga5;
+            $addDPromo->tanggal_exp = $hPromo->tanggal_exp;
             $addDPromo->save();
         }
 

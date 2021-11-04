@@ -31,7 +31,7 @@
                                     Judul Promo : {{ $current["judul"] }}
                                 </div>
                                 <div>
-                                    Jangka Waktu : {{ $current["jangkawaktu"] }}
+                                    Batas Akhir : {{ $current["tanggal_exp"] }}
                                 </div>
                                 <div>
                                     Created at : {{ $current["created_at"] }}

@@ -16,7 +16,7 @@ class CreateHPromosTable extends Migration
         Schema::create('h_promo', function (Blueprint $table) {
             $table->id();
             $table->string('judul');
-            $table->bigInteger('jangkawaktu');
+            $table->timestamp('tanggal_exp')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

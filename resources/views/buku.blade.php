@@ -35,7 +35,8 @@
             @if (isset($dpromo))
                 <h4>
                     <span class="fw-bold" style="text-decoration: line-through">Rp. {{ $buku["harga"] }}</span>
-                    <span class="fw-bold text-danger">Rp. {{ $dpromo["harga_promo"] }}</span>
+                    <span class="fw-bold text-danger">Rp. {{ $dpromo["harga_promo"] }}</span> <br>
+                    <span class="text-muted fs-6">Hingga {{ $dpromo["tanggal_exp"] }}</span>
                 </h4>
             @else
                 <h4><span class="fw-bold">Rp. {{ $buku["harga"] }}</span></h4>

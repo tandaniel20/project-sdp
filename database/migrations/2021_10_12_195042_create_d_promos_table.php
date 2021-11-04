@@ -17,6 +17,7 @@ class CreateDPromosTable extends Migration
             $table->bigInteger('id_promo');
             $table->bigInteger('id_buku');
             $table->bigInteger('harga_promo');
+            $table->timestamp('tanggal_exp')->nullable();
             $table->timestamps();
         });
     }

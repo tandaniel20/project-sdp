@@ -5,8 +5,15 @@
 @section('container')
     {{-- <div class="container m-auto flex" style="justify-content: center;">
         <div class="flex d-flex flex-wrap gap-3 m-5" style="justify-content: flex-start;"> --}}
-    <div class="mt-3"><h1>Buku-buku</h1></div>
+    <div class="mt-3"><h1>Buku-buku{{ isset($filter) ? " ".$filter : "" }}</h1></div>
     <hr>
+    @if (count($buku) < 1)
+        @if (isset($filter))
+            <div class="text-muted"><h3>Buku dengan filter {{ $filter }} tidak ditemukan!</h3></div>
+        @else
+            <div class="text-muted"><h3>Buku tidak ditemukan!</h3></div>
+        @endif
+    @endif
     <div style="display: flex; justify-content: center">
         <div class="container gap-3" style="display: flex; justify-content: flex-start; flex-wrap: wrap;">
             @foreach ($buku as $b)
@@ -18,7 +25,9 @@
                             <h6 class="card-title">{{ $b["judul"] }}</h6>
                             Kategori :
                             @foreach ($b->kategori as $kategori)
-                                <button class="btn btn-outline-dark btn-sm m-1 rounded-pill fw-light">{{ $kategori["namakategori"] }}</button>
+                                <form action="/home/{{ $kategori["id"] }}" method="get">
+                                    <button class="btn btn-outline-dark btn-sm m-1 rounded-pill fw-light">{{ $kategori["namakategori"] }}</button>
+                                </form>
                             @endforeach
                         </div>
                         <div>
