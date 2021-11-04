@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Buku;
+use App\Models\Kategori;
+use App\Models\Wishlist;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BukuController extends Controller
 {
@@ -112,9 +115,32 @@ class BukuController extends Controller
 
     public function detailBuku($id){
         $buku = Buku::where('id',$id)->first();
+        if (Auth::check()){
+            if (count(Wishlist::where('id_user',Auth::user()->id)->where('id_buku',$id)->get()) > 0){
+                return view('buku',[
+                    'buku' => $buku,
+                    'kategori' => Kategori::all(),
+                    'wishlist' => 'true',
+                ]);
+            }
+        }
         return view('buku',[
             'buku' => $buku,
+            'kategori' => Kategori::all(),
         ]);
+    }
+
+    public function wishBuku($id){
+        $wishlist = new Wishlist;
+        $wishlist->id_buku = $id;
+        $wishlist->id_user = Auth::user()->id;
+        $wishlist->save();
+        return redirect('buku/'.$id);
+    }
+
+    public function removeWishBuku($id){
+        $deleteWishlist = Wishlist::where('id_user',Auth::user()->id)->where('id_buku',$id)->delete();
+        return redirect('buku/'.$id);
     }
 
     /**

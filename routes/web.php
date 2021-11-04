@@ -3,12 +3,15 @@
 use App\Http\Controllers\AdminViewController;
 use App\Http\Controllers\BukuController;
 use App\Http\Controllers\BukuKategoriController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\HPromoController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VoucherController;
+use App\Http\Controllers\WishlistController;
 use App\Models\Buku;
 use App\Models\Kategori;
+use App\Models\Wishlist;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,6 +36,7 @@ Route::get('/', function () {
 Route::get('/home', function(){
     return view('home',[
         'buku' => Buku::all(),
+        'kategori' => Kategori::all(),
     ]);
 });
 
@@ -49,8 +53,19 @@ Route::post('/login-user', [UserController::class,'checkLogin']);
 Route::get('/logout-user', [UserController::class,'logOut']);
 Route::get('/logout-admin', [UserController::class,'logOut']);
 
+Route::prefix('home')->group(function(){
+    Route::get('/', [HomeController::class, 'homeAll']);
+    Route::get('/{id}', [HomeController::class, 'homeKategori']);
+});
+
 Route::prefix('buku')->group(function(){
     Route::get('/{id}', [BukuController::class, 'detailBuku']);
+    Route::get('/{id}/wishlist', [BukuController::class, 'wishBuku']);
+    Route::get('/{id}/removeWishlist', [BukuController::class, 'removeWishBuku']);
+});
+
+Route::prefix('wishlist')->group(function(){
+    Route::get('/', [WishlistController::class, 'showWishlist']);
 });
 
 Route::prefix('admin')->group(function(){

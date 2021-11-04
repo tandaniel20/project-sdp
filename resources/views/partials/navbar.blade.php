@@ -18,8 +18,9 @@
                         Kategori
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#">Kategori1</a></li>
-                        <li><a class="dropdown-item" href="#">Kategori2</a></li>
+                        @foreach ($kategori as $k)
+                            <li><a class="dropdown-item" href="/home/{{ $k["id"] }}">{{ $k["namakategori"] }}</a></li>
+                        @endforeach
                         </ul>
                     </li>
                 </ul>
@@ -36,6 +37,7 @@
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" href="#">Pemesanan</a></li>
+                            <li><a class="dropdown-item" href="/wishlist">Wishlist</a></li>
                             <li><a class="dropdown-item" href="/logout-user">Keluar</a></li>
                         </ul>
                     </li>
@@ -74,7 +76,7 @@
                 @endif
                 <li class="navbar-brand col-xs-2">
                     <a href="/register" class="">
-                        <img src="img/cart-logo.png" alt="Cart" width="24" height="24">
+                        <img src="/img/cart-logo.png" alt="Cart" width="24" height="24">
                     </a>
                 </li>
             </ul>
