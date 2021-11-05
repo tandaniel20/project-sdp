@@ -104,7 +104,7 @@ Route::prefix('admin')->group(function(){
         Route::get('/{id}/delete', [HPromoController::class, 'deletePromo']);
     });
     Route::post('/AddAlamat', [AlamatController::class,'prosesData']);
-    Route::get('/Alamat', [AdminViewController::class,'alamat']);
+    Route::get('/Alamat', [AlamatController::class,'alamat']);
     Route::get('/bukti-transfer', [AdminViewController::class,'bukti_transfer']);
     Route::get('/pengantaran', [AdminViewController::class,'pengantaran']);
     Route::get('/retur', [AdminViewController::class,'retur']);

@@ -80,6 +80,10 @@ class AlamatController extends Controller
         echo "<script>alert('Sukses Tambah Alamat')</script>";
         return view('admin.addAlamat',['title' => "Alamat"],['alamat' => Alamat::all()]);
     }
+    function alamat()
+    {
+        return view('admin.addAlamat',['title' => "Alamat"],['alamat' => Alamat::all()]);
+    }
     function action(Request $request)
     {
         if($request->ajax())
