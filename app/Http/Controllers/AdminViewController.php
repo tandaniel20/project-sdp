@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Buku;
+use App\Models\DPromo;
 use App\Models\HPromo;
 use App\Models\Kategori;
 use App\Models\Voucher;
@@ -89,6 +90,17 @@ class AdminViewController extends Controller
             'title' => "Promo",
             'promo' => HPromo::all(),
             'current' => HPromo::where('id',$id)->first(),
+        ]);
+    }
+
+    public function updatePromo($id){
+        $hpromo = HPromo::where('id',$id)->first();
+        $dpromo = DPromo::where('id_promo',$id)->get();
+        return view('admin.updatePromo', [
+            'title' => "Promo",
+            "hpromo" => $hpromo,
+            "dpromo" => $dpromo,
+            "buku" => Buku::all(),
         ]);
     }
 

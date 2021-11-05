@@ -10,6 +10,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\VoucherController;
 use App\Http\Controllers\WishlistController;
 use App\Models\Buku;
+use App\Models\HPromo;
 use App\Models\Kategori;
 use App\Models\Wishlist;
 use Illuminate\Support\Facades\Route;
@@ -97,6 +98,8 @@ Route::prefix('admin')->group(function(){
         Route::get('/add', [AdminViewController::class, 'addPromo']);
         Route::get('/{id}', [AdminViewController::class,'selectPromo']);
         Route::post('/add-promo', [HPromoController::class, 'store']);
+        Route::get('/{id}/update', [AdminViewController::class, 'updatePromo']);
+        Route::post('/{id}/update-promo', [HPromoController::class, 'cekUpdate']);
         Route::get('/{id}/delete', [HPromoController::class, 'deletePromo']);
     });
 
