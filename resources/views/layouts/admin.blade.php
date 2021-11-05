@@ -50,6 +50,11 @@
                 Manajemen Kode Voucher
                 </a>
             </li>
+            <li>
+                <a href="/admin/Alamat" class="nav-link {{ $title === "Alamat" ? "active" : "text-white" }}">
+                Alamat
+                </a>
+            </li>
             </ul>
             <hr>
             <div class="dropdown">

@@ -11,14 +11,14 @@ class Alamat extends Model
     protected $connection= 'mysql';
     protected $table= 'alamat';
     public $timestamps = true;
-    // protected $fillable = [
-    //     'jalan',
-    //     'perumahan',
-    //     'rtrw',
-    //     'kelurahan',
-    //     'kecamatan',
-    //     'kota',
-    //     'provinsi',
-    //     'kodepos'
-    // ];
+    protected $fillable = [
+        'penerima',
+        'nohp',
+        'provinsi',
+        'kota',
+        'kecamatan',
+        'kelurahan',
+        'kodepos',
+        'jalan'
+    ];
 }
