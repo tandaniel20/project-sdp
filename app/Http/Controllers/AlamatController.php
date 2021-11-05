@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Alamat;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AlamatController extends Controller
 {
@@ -78,13 +79,120 @@ class AlamatController extends Controller
         $data->jalan = $jalan;
         $data->save();
         echo "<script>alert('Sukses Tambah Alamat')</script>";
-        return view('admin.addAlamat',['title' => "Alamat"],['alamat' => Alamat::all()]);
+        return view('user.addAlamat',['title' => "Alamat"],['alamat' => Alamat::all()]);
     }
-    function alamat()
+    public function updatealamat(Request $request)
     {
-        return view('admin.addAlamat',['title' => "Alamat"],['alamat' => Alamat::all()]);
+        $rules = [
+            //pengisian rules dilakukan dengan associative array dengan format:
+            //'namaFieldYangSesuai' => ['validation1','validation2']
+            //atau
+            //'namaFieldYangSesuai' => 'validation1 | validation2'
+
+            'penerima' => 'required | max:255',
+            'nohp' => 'required | numeric | digits_between:8,12',
+            'provinsi' => 'required | max:255',
+            'kota' => 'required | max:255',
+            'kecamatan' => 'required | max:255',
+            'kelurahan' => 'required | max:255',
+            'kodepos' => 'required | numeric',
+            'jalan' => 'required | max:255'
+            //'email' => 'required | regex:/(.+)@(.+)\.(.+)/i' // format email @ .
+            //'password' => 'required | min:8 | max:12 | regex:/^(?=.*[a-z])(?=.*[A-Z]).+$/ | confirmed'//sama ama confirm,harus ad huruf besar dan kecil
+        ];
+        //new IsAdministrator untuk membuat objek custom validation baru.
+        //kalau mau me-new object validation baru, harus dituliskan dengan cara pertama.
+        //penjelasan custom validationnya bisa dilihat pada direktori App/Rules/IsAdministrator
+        //untuk melakukan validasi, bisa menggunakan sintaks dibawah ini:
+        //$this->validate($request,$rules);
+        //apabila ingin menambahkan pesan secara custom, siapkan associative array
+        //yang berisi dari rules yang ingin diganti pesannya
+        $customError = [
+            'required' => ':attribute harus diisi!',
+            'numeric' => 'Mana ada :attribute ada hurufnya?',
+        ];
+        //setelah disiapkan custom pesan error nya, tambahkan parameter ke-3 ketika
+        //melakukan validasi. kalau mau pake defautlnya laravel, parameter ke-3 tinggal dihapus
+        //apabila validasi gagal, maka codingan dibawah $this-> validate tidak akan dijalankan
+        $this->validate($request,$rules,$customError);
+        //mengambil isi cookie dan menampung pada variable users
+        $id = $request->input('id');
+        $penerima = $request->input('penerima');
+        $nohp = $request->input('nohp');
+        $provinsi = $request->input('provinsi');
+        $kota = $request->input('kota');
+        $kecamatan = $request->input('kecamatan');
+        $kelurahan = $request->input('kelurahan');
+        $kodepos = $request->input('kodepos');
+        $jalan = $request->input('jalan');
+        // $data = [
+        //     'nama' => $nama,
+        //     'email' => $email,
+        //     'nohp' => $nohp,
+        //     'password' => $password
+        // ];
+        // DB::table('user')->insert($data);
+        // 'iduser',
+        // 'penerima',
+        // 'no_hp',
+        // 'provinsi',
+        // 'kota',
+        // 'kecamatan',
+        // 'kelurahan',
+        // 'kodepos',
+        // 'jalan'
+        $data = Alamat::find($id);
+        $data->penerima = $penerima;
+        $data->nohp = $nohp;
+        $data->provinsi = $provinsi;
+        $data->kota = $kota;
+        $data->kecamatan = $kecamatan;
+        $data->kelurahan = $kelurahan;
+        $data->kodepos = $kodepos;
+        $data->jalan = $jalan;
+        $data->save();
+        echo "<script>alert('Sukses Update Alamat')</script>";
+        return view('user.addAlamat',['title' => "Alamat"],['alamat' => Alamat::all()]);
     }
-    function action(Request $request)
+    public function deletealamat(Request $request){
+        $rules = [
+            //pengisian rules dilakukan dengan associative array dengan format:
+            //'namaFieldYangSesuai' => ['validation1','validation2']
+            //atau
+            //'namaFieldYangSesuai' => 'validation1 | validation2'
+
+            'id' => 'required | numeric'
+            //'email' => 'required | regex:/(.+)@(.+)\.(.+)/i' // format email @ .
+            //'password' => 'required | min:8 | max:12 | regex:/^(?=.*[a-z])(?=.*[A-Z]).+$/ | confirmed'//sama ama confirm,harus ad huruf besar dan kecil
+        ];
+        //new IsAdministrator untuk membuat objek custom validation baru.
+        //kalau mau me-new object validation baru, harus dituliskan dengan cara pertama.
+        //penjelasan custom validationnya bisa dilihat pada direktori App/Rules/IsAdministrator
+        //untuk melakukan validasi, bisa menggunakan sintaks dibawah ini:
+        //$this->validate($request,$rules);
+        //apabila ingin menambahkan pesan secara custom, siapkan associative array
+        //yang berisi dari rules yang ingin diganti pesannya
+        $customError = [
+            'required' => ':attribute harus diisi!',
+            'numeric' => 'Mana ada :attribute ada hurufnya?',
+        ];
+        //setelah disiapkan custom pesan error nya, tambahkan parameter ke-3 ketika
+        //melakukan validasi. kalau mau pake defautlnya laravel, parameter ke-3 tinggal dihapus
+        //apabila validasi gagal, maka codingan dibawah $this-> validate tidak akan dijalankan
+        $this->validate($request,$rules,$customError);
+        //mengambil isi cookie dan menampung pada variable users
+        $id = $request->input('id');
+
+        $data = Alamat::find($id);
+        $data->delete();
+        echo "<script>alert('Sukses Delete Alamat')</script>";
+        return view('user.addAlamat',['title' => "Alamat"],['alamat' => Alamat::all()]);
+    }
+    public function alamat()
+    {
+        return view('user.addAlamat',['title' => "Alamat"],['alamat' => Alamat::all()]);
+    }
+    public function action(Request $request)
     {
         if($request->ajax())
         {
@@ -98,14 +206,21 @@ class AlamatController extends Controller
                     'kecamatan' => $request->kecamatan,
                     'kelurahan' => $request->kelurahan,
                     'kodepos' => $request->kodepos,
-                    'jalan' => $request->jalan,
+                    'jalan' => $request->jalan
                 );
-                Alamat::where('id',$request->id)
-                ->update($data);
+                DB::table('alamat')
+    				->where('id', $request->id)
+    				->update($data);
+                // Alamat::where('id',$request->id)
+                // ->update($data);
             }
             if ($request->action == 'delete') {
-                Alamat::where('id',$request->id)
-                ->delete();
+                DB::table('alamat')
+    				->where('id', $request->id)
+    				->delete();
+
+                // Alamat::where('id',$request->id)
+                // ->delete();
             }
             return response()->json($request);
         }
@@ -117,8 +232,8 @@ class AlamatController extends Controller
      */
     public function index()
     {
-        $data = Alamat::all();
-        return view('admin.addAlamat',compact($data));
+        $data = DB::table('alamat')->get();
+    	return view('user.addAlamat', compact('data'));
     }
 
     /**
@@ -173,7 +288,7 @@ class AlamatController extends Controller
      */
     public function update(Request $request, Alamat $alamat)
     {
-        //
+
     }
 
     /**

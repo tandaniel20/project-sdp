@@ -11,6 +11,9 @@
             <div class="ms-md-auto">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
+                        <a href="/alamat" class="nav-link" role="button">Alamat</a>
+                    </li>
+                    <li class="nav-item">
                         <a href="/home/promo" class="nav-link" role="button">Promo</a>
                     </li>
                     <li class="nav-item dropdown">

@@ -103,8 +103,6 @@ Route::prefix('admin')->group(function(){
         Route::post('/{id}/update-promo', [HPromoController::class, 'cekUpdate']);
         Route::get('/{id}/delete', [HPromoController::class, 'deletePromo']);
     });
-    Route::post('/AddAlamat', [AlamatController::class,'prosesData']);
-    Route::get('/Alamat', [AlamatController::class,'alamat']);
     Route::get('/bukti-transfer', [AdminViewController::class,'bukti_transfer']);
     Route::get('/pengantaran', [AdminViewController::class,'pengantaran']);
     Route::get('/retur', [AdminViewController::class,'retur']);
@@ -118,5 +116,9 @@ Route::prefix('admin')->group(function(){
         Route::get('/{id}/delete', [VoucherController::class, 'delete']);
     });
 });
+Route::post('/AddAlamat', [AlamatController::class,'prosesData']);
+Route::get('/alamat', [AlamatController::class,'alamat']);
+Route::get('/deletealamat', [AlamatController::class,'deletealamat']);
+Route::post('/updatealamat', [AlamatController::class,'updatealamat']);
 Route::get('tabledit', 'AlamatController@index');
 Route::post('tabledit/action', 'AlamatController@action')->name('tabledit.action');
