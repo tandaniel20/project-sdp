@@ -120,5 +120,5 @@ Route::post('/AddAlamat', [AlamatController::class,'prosesData']);
 Route::get('/alamat', [AlamatController::class,'alamat']);
 Route::get('/deletealamat', [AlamatController::class,'deletealamat']);
 Route::post('/updatealamat', [AlamatController::class,'updatealamat']);
-Route::get('tabledit', 'AlamatController@index');
-Route::post('tabledit/action', 'AlamatController@action')->name('tabledit.action');
+// Route::get('tabledit', 'AlamatController@index');
+// Route::post('tabledit/action', 'AlamatController@action')->name('tabledit.action');
