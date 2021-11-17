@@ -7,12 +7,14 @@ use App\Http\Controllers\BukuKategoriController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\HPromoController;
 use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\KeranjangController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VoucherController;
 use App\Http\Controllers\WishlistController;
 use App\Models\Buku;
 use App\Models\HPromo;
 use App\Models\Kategori;
+use App\Models\Keranjang;
 use App\Models\Wishlist;
 use Illuminate\Support\Facades\Route;
 
@@ -63,9 +65,15 @@ Route::prefix('home')->group(function(){
 });
 
 Route::prefix('buku')->group(function(){
-    Route::get('/{id}', [BukuController::class, 'detailBuku']);
+    Route::get('/{id}/detail', [BukuController::class, 'detailBuku']);
     Route::get('/{id}/wishlist', [BukuController::class, 'wishBuku']);
     Route::get('/{id}/removeWishlist', [BukuController::class, 'removeWishBuku']);
+    Route::post('/{id}/addToCart', [KeranjangController::class, 'addToCart']);
+});
+
+Route::prefix('cart')->group(function(){
+    Route::get('/{id}/detail', [KeranjangController::class, 'detailKeranjang']);
+    Route::post('/{id}/remove', [KeranjangController::class, 'removeKeranjang']);
 });
 
 Route::prefix('wishlist')->group(function(){

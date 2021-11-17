@@ -17,7 +17,7 @@
     <div style="display: flex; justify-content: center">
         <div class="container gap-3" style="display: flex; justify-content: flex-start; flex-wrap: wrap;">
             @foreach ($buku as $b)
-            <a href="/buku/{{ $b["id"] }}">
+            <a href="/buku/{{ $b["id"] }}/detail">
                 <div class="card flex linkBuku" style="width: 15rem;height: 24rem">
                     <img class="card-img-top" src="/img/dummy.jpg" alt="Card image cap">
                     <div class="card-body">

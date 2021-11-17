@@ -4,6 +4,9 @@
 @endsection
 @section('container')
     <div class="container d-flex flex-wrap m-5">
+        @if($errors->any())
+            <script>alert('{{ $errors->first() }}')</script>
+        @endif
         <div class="w-25 d-flex justify-content-center" style="height: 25vh;">
             <img src="/img/dummy.jpg" alt="" class="w-75 img-thumbnail">
         </div>
@@ -124,12 +127,16 @@
                         <span>Subtotal : Rp. </span>
                         <span id="subtotal">0</span>
                         <hr>
-                        <input type="hidden" name="hargaBarang" id="hargaBarang" value="{{ $buku["harga"] }}">
-                        <input type="hidden" name="hargaDiskon" id="hargaDiskon" value="{{ isset($dpromo) ? $dpromo["harga_promo"] : -1 }}">
-                        <input type="hidden" name="totalBarang" id="totalBarang" value="0">
-                        <div class="text-center">
-                            <button class="btn btn-success rounded">Add to Cart</button>
-                        </div>
+                        <form action="addToCart" method="post">
+                            @csrf
+                            <input type="hidden" name="jumlahBarang" id="jumlahBarang" value="0">
+                            <input type="hidden" name="hargaBarang" id="hargaBarang" value="{{ $buku["harga"] }}">
+                            <input type="hidden" name="hargaDiskon" id="hargaDiskon" value="{{ isset($dpromo) ? $dpromo["harga_promo"] : -1 }}">
+                            <input type="hidden" name="totalBarang" id="totalBarang" value="0">
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-success rounded">Add to Cart</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -155,12 +162,14 @@
 
         function tambahValue(){
             document.getElementById("inp_jumlah").value = parseInt(document.getElementById("inp_jumlah").value) + 1;
+            document.getElementById("jumlahBarang").value = parseInt(document.getElementById("jumlahBarang").value) + 1;
             ubahNilai();
         }
 
         function kurangValue(){
             if (parseInt(document.getElementById("inp_jumlah").value) > 0){
                 document.getElementById("inp_jumlah").value = parseInt(document.getElementById("inp_jumlah").value) - 1;
+                document.getElementById("jumlahBarang").value = parseInt(document.getElementById("jumlahBarang").value) - 1;
                 ubahNilai();
             }
         }

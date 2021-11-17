@@ -45,6 +45,11 @@
                             <li><a class="dropdown-item" href="/logout-user">Keluar</a></li>
                         </ul>
                     </li>
+                    <li class="navbar-brand col-xs-2">
+                        <a href="/cart/{{ Auth::user()->id }}/detail" class="">
+                            <img src="/img/cart-logo.png" alt="Cart" width="24" height="24">
+                        </a>
+                    </li>
                 @else
                     <li class="nav-item dropdown {{ $errors->any()?'open':'' }} me-auto w-100 text-center">
                         <a class="nav-link dropdown-toggle px-5" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -77,12 +82,12 @@
                             </div>
                         </div>
                     </li>
+                    <li class="navbar-brand col-xs-2">
+                        <a href="/register" class="">
+                            <img src="/img/cart-logo.png" alt="Cart" width="24" height="24">
+                        </a>
+                    </li>
                 @endif
-                <li class="navbar-brand col-xs-2">
-                    <a href="/register" class="">
-                        <img src="/img/cart-logo.png" alt="Cart" width="24" height="24">
-                    </a>
-                </li>
             </ul>
         </div>
     </div>

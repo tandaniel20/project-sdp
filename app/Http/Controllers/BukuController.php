@@ -151,12 +151,12 @@ class BukuController extends Controller
         $wishlist->id_buku = $id;
         $wishlist->id_user = Auth::user()->id;
         $wishlist->save();
-        return redirect('buku/'.$id);
+        return redirect('buku/'.$id.'/detail');
     }
 
     public function removeWishBuku($id){
         $deleteWishlist = Wishlist::where('id_user',Auth::user()->id)->where('id_buku',$id)->delete();
-        return redirect('buku/'.$id);
+        return redirect('buku/'.$id.'/detail');
     }
 
     /**
