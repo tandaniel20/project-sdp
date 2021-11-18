@@ -89,6 +89,11 @@ Route::prefix('checkout')->group(function(){
     Route::post('/confirm',[HTransController::class, 'checkOut']);
 });
 
+Route::prefix('pemesanan')->group(function(){
+    Route::get('/', [HTransController::class, 'pemesananPage']);
+    Route::get('/{id}/detail', [HTransController::class, 'pemesananDetail']);
+});
+
 Route::prefix('wishlist')->group(function(){
     Route::get('/', [WishlistController::class, 'showWishlist']);
 });

@@ -18,6 +18,17 @@ use Illuminate\Support\Facades\Auth;
 class HTransController extends Controller
 {
 
+    public function pemesananDetail(){
+        return redirect()->back();
+    }
+
+    public function pemesananPage(){
+        return view('user.pemesanan',[
+            'kategori' => Kategori::all(),
+            'pemesanan' => HTrans::where('id_user', Auth::user()->id)->get(),
+        ]);
+    }
+
     public function checkOutPage(){
         $listPromo = [];
         foreach (Buku::all() as $b) {
@@ -62,7 +73,7 @@ class HTransController extends Controller
                     $newHTrans->id_user = Auth::user()->id;
                     $newHTrans->total = $req->totalSemua;
                     $newHTrans->metode = $req->metode;
-                    $newHTrans->status = 1; // langsung ke persetujuan admin
+                    $newHTrans->status = 2; // langsung ke pengiriman admin
                     $newHTrans->save();
 
                     // masukkan ke d trans

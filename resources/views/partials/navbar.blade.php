@@ -40,7 +40,7 @@
                             {{ Auth::user()->email }}
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Pemesanan</a></li>
+                            <li><a class="dropdown-item" href="/pemesanan">Pemesanan</a></li>
                             <li><a class="dropdown-item" href="/point">My Point</a></li>
                             <li><a class="dropdown-item" href="/wishlist">Wishlist</a></li>
                             <li><a class="dropdown-item" href="/logout-user">Keluar</a></li>
