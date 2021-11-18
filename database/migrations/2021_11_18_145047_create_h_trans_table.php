@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAlamatsTable extends Migration
+class CreateHTransTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,12 @@ class CreateAlamatsTable extends Migration
      */
     public function up()
     {
-        Schema::create('alamat', function (Blueprint $table) {
+        Schema::create('h_trans', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('id_user');
-            $table->String("penerima");
-            $table->String("nohp");
-            $table->String("provinsi");
-            $table->String("kota");
-            $table->String("kecamatan");
-            $table->String("kelurahan");
-            $table->String("kodepos");
-            $table->String("jalan");
+            $table->bigInteger('total');
+            $table->bigInteger('metode'); // 0 transfer, 1 point
+            $table->bigInteger('status'); // 0 menunggu bukti transfer // 1 menunggu konfirmasi bukti admin // 99 cancelled
             $table->timestamps();
         });
     }
@@ -35,6 +30,6 @@ class CreateAlamatsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('alamat');
+        Schema::dropIfExists('h_trans');
     }
 }

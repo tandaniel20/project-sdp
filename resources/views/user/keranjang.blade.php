@@ -64,7 +64,7 @@
                 <h3>Total : Rp. {{ $totalSemua }}</h3>
             </div>
             <div>
-                <a href="">
+                <a href="/checkout">
                     <button type="button" class="btn btn-success">To Check Out</button>
                 </a>
             </div>

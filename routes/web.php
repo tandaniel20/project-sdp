@@ -6,6 +6,7 @@ use App\Http\Controllers\BukuController;
 use App\Http\Controllers\BukuKategoriController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\HPromoController;
+use App\Http\Controllers\HTransController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\KeranjangController;
 use App\Http\Controllers\UserController;
@@ -81,6 +82,11 @@ Route::prefix('cart')->group(function(){
 Route::prefix('point')->group(function(){
     Route::get('/', [UserVoucherController::class, 'detailPoint']);
     Route::post('/cekVoucher', [UserVoucherController::class, 'cekVoucher']);
+});
+
+Route::prefix('checkout')->group(function(){
+    Route::get('/', [HTransController::class, 'checkOutPage']);
+    Route::post('/confirm',[HTransController::class, 'checkOut']);
 });
 
 Route::prefix('wishlist')->group(function(){

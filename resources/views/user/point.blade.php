@@ -33,14 +33,14 @@
                 @foreach ($history as $h)
                     <tr>
                         <th scope="row">{{ $h->created_at }}</th>
-                        <td>
+                        <td class="text-success">
                             @if ($h->kredit == 0)
                                 -
                             @else
                                 {{ $h->kredit }}
                             @endif
                         </td>
-                        <td>
+                        <td class="text-danger">
                             @if ($h->debit == 0)
                                 -
                             @else

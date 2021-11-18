@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Alamat;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class AlamatController extends Controller
@@ -42,6 +43,7 @@ class AlamatController extends Controller
 
         $data = new Alamat;
 
+        $data->id_user = Auth::user()->id;
         $data->penerima = $penerima;
         $data->nohp = $nohp;
         $data->provinsi = $provinsi;
