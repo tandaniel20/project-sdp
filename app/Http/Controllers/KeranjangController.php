@@ -46,7 +46,7 @@ class KeranjangController extends Controller
         }
     }
 
-    public function detailKeranjang($id){
+    public function detailKeranjang(){
         $listPromo = [];
         foreach (Buku::all() as $b) {
             $promo = DPromo::where('id_buku', $b["id"])->where('tanggal_exp','>=',Carbon::now()->toDateTimeString())->orderBy('harga_promo', 'ASC')->first();
@@ -56,7 +56,7 @@ class KeranjangController extends Controller
         }
         return view('user.keranjang',[
             'kategori' => Kategori::all(),
-            'keranjang' => Keranjang::where('id_user',$id)->get(),
+            'keranjang' => Keranjang::where('id_user',Auth::user()->id)->get(),
             'dpromo' => $listPromo,
         ]);
     }

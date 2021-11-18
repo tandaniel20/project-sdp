@@ -41,12 +41,13 @@
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" href="#">Pemesanan</a></li>
+                            <li><a class="dropdown-item" href="/point">My Point</a></li>
                             <li><a class="dropdown-item" href="/wishlist">Wishlist</a></li>
                             <li><a class="dropdown-item" href="/logout-user">Keluar</a></li>
                         </ul>
                     </li>
                     <li class="navbar-brand col-xs-2">
-                        <a href="/cart/{{ Auth::user()->id }}/detail" class="">
+                        <a href="/cart" class="">
                             <img src="/img/cart-logo.png" alt="Cart" width="24" height="24">
                         </a>
                     </li>

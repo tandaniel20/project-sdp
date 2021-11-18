@@ -9,12 +9,14 @@ use App\Http\Controllers\HPromoController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\KeranjangController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\UserVoucherController;
 use App\Http\Controllers\VoucherController;
 use App\Http\Controllers\WishlistController;
 use App\Models\Buku;
 use App\Models\HPromo;
 use App\Models\Kategori;
 use App\Models\Keranjang;
+use App\Models\UserVoucher;
 use App\Models\Wishlist;
 use Illuminate\Support\Facades\Route;
 
@@ -72,8 +74,13 @@ Route::prefix('buku')->group(function(){
 });
 
 Route::prefix('cart')->group(function(){
-    Route::get('/{id}/detail', [KeranjangController::class, 'detailKeranjang']);
+    Route::get('/', [KeranjangController::class, 'detailKeranjang']);
     Route::post('/{id}/remove', [KeranjangController::class, 'removeKeranjang']);
+});
+
+Route::prefix('point')->group(function(){
+    Route::get('/', [UserVoucherController::class, 'detailPoint']);
+    Route::post('/cekVoucher', [UserVoucherController::class, 'cekVoucher']);
 });
 
 Route::prefix('wishlist')->group(function(){
