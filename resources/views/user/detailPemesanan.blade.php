@@ -39,6 +39,11 @@
             <a href="/pemesanan">
                 <button type="button" class="btn btn-warning">Back to Pemesanan</button>
             </a>
+            @if ($header->status == 0)
+                <a href="kirim-bukti">
+                    <button type="button" class="btn btn-primary">Kirim Bukti Transfer</button>
+                </a>
+            @endif
         <hr>
         <h1>Detail Buku</h1>
         <table class="table">

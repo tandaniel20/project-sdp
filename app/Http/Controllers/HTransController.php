@@ -14,6 +14,7 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class HTransController extends Controller
 {
@@ -34,11 +35,33 @@ class HTransController extends Controller
         ]);
     }
 
+    public function toSuccessPoint(){
+        return view('user.successPointCheckout', [
+            'kategori' => Kategori::all(),
+        ]);
+    }
+
     public function pemesananPage(){
         return view('user.pemesanan',[
             'kategori' => Kategori::all(),
             'pemesanan' => HTrans::where('id_user', Auth::user()->id)->get(),
         ]);
+    }
+
+    public function kirimBuktiPage(){
+        return view('user.kirimBuktiTransfer',[
+            'kategori' => Kategori::all(),
+        ]);
+    }
+
+    public function uploadBukti(Request $req, $id){
+        if($req->hasFile('file')){
+            Storage::putFileAs('/public/bukti', $req->file('file'), $id.".png");
+            $header = HTrans::where('id',$id)->first();
+            $header->status = 1;
+            $header->save();
+        }
+        return redirect('pemesanan');
     }
 
     public function checkOutPage(){
@@ -144,7 +167,7 @@ class HTransController extends Controller
                     $newPointHistory->keterangan = 'Pembayaran checkout';
                     $newPointHistory->save();
 
-                    return redirect()->back()->withErrors(['msg' => 'Checkout success!']);
+                    return redirect('checkout/successPoint');
                 }
             }else{
                 // semua validasi benar

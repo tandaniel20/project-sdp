@@ -16,6 +16,7 @@ use App\Http\Controllers\WishlistController;
 use App\Models\Alamat;
 use App\Models\Buku;
 use App\Models\HPromo;
+use App\Models\HTrans;
 use App\Models\Kategori;
 use App\Models\Keranjang;
 use App\Models\UserVoucher;
@@ -91,11 +92,14 @@ Route::prefix('checkout')->group(function(){
     Route::get('/', [HTransController::class, 'checkOutPage']);
     Route::post('/confirm',[HTransController::class, 'checkOut']);
     Route::get('/success',[HTransController::class, 'toSuccess']);
+    Route::get('/successPoint',[HTransController::class, 'toSuccessPoint']);
 });
 
 Route::prefix('pemesanan')->group(function(){
     Route::get('/', [HTransController::class, 'pemesananPage']);
     Route::get('/{id}/detail', [HTransController::class, 'pemesananDetail']);
+    Route::get('/{id}/kirim-bukti', [HTransController::class, 'kirimBuktiPage']);
+    Route::post('/{id}/upload-bukti', [HTransController::class, 'uploadBukti']);
 });
 
 Route::prefix('wishlist')->group(function(){
