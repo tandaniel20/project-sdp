@@ -13,4 +13,8 @@ class HTrans extends Model
     protected $primaryKey = "id";
     public $timestamps = true;
     public $incrementing = true;
+
+    public function User(){
+        return $this->belongsTo(User::class, 'id_user', 'id');
+    }
 }

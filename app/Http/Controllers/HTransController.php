@@ -18,8 +18,14 @@ use Illuminate\Support\Facades\Auth;
 class HTransController extends Controller
 {
 
-    public function pemesananDetail(){
-        return redirect()->back();
+    public function pemesananDetail($id){
+        $header = HTrans::where('id',$id)->first();
+        $detail = DTrans::where('id_trans',$id)->get();
+        return view('user.detailPemesanan',[
+            'kategori' => Kategori::all(),
+            'header' => $header,
+            'detail' => $detail,
+        ]);
     }
 
     public function toSuccess(){

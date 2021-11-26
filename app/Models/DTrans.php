@@ -13,4 +13,8 @@ class DTrans extends Model
     protected $primaryKey = "id";
     public $timestamps = false;
     public $incrementing = true;
+
+    public function Buku(){
+        return $this->belongsTo(Buku::class, 'id_buku', 'id');
+    }
 }
