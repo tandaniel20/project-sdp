@@ -15,6 +15,7 @@ class CreateHTransTable extends Migration
     {
         Schema::create('h_trans', function (Blueprint $table) {
             $table->id();
+            $table->string('id_pemesanan',5)->nullable(true);
             $table->unsignedBigInteger('id_user');
             $table->bigInteger('total');
             $table->bigInteger('metode');   // 0 transfer, 1 point

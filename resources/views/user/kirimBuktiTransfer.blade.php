@@ -4,7 +4,7 @@
 @endsection
 @section('container')
     <div class="container mt-5 pt-5 mx-auto">
-        <span class="fs-1 fw-bold">Kirim Bukti Transfer</span>
+        <span class="fs-1 fw-bold">Kirim Bukti Transfer {{ $pemesanan->id_pemesanan }}</span>
         <hr>
         <span class="fs-2">Silahkan lakukan Transfer ke Rekening BCA</span><br>
         <span class="fs-3">Nomor Rekening : 189030122301</span><br>

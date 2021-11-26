@@ -48,9 +48,10 @@ class HTransController extends Controller
         ]);
     }
 
-    public function kirimBuktiPage(){
+    public function kirimBuktiPage($id){
         return view('user.kirimBuktiTransfer',[
             'kategori' => Kategori::all(),
+            'pemesanan' => HTrans::where('id',$id)->first(),
         ]);
     }
 
@@ -112,6 +113,8 @@ class HTransController extends Controller
                     $newHTrans->total = $req->totalSemua;
                     $newHTrans->metode = $req->metode;
                     $newHTrans->status = 2; // langsung ke pengiriman admin
+                    $newHTrans->save();
+                    $newHTrans->id_pemesanan = 'P'. str_pad($newHTrans->id,4,"0",STR_PAD_LEFT);
                     $newHTrans->save();
 
                     // masukkan ke d trans
@@ -177,6 +180,8 @@ class HTransController extends Controller
                 $newHTrans->total = $req->totalSemua;
                 $newHTrans->metode = $req->metode;
                 $newHTrans->status = 0;
+                $newHTrans->save();
+                $newHTrans->id_pemesanan = 'P'. str_pad($newHTrans->id,4,"0",STR_PAD_LEFT);
                 $newHTrans->save();
 
                 // masukkan ke d trans

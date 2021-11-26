@@ -4,7 +4,7 @@
 @endsection
 @section('container')
     <div class="container mt-3">
-        <h1>Detail Pemesanan {{ $header->id }}</h1>
+        <h1>Detail Pemesanan {{ $header->id_pemesanan }}</h1>
         <hr>
             <div class="row">
                 <div class="col-2"><span class="text-muted">Tanggal</div>

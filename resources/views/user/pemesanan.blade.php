@@ -9,6 +9,7 @@
         <table class="table">
             <thead>
                 <tr>
+                    <th scope="col">Pemesanan</th>
                     <th scope="col">Tanggal</th>
                     <th scope="col">Total</th>
                     <th scope="col">Metode Pembayaran</th>
@@ -19,6 +20,7 @@
             <tbody>
                 @foreach ($pemesanan as $p)
                     <tr>
+                        <th scope="row" class="align-middle">{{ $p->id_pemesanan }}</th>
                         <th scope="row" class="align-middle">{{ $p->created_at }}</th>
                         <td class="align-middle">{{ "Rp " . number_format($p->total,0,',','.') }}</td>
                         <td class="align-middle">
