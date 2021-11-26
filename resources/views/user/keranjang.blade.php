@@ -35,12 +35,12 @@
                                         if ($dp["id_buku"] == $k->Buku->id){
                                             $ketemu = true;
                                             $total = $k->qty * $dp["harga_promo"];
-                                            echo ($total);
+                                            echo "Rp " . number_format($total,0,',','.');
                                         }
                                     }
                                     if (!$ketemu){
                                         $total = $k->Buku->harga*$k->qty;
-                                        echo $total;
+                                        echo "Rp " . number_format($total,0,',','.');
                                     }
                                     $totalSemua += $total;
                                 ?>
@@ -86,7 +86,7 @@
         <hr>
         <div class="d-flex justify-content-between">
             <div class="align-middle">
-                <h3>Total : Rp. {{ $totalSemua }}</h3>
+                <h3>Total : {{ "Rp " . number_format($totalSemua,0,',','.') }}</h3>
             </div>
             <div>
                 <a href="/checkout">
