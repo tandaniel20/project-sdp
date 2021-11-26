@@ -37,6 +37,9 @@ class HTransController extends Controller
                 array_push($listPromo, $promo);
             }
         }
+        if (count(Keranjang::where('id_user',Auth::user()->id)->get()) == 0 || count(Alamat::where('id_user',Auth::user()->id)->get()) == 0){
+            return redirect()->back()->withErrors(['msg' => 'Keranjang atau Alamat masih kosong!']);
+        }
         return view('user.checkout',[
             'kategori' => Kategori::all(),
             'keranjang' => Keranjang::where('id_user',Auth::user()->id)->get(),
