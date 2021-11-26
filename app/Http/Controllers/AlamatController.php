@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Alamat;
+use App\Models\Kategori;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -102,21 +103,7 @@ class AlamatController extends Controller
         echo "<script>alert('Sukses Update Alamat')</script>";
         return redirect('alamat');
     }
-    public function deletealamat(Request $request){
-        $rules = [
-            'id' => 'required | numeric'
-            //'email' => 'required | regex:/(.+)@(.+)\.(.+)/i' // format email @ .
-            //'password' => 'required | min:8 | max:12 | regex:/^(?=.*[a-z])(?=.*[A-Z]).+$/ | confirmed'//sama ama confirm,harus ad huruf besar dan kecil
-        ];
-
-        $customError = [
-            'required' => ':attribute harus diisi!',
-            'numeric' => 'Mana ada :attribute ada hurufnya?',
-        ];
-
-        $this->validate($request,$rules,$customError);
-        $id = $request->input('id');
-
+    public function deletealamat($id){
         $data = Alamat::find($id);
         $data->delete();
         echo "<script>alert('Sukses Delete Alamat')</script>";
@@ -158,8 +145,13 @@ class AlamatController extends Controller
     }
     public function alamat()
     {
-        return view('user.addAlamat',['title' => "Alamat"],['alamat' => Alamat::all()]);
+        return view('user.alamat',[
+            'title' => "Alamat",
+            'alamat' => Alamat::all(),
+            'kategori' => Kategori::all(),
+        ]);
     }
+
     /**
      * Display a listing of the resource.
      *

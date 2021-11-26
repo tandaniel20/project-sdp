@@ -13,6 +13,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserVoucherController;
 use App\Http\Controllers\VoucherController;
 use App\Http\Controllers\WishlistController;
+use App\Models\Alamat;
 use App\Models\Buku;
 use App\Models\HPromo;
 use App\Models\Kategori;
@@ -142,9 +143,25 @@ Route::prefix('admin')->group(function(){
         Route::get('/{id}/delete', [VoucherController::class, 'delete']);
     });
 });
+Route::get('/keAddAlamat', function()
+{
+    return view('user.addAlamat',[
+        'title' => "Alamat",
+        'alamat' => Alamat::all(),
+        'kategori' => Kategori::all(),
+    ]);
+});
 Route::post('/AddAlamat', [AlamatController::class,'prosesData']);
 Route::get('/alamat', [AlamatController::class,'alamat']);
-Route::get('/deletealamat', [AlamatController::class,'deletealamat']);
+Route::get('/deletealamat/{id}', [AlamatController::class,'deletealamat']);
+Route::get('/keupdatealamat/{id}', function()
+{
+    return view('user.updateAlamat',[
+        'title' => "Alamat",
+        'alamat' => Alamat::all(),
+        'kategori' => Kategori::all(),
+    ]);
+});
 Route::post('/updatealamat', [AlamatController::class,'updatealamat']);
 // Route::get('tabledit', 'AlamatController@index');
 // Route::post('tabledit/action', 'AlamatController@action')->name('tabledit.action');

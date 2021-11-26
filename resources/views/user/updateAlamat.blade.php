@@ -11,18 +11,29 @@
         $('table.display').DataTable();
     } );
 </script>
-<div class="container-fluid" style="text-align:">
 
-    <div class="card text-center">
-        <div class="card-header">
-            <h2>Add Alamat</h2>
-        </div>
-        <form action="/AddAlamat" method="POST">
-                @csrf
+<div class="container-fluid" style="text-align: center;">
+    <form action="/updatealamat" method="post">
+        @csrf
+        <div class="card text-center">
+            <div class="card-header">
+                <h2>Update Alamat</h2>
+            </div>
             <div class="card-body">
-
                 <div class="row">
-                    <div class="col-3" style="text-align: right;center;">
+                    <div class="col-3" style="text-align: right;">
+                        ID
+                    </div>
+                    <div class="col" style="text-align: left; vertical-align: middle;">
+                        <input class="w-50" type="number" name="id" id="" placeholder="ID" value="{{ old('id') }}">
+                    </div>
+                    @error('id')
+                        <span style='color: red'>{{ $message }}</span>
+                    @enderror
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-3" style="text-align: right;">
                         Penerima
                     </div>
                     <div class="col" style="text-align: left; vertical-align: middle;">
@@ -121,19 +132,13 @@
                 <div class="row" style="text-align: center;">
                     <div class="col"></div>
                     <div class="col">
-                        <button type="submit" class="btn btn-success btn-block">Add Alamat</button>
-                        {{-- <form action="/updatealamat">
-                            <button type="submit" class="btn btn-success btn-block">Update Alamat</button>
-                        </form> --}}
+                        <button type="submit" class="btn btn-success btn-block">Update Alamat</button>
                     </div>
                     <div class="col"></div>
                 </div>
             </div>
-        </form>
-    </div>
-
+        </div>
+    </form>
 
 </div>
-
-
 @endsection
