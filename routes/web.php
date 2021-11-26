@@ -90,6 +90,7 @@ Route::prefix('point')->group(function(){
 Route::prefix('checkout')->group(function(){
     Route::get('/', [HTransController::class, 'checkOutPage']);
     Route::post('/confirm',[HTransController::class, 'checkOut']);
+    Route::get('/success',[HTransController::class, 'toSuccess']);
 });
 
 Route::prefix('pemesanan')->group(function(){

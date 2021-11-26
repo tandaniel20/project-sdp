@@ -22,6 +22,12 @@ class HTransController extends Controller
         return redirect()->back();
     }
 
+    public function toSuccess(){
+        return view('user.successCheckout',[
+            'kategori' => Kategori::all(),
+        ]);
+    }
+
     public function pemesananPage(){
         return view('user.pemesanan',[
             'kategori' => Kategori::all(),
@@ -184,7 +190,7 @@ class HTransController extends Controller
                 //clear cart
                 $deleteKeranjang = Keranjang::where('id_user', Auth::user()->id)->delete();
 
-                return redirect()->back()->withErrors(['msg' => 'Checkout success!']);
+                return redirect('checkout/success');
             }
         }return redirect()->back()->withErrors(['msg' => 'Stock buku melebihi!']);
     }

@@ -113,7 +113,7 @@
                                 </div>
                             </div>
                             <hr>
-                            <input type="hidden" name="totalSemua" value="{{ number_format($totalSemua+10000,0,',','.') }}">
+                            <input type="hidden" name="totalSemua" value="{{ $totalSemua }}">
                             <div class="row">
                                 <div class="col text-left">
                                     Total :
