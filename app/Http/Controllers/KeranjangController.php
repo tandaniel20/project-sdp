@@ -66,6 +66,29 @@ class KeranjangController extends Controller
         return redirect()->back();
     }
 
+    public function tambahItem($id){
+        $itemKeranjang = Keranjang::where('id',$id)->first();
+        $buku = Buku::where('id',$itemKeranjang->id_buku)->first();
+        if ($buku->stock < $itemKeranjang->qty + 1){
+            return redirect()->back()->withErrors(['msg' => 'Quantity buku melebihi stock!']);
+        }else{
+            $itemKeranjang->qty = $itemKeranjang->qty+1;
+            $itemKeranjang->save();
+            return redirect('cart');
+        }
+    }
+
+    public function kurangItem($id){
+        $itemKeranjang = Keranjang::where('id',$id)->first();
+        if ($itemKeranjang->qty == 1){
+            $deleteItemKeranjang = Keranjang::where('id',$id)->delete();
+        }else{
+            $itemKeranjang->qty = $itemKeranjang->qty - 1;
+            $itemKeranjang->save();
+        }
+        return redirect('cart');
+    }
+
     /**
      * Show the form for creating a new resource.
      *

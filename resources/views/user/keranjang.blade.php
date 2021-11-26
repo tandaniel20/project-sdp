@@ -21,9 +21,23 @@
                         </div>
                     </div>
                     <div class="align-self-center">
+                        <a href="/cart/{{ $k->id }}/kurang">
+                            <button type="button" class="btn btn-success rounded-circle">
+                                -
+                            </button>
+                        </a>
+                    </div>
+                    <div class="align-self-center">
                         <div class="card-body align-middle">
                             <p class="card-text">Jumlah : {{ $k->qty }}</p>
                         </div>
+                    </div>
+                    <div class="align-self-center">
+                        <a href="/cart/{{ $k->id }}/tambah">
+                            <button type="button" class="btn btn-success rounded-circle">
+                                +
+                            </button>
+                        </a>
                     </div>
                     <div class="align-self-center">
                         <div class="card-body align-middle">

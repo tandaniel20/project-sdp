@@ -78,6 +78,8 @@ Route::prefix('buku')->group(function(){
 Route::prefix('cart')->group(function(){
     Route::get('/', [KeranjangController::class, 'detailKeranjang']);
     Route::get('/{id}/remove', [KeranjangController::class, 'removeKeranjang']);
+    Route::get('/{id}/tambah', [KeranjangController::class, 'tambahItem']);
+    Route::get('/{id}/kurang', [KeranjangController::class, 'kurangItem']);
 });
 
 Route::prefix('point')->group(function(){
