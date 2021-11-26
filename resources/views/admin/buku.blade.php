@@ -26,10 +26,30 @@
                     </p>
                     <a href="/admin/buku/{{ $b["id"] }}/kategori" class="btn btn-primary m-1" style="float: left">Kategori</a>
                     <a href="/admin/buku/{{ $b["id"] }}/update" class="btn btn-warning m-1" style="float: left">Edit</a>
-                    <form action="/admin/buku/{{ $b["id"] }}/delete" method="get" onsubmit="return confirm('Yakin ingin delete?');" style="float: left">
-                        @csrf
-                        <button type="submit" class="btn btn-danger m-1">Delete</button>
-                    </form>
+
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-danger m-1" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $b->id }}" style="float: left">
+                        Delete
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal{{ $b->id }}" tabindex="-1" aria-labelledby="exampleModalLabel{{ $b->id }}" aria-hidden="true">
+                        <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel{{ $b->id }}">Delete Buku</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                Apakah anda yakin ingin membuang Buku {{ $b->judul }}?
+                            </div>
+                            <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <a href="/admin/buku/{{ $b["id"] }}/delete"><button type="button" class="btn btn-primary">Delete</button></a>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             @endforeach

@@ -37,12 +37,12 @@
             </span>
             @if (isset($dpromo))
                 <h4>
-                    <span class="fw-bold" style="text-decoration: line-through">Rp. {{ $buku["harga"] }}</span>
-                    <span class="fw-bold text-danger">Rp. {{ $dpromo["harga_promo"] }}</span> <br>
+                    <span class="fw-bold" style="text-decoration: line-through">{{ "Rp " . number_format($buku["harga"],0,',','.') }}</span>
+                    <span class="fw-bold text-danger">{{ "Rp " . number_format($dpromo["harga_promo"],0,',','.') }}</span> <br>
                     <span class="text-muted fs-6">Hingga {{ $dpromo["tanggal_exp"] }}</span>
                 </h4>
             @else
-                <h4><span class="fw-bold">Rp. {{ $buku["harga"] }}</span></h4>
+                <h4><span class="fw-bold">{{ "Rp " . number_format($buku["harga"],0,',','.') }}</span></h4>
             @endif
             <hr>
             <span>{{ $buku["deskripsi"] }}</span>
@@ -111,36 +111,38 @@
             <span class="text-muted">Dimensi &nbsp; : {{ $buku["dimensi"] }}</span><br>
             <span class="text-muted">Cover &nbsp; : {{ $buku["cover"] }}</span><br> --}}
         </div>
-        <div class="w-25" style="height: 75vh;">
-            <div class="card flex" style="w-100 h-50">
-                <div class="card-body">
-                    <div class="h-75">
-                        <h5 class="card-title text-center">Tambahkan ke Keranjang</h5>
-                    </div>
-                    <div>
-                        <p class="card-text">Jumlah Barang :</p>
-                        <button class="btn btn-success rounded-circle" onclick="kurangValue()">-</button>
-                        <input type="number" name="jumlah" id="inp_jumlah" value="0" class="w-25 rounded" onchange="changeTotal()">
-                        <button class="btn btn-success rounded-circle" onclick="tambahValue()">+</button>
-                        <span class="cart-text" style="color:gray;">Stock : {{ $buku["stock"] }}</span>
-                        <hr>
-                        <span>Subtotal : Rp. </span>
-                        <span id="subtotal">0</span>
-                        <hr>
-                        <form action="addToCart" method="post">
-                            @csrf
-                            <input type="hidden" name="jumlahBarang" id="jumlahBarang" value="0">
-                            <input type="hidden" name="hargaBarang" id="hargaBarang" value="{{ $buku["harga"] }}">
-                            <input type="hidden" name="hargaDiskon" id="hargaDiskon" value="{{ isset($dpromo) ? $dpromo["harga_promo"] : -1 }}">
-                            <input type="hidden" name="totalBarang" id="totalBarang" value="0">
-                            <div class="text-center">
-                                <button type="submit" class="btn btn-success rounded">Add to Cart</button>
-                            </div>
-                        </form>
+        @if (Auth::check())
+            <div class="w-25" style="height: 75vh;">
+                <div class="card flex" style="w-100 h-50">
+                    <div class="card-body">
+                        <div class="h-75">
+                            <h5 class="card-title text-center">Tambahkan ke Keranjang</h5>
+                        </div>
+                        <div>
+                            <p class="card-text">Jumlah Barang :</p>
+                            <button class="btn btn-success rounded-circle" onclick="kurangValue()">-</button>
+                            <input type="number" name="jumlah" id="inp_jumlah" value="0" class="w-25 rounded" onchange="changeTotal()">
+                            <button class="btn btn-success rounded-circle" onclick="tambahValue()">+</button>
+                            <span class="cart-text" style="color:gray;">Stock : {{ $buku["stock"] }}</span>
+                            <hr>
+                            <span>Subtotal : Rp. </span>
+                            <span id="subtotal">0</span>
+                            <hr>
+                            <form action="addToCart" method="post">
+                                @csrf
+                                <input type="hidden" name="jumlahBarang" id="jumlahBarang" value="0">
+                                <input type="hidden" name="hargaBarang" id="hargaBarang" value="{{ $buku["harga"] }}">
+                                <input type="hidden" name="hargaDiskon" id="hargaDiskon" value="{{ isset($dpromo) ? $dpromo["harga_promo"] : -1 }}">
+                                <input type="hidden" name="totalBarang" id="totalBarang" value="0">
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-success rounded">Add to Cart</button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        @endif
     </div>
     <script>
         function ubahNilai(){
@@ -154,6 +156,7 @@
             var total = parseInt(harga)*parseInt(banyak);
             document.getElementById("subtotal").innerHTML = total;
             document.getElementById("totalBarang").value = total;
+            document.getElementById("jumlahBarang").value = banyak;
         }
 
         function changeTotal(){

@@ -20,7 +20,7 @@
                 @foreach ($pemesanan as $p)
                     <tr>
                         <th scope="row" class="align-middle">{{ $p->created_at }}</th>
-                        <td class="align-middle">Rp. {{ $p->total }}</td>
+                        <td class="align-middle">{{ "Rp " . number_format($p->total,0,',','.') }}</td>
                         <td class="align-middle">
                             @if ($p->metode == 0)
                                 Transfer

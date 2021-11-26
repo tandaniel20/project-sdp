@@ -70,8 +70,9 @@ class WishlistController extends Controller
             foreach ($wishlist as $w) {
                 # code...
                 $buku = Buku::where('id',$w["id_buku"])->first();
-                array_push($listBuku, $buku);
+                if ($buku != null)array_push($listBuku, $buku);
             }
+            // dd($listBuku);
             return view('user.wishlist', [
                 "buku" => $listBuku,
                 "kategori" => Kategori::all(),

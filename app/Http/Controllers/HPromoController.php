@@ -35,6 +35,7 @@ class HPromoController extends Controller
         $deletedRows = DPromo::where('id_promo',$id)->delete();
         $deletedRows = HPromo::where('id',$id)->delete();
 
+        return redirect('admin/promo');
         return view('admin.promo',[
             'title' => "Promo",
             'promo' => HPromo::all(),
@@ -113,6 +114,7 @@ class HPromoController extends Controller
             $addDPromo->save();
         }
 
+        return redirect('admin/promo');
         return view('admin.promo',[
             'title' => "Promo",
             'promo' => HPromo::all(),
@@ -181,6 +183,7 @@ class HPromoController extends Controller
             );
         }
 
+        return redirect('admin/promo');
         return view('admin.promo',[
             'title' => "Promo",
             'promo' => HPromo::all(),

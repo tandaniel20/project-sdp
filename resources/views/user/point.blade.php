@@ -8,7 +8,7 @@
         <hr>
         <div class="d-flex justify-content-between text-mute">
             <div class="align-self-center">
-                My point : {{ Auth::user()->point }}
+                {{ "My point : Rp " . number_format(Auth::user()->point,0,',','.') }}
             </div>
             <div class="align-self-center">
                 <form action="/point/cekVoucher" method="post">
@@ -37,14 +37,14 @@
                             @if ($h->kredit == 0)
                                 -
                             @else
-                                {{ $h->kredit }}
+                                {{ "Rp " . number_format($h->kredit,0,',','.') }}
                             @endif
                         </td>
                         <td class="text-danger">
                             @if ($h->debit == 0)
                                 -
                             @else
-                                {{ $h->debit }}
+                                {{ "Rp " . number_format($h->debit,0,',','.') }}
                             @endif
                         </td>
                         <td>{{ $h->keterangan }}</td>

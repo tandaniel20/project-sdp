@@ -38,10 +38,10 @@
                                         style="text-decoration: line-through"
                                     @endif
                                 @endforeach
-                                >Rp. {{ $b["harga"] }}</span>
+                                >{{ "Rp " . number_format($b["harga"],0,',','.') }}</span>
                                 @foreach ($dpromo as $dp)
                                     @if ($dp["id_buku"] == $b["id"])
-                                        <span class="text-danger"> Rp. {{ $dp["harga_promo"] }} </span>
+                                        <span class="text-danger"> {{ "Rp " . number_format($dp["harga_promo"],0,',','.') }} </span>
                                     @endif
                                 @endforeach
                             </p>

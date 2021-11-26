@@ -49,10 +49,35 @@
                     </div>
                     <div class="align-self-center flex-grow-1 text-end">
                         <div class="card-body align-middle">
-                            <form action="/cart/{{ $k->id }}/remove" method="post">
+                            <div>
+                                <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $k->id }}">
+                                    Delete
+                                </button>
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="exampleModal{{ $k->id }}" tabindex="-1" aria-labelledby="exampleModalLabel{{ $k->id }}" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel{{ $k->id }}">Delete Item Keranjang</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            Apakah anda yakin ingin membuang Item?
+                                        </div>
+                                        <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <a href="/cart/{{ $k->id }}/remove"><button type="button" class="btn btn-primary">Delete</button></a>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {{-- <form action="/cart/{{ $k->id }}/remove" method="post">
                                 @csrf
                                 <button type="submit" class="btn btn-danger">Remove</button>
-                            </form>
+                            </form> --}}
                         </div>
                     </div>
                 </div>

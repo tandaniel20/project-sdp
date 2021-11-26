@@ -37,14 +37,37 @@
                                     Batas : sisa {{ $current["batas"] }} pakai
                                 </div>
                                 <div>
-                                    Jumlah Point : {{ $current["jumlahpoint"] }}
+                                    Jumlah Point : {{ "Rp " . number_format($current["jumlahpoint"],0,',','.') }}
                                 </div>
                                 <div>
                                     Created at : {{ $current["created_at"] }}
                                 </div>
                                 <div>
                                     <a href="/admin/voucher/{{ $current["id"] }}/update"><button class="btn btn-warning">Edit</button></a>
-                                    <a href="/admin/voucher/{{ $current["id"] }}/delete"><button class="btn btn-danger" onclick="return confirm('Yakin ingin delete?');">Delete</button></a>
+
+                                    <!-- Button trigger modal -->
+                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $current->id }}">
+                                        Delete
+                                    </button>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="exampleModal{{ $current->id }}" tabindex="-1" aria-labelledby="exampleModalLabel{{ $current->id }}" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel{{ $current->id }}">Delete Voucher</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                Apakah anda yakin ingin membuang Voucher {{ $current->judul }}?
+                                            </div>
+                                            <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                            <a href="/admin/voucher/{{ $current["id"] }}/delete"><button type="button" class="btn btn-primary">Delete</button></a>
+                                            </div>
+                                        </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </li>
                         </ul>

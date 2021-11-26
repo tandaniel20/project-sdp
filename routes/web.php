@@ -76,7 +76,7 @@ Route::prefix('buku')->group(function(){
 
 Route::prefix('cart')->group(function(){
     Route::get('/', [KeranjangController::class, 'detailKeranjang']);
-    Route::post('/{id}/remove', [KeranjangController::class, 'removeKeranjang']);
+    Route::get('/{id}/remove', [KeranjangController::class, 'removeKeranjang']);
 });
 
 Route::prefix('point')->group(function(){

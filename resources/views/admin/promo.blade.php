@@ -42,13 +42,36 @@
                                 @foreach ($current->buku as $b)
                                     <div>
                                         {{-- @dump($b) --}}
-                                        {{ $b["judul"] }} - <span style="text-decoration: line-through;">{{ $b["harga"] }}</span> -> {{ $b->pivot->harga_promo }}
+                                        {{ $b["judul"] }} - <span style="text-decoration: line-through;">{{ "Rp " . number_format($b["harga"],0,',','.') }}</span> -> {{ "Rp " . number_format($b->pivot->harga_promo,0,',','.') }}
                                     </div>
                                 @endforeach
                                 <br>
                                 <div>
                                     <a href="/admin/promo/{{ $current["id"] }}/update"><button class="btn btn-warning">Edit</button></a>
-                                    <a href="/admin/promo/{{ $current["id"] }}/delete"><button class="btn btn-danger" onclick="return confirm('Yakin ingin delete?');">Delete</button></a>
+
+                                    <!-- Button trigger modal -->
+                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $current->id }}">
+                                        Delete
+                                    </button>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="exampleModal{{ $current->id }}" tabindex="-1" aria-labelledby="exampleModalLabel{{ $current->id }}" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel{{ $current->id }}">Delete Promo</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                Apakah anda yakin ingin membuang Promo {{ $current->judul }}?
+                                            </div>
+                                            <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                            <a href="/admin/promo/{{ $current["id"] }}/delete"><button type="button" class="btn btn-primary">Delete</button></a>
+                                            </div>
+                                        </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </li>
                         </ul>

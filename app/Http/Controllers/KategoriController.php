@@ -45,10 +45,7 @@ class KategoriController extends Controller
         $kategori->deskripsikategori = $validatedData["deskripsikategori"];
         $kategori->save();
         $kategories = Kategori::all();
-        return view('admin.kategori',[
-            "title" => 'Kategori',
-            'kategori' => $kategories,
-        ]);
+        return redirect('admin/kategori');
     }
 
     /**
@@ -92,10 +89,7 @@ class KategoriController extends Controller
         $kategori = Kategori::find($id);
         // dd($kategori);
         $kategori->delete();
-        return view('admin.kategori',[
-            'title' => "Kategori",
-            'kategori' => Kategori::all(),
-        ]);
+        return redirect('admin/kategori');
     }
 
     public function cekUpdate(Request $request, $id){
@@ -108,10 +102,7 @@ class KategoriController extends Controller
         $kategori->deskripsikategori = $request->deskripsikategori;
         $kategori->save();
         $kategories = Kategori::all();
-        return view('admin.kategori',[
-            "title" => 'Kategori',
-            'kategori' => $kategories,
-        ]);
+        return redirect('admin/kategori');
     }
 
     /**

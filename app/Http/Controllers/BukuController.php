@@ -66,6 +66,7 @@ class BukuController extends Controller
         $buku->cover = $request->cover;
         $buku->deskripsi = $request->deskripsi;
         $buku->save();
+        return redirect('admin/buku');
         return view('admin.buku',[
             "title" => 'Buku',
             'buku' => Buku::all(),
@@ -98,6 +99,7 @@ class BukuController extends Controller
         $buku->cover = $request->cover;
         $buku->deskripsi = $request->deskripsi;
         $buku->save();
+        return redirect('admin/buku');
         return view('admin.buku',[
             "title" => 'Buku',
             'buku' => Buku::all(),
@@ -108,6 +110,7 @@ class BukuController extends Controller
         $buku = Buku::find($id);
         // dd($kategori);
         $buku->delete();
+        return redirect('admin/buku');
         return view('admin.buku',[
             'title' => "Buku",
             'buku' => Buku::all(),
