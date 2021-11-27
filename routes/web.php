@@ -9,6 +9,7 @@ use App\Http\Controllers\HPromoController;
 use App\Http\Controllers\HTransController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\KeranjangController;
+use App\Http\Controllers\RatingController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserVoucherController;
 use App\Http\Controllers\VoucherController;
@@ -19,6 +20,7 @@ use App\Models\HPromo;
 use App\Models\HTrans;
 use App\Models\Kategori;
 use App\Models\Keranjang;
+use App\Models\Rating;
 use App\Models\UserVoucher;
 use App\Models\Wishlist;
 use Illuminate\Support\Facades\Route;
@@ -100,6 +102,11 @@ Route::prefix('pemesanan')->group(function(){
     Route::get('/{id}/detail', [HTransController::class, 'pemesananDetail']);
     Route::get('/{id}/kirim-bukti', [HTransController::class, 'kirimBuktiPage']);
     Route::post('/{id}/upload-bukti', [HTransController::class, 'uploadBukti']);
+});
+
+Route::prefix('rate')->group(function(){
+    Route::get('/{id}', [RatingController::class, 'ratePage']);
+    Route::post('/{id}/submit', [RatingController::class, 'rateSubmit']);
 });
 
 Route::prefix('wishlist')->group(function(){

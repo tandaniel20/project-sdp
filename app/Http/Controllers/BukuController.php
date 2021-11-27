@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Buku;
 use App\Models\DPromo;
 use App\Models\Kategori;
+use App\Models\Rating;
 use App\Models\Wishlist;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -119,6 +120,15 @@ class BukuController extends Controller
 
     public function detailBuku($id){
         $buku = Buku::where('id',$id)->first();
+
+        $rates = Rating::where('id_buku', $id)->get();
+        $jumlahRating = 0;
+        foreach ($rates as $r) {
+            $jumlahRating += $r->rate;
+        }
+        if (count($rates) != 0) $current = $jumlahRating / count($rates);
+        else $current = 0;
+
         if (Auth::check()){
             if (count(Wishlist::where('id_user',Auth::user()->id)->where('id_buku',$id)->get()) > 0){
                 if (count(DPromo::where('id_buku',$id)->get()) > 0){
@@ -127,12 +137,16 @@ class BukuController extends Controller
                         'kategori' => Kategori::all(),
                         'wishlist' => 'true',
                         'dpromo' => DPromo::where('id_buku',$id)->orderBy('harga_promo','ASC')->first(),
+                        'currentRate' => $current,
+                        'responseUsers' => Rating::where('id_buku', $id)->get(),
                     ]);
                 }
                 return view('buku',[
                     'buku' => $buku,
                     'kategori' => Kategori::all(),
                     'wishlist' => 'true',
+                    'currentRate' => $current,
+                    'responseUsers' => Rating::where('id_buku', $id)->get(),
                 ]);
             }
         }
@@ -141,11 +155,15 @@ class BukuController extends Controller
                 'buku' => $buku,
                 'kategori' => Kategori::all(),
                 'dpromo' => DPromo::where('id_buku',$id)->orderBy('harga_promo','ASC')->first(),
+                'currentRate' => $current,
+                'responseUsers' => Rating::where('id_buku', $id)->get(),
             ]);
         }
         return view('buku',[
             'buku' => $buku,
             'kategori' => Kategori::all(),
+            'currentRate' => $current,
+            'responseUsers' => Rating::where('id_buku', $id)->get(),
         ]);
     }
 

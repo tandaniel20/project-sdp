@@ -75,6 +75,9 @@
                     <th scope="col">Harga</th>
                     <th scope="col">Qty</th>
                     <th scope="col">Subtotal</th>
+                    @if ($header->status == 3)
+                        <th scope="col">Rate</th>
+                    @endif
                 </tr>
             </thead>
             <tbody>
@@ -84,6 +87,15 @@
                         <td class="align-middle">{{ "Rp " . number_format($d->harga,0,',','.') }}</td>
                         <td class="align-middle">{{ $d->qty }}</td>
                         <td class="align-middle">{{ "Rp " . number_format($d->subtotal,0,',','.') }}</td>
+                        @if ($header->status == 3)
+                            <td>
+                                <a href="/rate/{{ $d->Buku->id }}">
+                                    <button type="button" class="btn btn-secondary">
+                                        <span class="fa fa-star"></span>
+                                    </button>
+                                </a>
+                            </td>
+                        @endif
                     </tr>
                 @endforeach
                 <tr>

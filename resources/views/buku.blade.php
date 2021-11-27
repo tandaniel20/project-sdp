@@ -45,6 +45,38 @@
                 <h4><span class="fw-bold">{{ "Rp " . number_format($buku["harga"],0,',','.') }}</span></h4>
             @endif
             <hr>
+            <span>Rating : </span>
+            @if ($currentRate >= 1)
+                <span class="fa fa-star checkedStar"></span>
+            @else
+                <span class="fa fa-star"></span>
+            @endif
+
+            @if ($currentRate >= 2)
+                <span class="fa fa-star checkedStar"></span>
+            @else
+                <span class="fa fa-star"></span>
+            @endif
+
+            @if ($currentRate >= 3)
+                <span class="fa fa-star checkedStar"></span>
+            @else
+                <span class="fa fa-star"></span>
+            @endif
+
+            @if ($currentRate >= 4)
+                <span class="fa fa-star checkedStar"></span>
+            @else
+                <span class="fa fa-star"></span>
+            @endif
+
+            @if ($currentRate >= 5)
+                <span class="fa fa-star checkedStar"></span>
+            @else
+                <span class="fa fa-star"></span>
+            @endif
+            <span class="text-muted"> {{ number_format($currentRate,1,',','.') }}</span><br>
+            <span class="text-muted">Description : </span> <br>
             <span>{{ $buku["deskripsi"] }}</span>
             <hr>
             <div class="row text-muted">
@@ -103,13 +135,50 @@
                     <span>: {{ $buku["cover"] }}</span>
                 </div>
             </div>
-            {{-- <span class="text-muted">Penulis &nbsp; : {{ $buku["penulis"] }}</span><br>
-            <span class="text-muted">Penerbit &nbsp; : {{ $buku["penerbit"] }}</span><br>
-            <span class="text-muted">Bahasa &nbsp; : {{ $buku["bahasa"] }}</span><br>
-            <span class="text-muted">Tahun &nbsp; : {{ $buku["tahun"] }}</span><br>
-            <span class="text-muted">Berat &nbsp; : {{ $buku["berat"] }}</span><br>
-            <span class="text-muted">Dimensi &nbsp; : {{ $buku["dimensi"] }}</span><br>
-            <span class="text-muted">Cover &nbsp; : {{ $buku["cover"] }}</span><br> --}}
+            <hr>
+            <div>
+                <h3>User Responses</h3>
+                @foreach ($responseUsers as $r)
+                    <div class="card">
+                        <div class="card-body">
+                            @if ($r->rate >= 1)
+                                <span class="fa fa-star checkedStar"></span>
+                            @else
+                                <span class="fa fa-star"></span>
+                            @endif
+
+                            @if ($r->rate >= 2)
+                                <span class="fa fa-star checkedStar"></span>
+                            @else
+                                <span class="fa fa-star"></span>
+                            @endif
+
+                            @if ($r->rate >= 3)
+                                <span class="fa fa-star checkedStar"></span>
+                            @else
+                                <span class="fa fa-star"></span>
+                            @endif
+
+                            @if ($r->rate >= 4)
+                                <span class="fa fa-star checkedStar"></span>
+                            @else
+                                <span class="fa fa-star"></span>
+                            @endif
+
+                            @if ($r->rate >= 5)
+                                <span class="fa fa-star checkedStar"></span>
+                            @else
+                                <span class="fa fa-star"></span>
+                            @endif
+                            <span class="text-muted"> {{ number_format($r->rate,1,',','.') }} from {{ $r->User->name }}</span>
+                            <br>
+                            <span>
+                                {{ $r->response }}
+                            </span>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
         </div>
         @if (Auth::check())
             <div class="w-25" style="height: 75vh;">
