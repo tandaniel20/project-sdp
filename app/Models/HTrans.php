@@ -17,4 +17,12 @@ class HTrans extends Model
     public function User(){
         return $this->belongsTo(User::class, 'id_user', 'id');
     }
+
+    public function Alamat(){
+        return $this->belongsTo(Alamat::class, 'id_alamat', 'id');
+    }
+
+    public function Detail(){
+        return $this->hasMany(DTrans::class, 'id_trans', 'id');
+    }
 }

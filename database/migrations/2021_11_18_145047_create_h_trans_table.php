@@ -17,6 +17,7 @@ class CreateHTransTable extends Migration
             $table->id();
             $table->string('id_pemesanan',5)->nullable(true);
             $table->unsignedBigInteger('id_user');
+            $table->unsignedBigInteger('id_alamat');
             $table->bigInteger('total');
             $table->bigInteger('metode');   // 0 transfer, 1 point
             $table->bigInteger('status');   // 0 menunggu bukti transfer // 1 menunggu konfirmasi bukti admin // 2 menunggu pengiriman admin // 3 terkirim

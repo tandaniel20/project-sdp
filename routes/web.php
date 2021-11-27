@@ -144,7 +144,14 @@ Route::prefix('admin')->group(function(){
         Route::get('/{id}/accept', [HTransController::class, 'adminBuktiAccept']);
         Route::get('/{id}/reject', [HTransController::class, 'adminBuktiReject']);
     });
-    Route::get('/pengantaran', [AdminViewController::class,'pengantaran']);
+
+    Route::prefix('pengantaran')->group(function(){
+        Route::get('/', [AdminViewController::class, 'pengantaran']);
+        Route::get('/{id}', [HTransController::class, 'adminPengantaran']);
+        Route::get('/{id}/accept', [HTransController::class, 'adminPengantaranAccept']);
+        Route::get('/{id}/reject', [HTransController::class, 'adminPengantaranReject']);
+    });
+
     Route::get('/retur', [AdminViewController::class,'retur']);
     Route::prefix('voucher')->group(function(){
         Route::get('/', [AdminViewController::class,'voucher']);

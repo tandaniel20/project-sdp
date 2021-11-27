@@ -19,8 +19,28 @@
                 <div class="col-10">: {{ $header->User->name }}</div>
             </div>
             <div class="row">
+                <div class="col-2">Penerima</div>
+                <div class="col-10">: {{ $header->Alamat->penerima }}</div>
+            </div>
+            <div class="row">
+                <div class="col-2">No. HP Penerima</div>
+                <div class="col-10">: {{ $header->Alamat->nohp }}</div>
+            </div>
+            <div class="row">
+                <div class="col-2">Alamat Penerima</div>
+                <div class="col-10">: {{ $header->Alamat->jalan }}, Kota {{ $header->Alamat->kota }} - {{ $header->Alamat->provinsi }}, KODE POS : {{ $header->Alamat->kodepos }}</div>
+            </div>
+            <div class="row">
                 <div class="col-2">Metode</div>
                 <div class="col-10">: {{ $header->metode == 1 ? 'Point' : 'Transfer' }}</div>
+            </div>
+            <div class="row">
+                <div class="col-2">Biaya Ongkir</div>
+                <div class="col-10">: {{ "Rp " . number_format(10000,0,',','.') }}</div>
+            </div>
+            <div class="row">
+                <div class="col-2">Total Pemesanan</div>
+                <div class="col-10">: {{ "Rp " . number_format($header->total,0,',','.') }}</div>
             </div>
             <div class="row">
                 <div class="col-2">Status</div>
@@ -31,6 +51,8 @@
                         : Menunggu Admin Menyetujui Bukti Transfer
                     @elseif ($header->status == 2)
                         : Menunggu Pengiriman dari Admin
+                    @elseif ($header->status == 3)
+                        : Terkirim
                     @elseif ($header->status == 99)
                         : Cancelled
                     @endif
@@ -61,27 +83,7 @@
                         <th scope="row" class="align-middle">{{ $d->Buku->judul }}</th>
                         <td class="align-middle">{{ "Rp " . number_format($d->harga,0,',','.') }}</td>
                         <td class="align-middle">{{ $d->qty }}</td>
-                        <td class="align-middle">{{ $d->subtotal }}</td>
-                        {{-- <th scope="row" class="align-middle">{{ $p->created_at }}</th>
-                        <td class="align-middle">{{ "Rp " . number_format($p->total,0,',','.') }}</td>
-                        <td class="align-middle">
-                            @if ($p->metode == 0)
-                                Transfer
-                            @else
-                                Point
-                            @endif
-                        </td>
-                        <td class="align-middle">
-                            @if ($p->status == 0)
-                                Menunggu Bukti Transfer
-                            @elseif ($p->status == 1)
-                                Menunggu Admin Menyetujui Bukti Transfer
-                            @elseif ($p->status == 2)
-                                Menunggu Pengiriman dari Admin
-                            @elseif ($p->status == 99)
-                                Cancelled
-                            @endif
-                        </td> --}}
+                        <td class="align-middle">{{ "Rp " . number_format($d->subtotal,0,',','.') }}</td>
                     </tr>
                 @endforeach
                 <tr>

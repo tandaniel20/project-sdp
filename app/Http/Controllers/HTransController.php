@@ -110,6 +110,7 @@ class HTransController extends Controller
                     // masukkan ke h trans
                     $newHTrans = new HTrans;
                     $newHTrans->id_user = Auth::user()->id;
+                    $newHTrans->id_alamat = $req->alamat;
                     $newHTrans->total = $req->totalSemua;
                     $newHTrans->metode = $req->metode;
                     $newHTrans->status = 2; // langsung ke pengiriman admin
@@ -177,6 +178,7 @@ class HTransController extends Controller
                 // masukkan ke h trans
                 $newHTrans = new HTrans;
                 $newHTrans->id_user = Auth::user()->id;
+                $newHTrans->id_alamat = $req->alamat;
                 $newHTrans->total = $req->totalSemua;
                 $newHTrans->metode = $req->metode;
                 $newHTrans->status = 0;
@@ -247,8 +249,40 @@ class HTransController extends Controller
     public function adminBuktiReject($id){
         $header = HTrans::where('id',$id)->first();
         $header->status = 99;
+        foreach ($header->Detail as $d) {
+            $buku = Buku::where('id',$d->id_buku)->first();
+            $buku->stock = $buku->stock + $d->qty;
+            $buku->save();
+        }
         $header->save();
         return redirect('admin/bukti-transfer');
+    }
+
+    public function adminPengantaran($id){
+        return view('admin.pengantaran',[
+            'current' => HTrans::where('id',$id)->first(),
+            "pemesanan" => HTrans::where('status',2)->get(),
+            "title" => "Pengantaran",
+        ]);
+    }
+
+    public function adminPengantaranAccept($id){
+        $header = HTrans::where('id',$id)->first();
+        $header->status = 3;
+        $header->save();
+        return redirect('admin/pengantaran');
+    }
+
+    public function adminPengantaranReject($id){
+        $header = HTrans::where('id',$id)->first();
+        $header->status = 99;
+        foreach ($header->Detail as $d) {
+            $buku = Buku::where('id',$d->id_buku)->first();
+            $buku->stock = $buku->stock + $d->qty;
+            $buku->save();
+        }
+        $header->save();
+        return redirect('admin/pengantaran');
     }
 
     /**

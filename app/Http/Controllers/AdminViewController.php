@@ -117,9 +117,14 @@ class AdminViewController extends Controller
     }
 
     public function pengantaran(){
-        return view('admin.pengantaran',[
-            'title' => "Pengantaran"
-        ]);
+        $firstHeader = HTrans::where('status',2)->first();
+        if ($firstHeader == null){
+            return view('admin.pengantaran',[
+                "pemesanan" => HTrans::where('status',2)->get(),
+                "title" => "Pengantaran",
+            ]);
+        }
+        return redirect('admin/pengantaran/'.$firstHeader->id);
     }
 
     public function retur(){

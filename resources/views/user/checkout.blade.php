@@ -113,7 +113,7 @@
                                 </div>
                             </div>
                             <hr>
-                            <input type="hidden" name="totalSemua" value="{{ $totalSemua }}">
+                            <input type="hidden" name="totalSemua" value="{{ $totalSemua + 10000 }}">
                             <div class="row">
                                 <div class="col text-left">
                                     Total :
