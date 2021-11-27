@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Buku;
 use App\Models\DPromo;
 use App\Models\HPromo;
+use App\Models\HTrans;
 use App\Models\Kategori;
 use App\Models\Voucher;
 use Illuminate\Http\Request;
@@ -105,9 +106,14 @@ class AdminViewController extends Controller
     }
 
     public function bukti_transfer(){
-        return view('admin.bukti-transfer',[
-            'title' => "Bukti Transfer"
-        ]);
+        $firstHeader = HTrans::where('status',1)->first();
+        if ($firstHeader == null){
+            return view('admin.bukti-transfer',[
+                "pemesanan" => HTrans::where('status',1)->get(),
+                "title" => "Bukti Transfer",
+            ]);
+        }
+        return redirect('admin/bukti-transfer/'.$firstHeader->id);
     }
 
     public function pengantaran(){

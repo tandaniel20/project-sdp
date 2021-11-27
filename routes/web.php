@@ -137,7 +137,13 @@ Route::prefix('admin')->group(function(){
         Route::post('/{id}/update-promo', [HPromoController::class, 'cekUpdate']);
         Route::get('/{id}/delete', [HPromoController::class, 'deletePromo']);
     });
-    Route::get('/bukti-transfer', [AdminViewController::class,'bukti_transfer']);
+
+    Route::prefix('bukti-transfer')->group(function(){
+        Route::get('/', [AdminViewController::class,'bukti_transfer']);
+        Route::get('/{id}', [HTransController::class, 'adminBuktiTransfer']);
+        Route::get('/{id}/accept', [HTransController::class, 'adminBuktiAccept']);
+        Route::get('/{id}/reject', [HTransController::class, 'adminBuktiReject']);
+    });
     Route::get('/pengantaran', [AdminViewController::class,'pengantaran']);
     Route::get('/retur', [AdminViewController::class,'retur']);
     Route::prefix('voucher')->group(function(){

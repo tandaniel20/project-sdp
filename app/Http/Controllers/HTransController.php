@@ -228,6 +228,29 @@ class HTransController extends Controller
             }
         }return redirect()->back()->withErrors(['msg' => 'Stock buku melebihi!']);
     }
+
+    public function adminBuktiTransfer($id){
+        return view('admin.bukti-transfer',[
+            'current' => HTrans::where('id',$id)->first(),
+            "pemesanan" => HTrans::where('status',1)->get(),
+            "title" => "Bukti Transfer",
+        ]);
+    }
+
+    public function adminBuktiAccept($id){
+        $header = HTrans::where('id',$id)->first();
+        $header->status = 2;
+        $header->save();
+        return redirect('admin/bukti-transfer');
+    }
+
+    public function adminBuktiReject($id){
+        $header = HTrans::where('id',$id)->first();
+        $header->status = 99;
+        $header->save();
+        return redirect('admin/bukti-transfer');
+    }
+
     /**
      * Display a listing of the resource.
      *
