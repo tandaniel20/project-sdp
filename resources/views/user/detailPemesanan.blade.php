@@ -51,10 +51,10 @@
                         : Menunggu Admin Menyetujui Bukti Transfer
                     @elseif ($header->status == 2)
                         : Menunggu Pengiriman dari Admin
-                    @elseif ($header->status == 3)
-                        : Terkirim
                     @elseif ($header->status == 99)
                         : Cancelled
+                    @elseif ($header->status >= 3)
+                        : Terkirim
                     @endif
                 </div>
             </div>
@@ -90,8 +90,8 @@
                         @if ($header->status == 3)
                             <td>
                                 <a href="/rate/{{ $d->Buku->id }}">
-                                    <button type="button" class="btn btn-secondary">
-                                        <span class="fa fa-star"></span>
+                                    <button type="button" class="btn btn-dark">
+                                        <span class="fa fa-star checkedStar"></span>
                                     </button>
                                 </a>
                             </td>

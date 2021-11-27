@@ -41,6 +41,7 @@
                             <li><a class="dropdown-item" href="/alamat">Alamat</a></li>
                             <li><a class="dropdown-item" href="/point">My Point</a></li>
                             <li><a class="dropdown-item" href="/wishlist">Wishlist</a></li>
+                            <li><a class="dropdown-item" href="/retur">Retur</a></li>
                             <li><a class="dropdown-item" href="/logout-user">Keluar</a></li>
                         </ul>
                     </li>

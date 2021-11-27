@@ -18,6 +18,9 @@
                 </form>
             </div>
         </div>
+        <div>
+            {{ "Saldo Refund : Rp " . number_format(Auth::user()->saldo_refund,0,',','.') }}
+        </div>
         <hr>
         <h2>History Point</h2>
         <table class="table">

@@ -6,6 +6,7 @@ use App\Http\Controllers\BukuController;
 use App\Http\Controllers\BukuKategoriController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\HPromoController;
+use App\Http\Controllers\HReturController;
 use App\Http\Controllers\HTransController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\KeranjangController;
@@ -17,6 +18,7 @@ use App\Http\Controllers\WishlistController;
 use App\Models\Alamat;
 use App\Models\Buku;
 use App\Models\HPromo;
+use App\Models\HRetur;
 use App\Models\HTrans;
 use App\Models\Kategori;
 use App\Models\Keranjang;
@@ -111,6 +113,13 @@ Route::prefix('rate')->group(function(){
 
 Route::prefix('wishlist')->group(function(){
     Route::get('/', [WishlistController::class, 'showWishlist']);
+});
+
+Route::prefix('retur')->group(function(){
+    Route::get('/',[HReturController::class, 'returPage']);
+    Route::get('/ajuRetur', [HReturController::class, 'ajuRetur']);
+    Route::get('/{id}/form', [HReturController::class, 'ajuReturDetail']);
+    Route::post('/getNew', [HReturController::class, 'getNew']);
 });
 
 Route::prefix('admin')->group(function(){

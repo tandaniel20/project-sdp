@@ -282,6 +282,21 @@ class HTransController extends Controller
             $buku->save();
         }
         $header->save();
+
+        // kembalikan uangnya dalam bentuk point
+
+        $user = User::where('id', $header->id_user)->first();
+        $user->point = $user->point + $header->total;
+        $user->saldo_refund = $user->saldo_refund + $header->total;
+        $user->save();
+
+        $history = new PointHistory;
+        $history->id_user = $header->id_user;
+        $history->kredit = $header->total;
+        $history->debit = 0;
+        $history->keterangan = "Pengantaran ".$header->id_pemesanan." Dibatalkan";
+        $history->save();
+
         return redirect('admin/pengantaran');
     }
 

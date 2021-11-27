@@ -37,10 +37,10 @@
                                 Menunggu Admin Menyetujui Bukti Transfer
                             @elseif ($p->status == 2)
                                 Menunggu Pengiriman dari Admin
-                            @elseif ($p->status == 3)
-                                Terkirim
                             @elseif ($p->status == 99)
                                 Cancelled
+                            @elseif ($p->status >= 3)
+                                Terkirim
                             @endif
                         </td>
                         <td class="align-middle">

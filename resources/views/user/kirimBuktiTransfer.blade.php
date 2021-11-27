@@ -14,7 +14,7 @@
 
         <form enctype="multipart/form-data" action="upload-bukti" method="post">
             @csrf
-            Upload image : <input type="file" name="file" id=""><br><br>
+            Upload image : <input type="file" accept="image/*" name="file" id=""><br><br>
             <input type="submit" value="Submit Bukti" class="btn btn-primary">
         </form>
         <hr>
