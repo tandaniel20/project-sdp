@@ -4,9 +4,6 @@
 @endsection
 @section('container')
     <div class="container d-flex flex-wrap m-5">
-        @if($errors->any())
-            <script>alert('{{ $errors->first() }}')</script>
-        @endif
         <div class="w-25 d-flex justify-content-center" style="height: 25vh;">
             <img src="/img/dummy.jpg" alt="" class="w-75 img-thumbnail">
         </div>
@@ -212,6 +209,9 @@
                 </div>
             </div>
         @endif
+    @if($errors->any())
+        <script>alert('{{ $errors->first() }}')</script>
+    @endif
     </div>
     <script>
         function ubahNilai(){
@@ -246,5 +246,4 @@
             }
         }
     </script>
-
 @endsection

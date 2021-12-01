@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DRetur;
+use App\Models\DTrans;
 use App\Models\HRetur;
 use App\Models\HTrans;
 use App\Models\Kategori;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class HReturController extends Controller
 {
@@ -16,6 +19,80 @@ class HReturController extends Controller
             'kategori' => Kategori::all(),
             'retur' => HRetur::where('id_user', Auth::user()->id)->get(),
         ]);
+    }
+
+    public function adminRetur($id){
+        return view('admin.retur',[
+            'current' => HRetur::where('id',$id)->first(),
+            "pemesanan" => HRetur::where('status','>=',0)->get(),
+            "title" => "Retur",
+        ]);
+    }
+
+    public function adminReturAccept($id){
+        $header = HRetur::where('id',$id)->first();
+        $header->status = 1;
+        $header->save();
+        return redirect('admin/retur');
+    }
+
+    public function adminReturReject($id){
+        $header = HRetur::where('id',$id)->first();
+        $header->status = 99;
+        $header->save();
+        return redirect('admin/retur');
+    }
+
+    public function returDetail($id){
+        $header = HRetur::where('id',$id)->first();
+        $detail = DRetur::where('id_retur',$id)->get();
+        return view('user.detailRetur',[
+            'kategori' => Kategori::all(),
+            'header' => $header,
+            'detail' => $detail,
+        ]);
+    }
+
+    public function doRetur(Request $req, $id){
+        for ($i=0; $i < count($req->maxBuku); $i++) {
+            if ($req->jumlahBuku[$i] > $req->maxBuku[$i] || $req->jumlahBuku[$i] < 0){
+                return redirect()->back()->withErrors(['msg' => 'Input tidak valid!']);
+            }
+        }
+        // dump($req);
+        // dump($req->file);
+        // dump($req->file('cobaGambar'));
+        // dd($req->hasFile('cobaGambar'));
+
+        $headerTrans = HTrans::where('id',$id)->first();
+        $headerTrans->status = 4;
+        $headerTrans->save();
+
+        $newHeaderRetur = new HRetur;
+        $newHeaderRetur->id_pemesanan_lama = $headerTrans->id_pemesanan;
+        $newHeaderRetur->id_user = $headerTrans->id_user;
+        $newHeaderRetur->id_alamat = $headerTrans->id_alamat;
+        $newHeaderRetur->status = 0;
+        $newHeaderRetur->keterangan = $req->keterangan;
+        $newHeaderRetur->save();
+        $newHeaderRetur->kode_retur = 'R'. str_pad($newHeaderRetur->id,4,"0",STR_PAD_LEFT);
+        $newHeaderRetur->save();
+
+        if($req->hasFile('cobaGambar')){
+            Storage::putFileAs('/public/bukti-retur', $req->file('cobaGambar'), $newHeaderRetur->kode_retur.".png");
+        }
+
+        for ($i=0; $i < count($req->maxBuku); $i++) {
+            $getDetail = DTrans::where('id',$req->idDetail[$i])->first();
+
+            $newDetailRetur = new DRetur;
+            $newDetailRetur->id_retur = $newHeaderRetur->id;
+            $newDetailRetur->id_buku = $getDetail->id_buku;
+            $newDetailRetur->qty = $req->jumlahBuku[$i];
+            $newDetailRetur->save();
+        }
+
+        return redirect('retur');
     }
 
     public function ajuRetur(){

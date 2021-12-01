@@ -53,7 +53,7 @@
                             @endif
                         </td>
                         <td class="align-middle">
-                            <a href="/retur/{{ $p->id }}/detail"><button type="button" class="btn btn-warning">Detail</button></a>
+                            <a href="/retur/{{ $r->id }}/detail"><button type="button" class="btn btn-warning">Detail</button></a>
                         </td>
                     </tr>
                 @endforeach

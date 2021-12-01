@@ -48,6 +48,11 @@
                 </a>
             </li>
             <li>
+                <a href="/admin/resend" class="nav-link {{ $title === "Resend" ? "active" : "text-white" }}">
+                Konfirmasi Resend
+                </a>
+            </li>
+            <li>
                 <a href="/admin/voucher" class="nav-link {{ $title === "Manajemen Kode Voucher" ? "active" : "text-white" }}">
                 Manajemen Kode Voucher
                 </a>

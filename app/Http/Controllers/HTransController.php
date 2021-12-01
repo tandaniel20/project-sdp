@@ -234,7 +234,7 @@ class HTransController extends Controller
     public function adminBuktiTransfer($id){
         return view('admin.bukti-transfer',[
             'current' => HTrans::where('id',$id)->first(),
-            "pemesanan" => HTrans::where('status',1)->get(),
+            "pemesanan" => HTrans::where('status','>=',1)->get(),
             "title" => "Bukti Transfer",
         ]);
     }
@@ -261,7 +261,7 @@ class HTransController extends Controller
     public function adminPengantaran($id){
         return view('admin.pengantaran',[
             'current' => HTrans::where('id',$id)->first(),
-            "pemesanan" => HTrans::where('status',2)->get(),
+            "pemesanan" => HTrans::where('status','>=',2)->get(),
             "title" => "Pengantaran",
         ]);
     }
