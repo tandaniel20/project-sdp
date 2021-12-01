@@ -5,7 +5,7 @@
 @section('container')
     <div class="container d-flex flex-wrap m-5">
         <div class="w-25 d-flex justify-content-center" style="height: 25vh;">
-            <img src="/img/dummy.jpg" alt="" class="w-75 img-thumbnail">
+            <img src="<?= asset('storage/imageBuku/')?>/{{ $buku["id"] }}.png" alt="" class="w-75 img-thumbnail">
         </div>
         <div class="w-50" style="height: 75vh;">
             <span class="fw-bold">
