@@ -61,8 +61,11 @@ class HTransController extends Controller
             $header = HTrans::where('id',$id)->first();
             $header->status = 1;
             $header->save();
+            return redirect('pemesanan');
+        }else{
+            return redirect()->back()->withErrors(['msg' => 'Bukti tidak ditemukan!']);
         }
-        return redirect('pemesanan');
+
     }
 
     public function checkOutPage(){

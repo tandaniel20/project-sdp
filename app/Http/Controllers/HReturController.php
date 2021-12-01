@@ -54,15 +54,25 @@ class HReturController extends Controller
     }
 
     public function doRetur(Request $req, $id){
+        $adasatu = false;
         for ($i=0; $i < count($req->maxBuku); $i++) {
             if ($req->jumlahBuku[$i] > $req->maxBuku[$i] || $req->jumlahBuku[$i] < 0){
                 return redirect()->back()->withErrors(['msg' => 'Input tidak valid!']);
             }
+            if ($req->jumlahBuku[$i] != 0) $adasatu = true;
         }
         // dump($req);
         // dump($req->file);
         // dump($req->file('cobaGambar'));
         // dd($req->hasFile('cobaGambar'));
+
+        if(!$req->hasFile('cobaGambar')){
+            return redirect()->back()->withErrors(['msg' => 'Bukti tidak ditemukan!']);
+        }
+
+        if(!$adasatu){
+            return redirect()->back()->withErrors(['msg' => 'Tidak ada barang yang ingin diretur!']);
+        }
 
         $headerTrans = HTrans::where('id',$id)->first();
         $headerTrans->status = 4;

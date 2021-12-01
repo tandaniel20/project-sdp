@@ -46,10 +46,10 @@
                                 Menunggu Resend Admin
                             @elseif ($r->status == 2)
                                 Resent
-                            @elseif ($r->status >= 3)
-                                Resent as Point
                             @elseif ($r->status == 99)
                                 Rejected
+                            @elseif ($r->status >= 3)
+                                Resent as Point
                             @endif
                         </td>
                         <td class="align-middle">
