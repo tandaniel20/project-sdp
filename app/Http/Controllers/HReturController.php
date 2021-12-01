@@ -2,17 +2,77 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Buku;
 use App\Models\DRetur;
 use App\Models\DTrans;
 use App\Models\HRetur;
 use App\Models\HTrans;
 use App\Models\Kategori;
+use App\Models\PointHistory;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class HReturController extends Controller
 {
+
+    public function adminResend($id){
+        return view('admin.resend',[
+            'current' => HRetur::where('id',$id)->first(),
+            'pemesanan' => HRetur::where('status', '>=', 1)->get(),
+            'title' => "Resend",
+        ]);
+    }
+
+    public function adminResendReject($id){
+        $header = HRetur::where('id',$id)->first();
+        $header->status = 3;
+        $header->save();
+
+        // kembalikan uangnya dalam bentuk point
+
+        $user = User::where('id', $header->id_user)->first();
+        $user->point = $user->point + $header->total;
+        $user->saldo_refund = $user->saldo_refund + $header->total;
+        $user->save();
+
+        $history = new PointHistory;
+        $history->id_user = $header->id_user;
+        $history->kredit = $header->total;
+        $history->debit = 0;
+        $history->status = 1;
+        $history->keterangan = "Resend ".$header->kode_retur." dikembalikan dalam bentuk Point.";
+        $history->save();
+
+        return redirect('admin/resend');
+    }
+
+    public function adminResendAccept($id){
+        $header = HRetur::where('id',$id)->first();
+
+        //cek apakah buku mencukupi
+        $lebih = false;
+        foreach ($header->Detail as $hd) {
+            if ($hd->qty > $hd->Buku->stock) $lebih = true;
+        }
+
+        if ($lebih){
+            return redirect()->back()->withErrors(['msg' => 'Ada Buku yang lebih dari stock!']);
+        }
+
+        $header->status = 2;
+        $header->save();
+
+        //potong buku
+        foreach ($header->Detail as $hd) {
+            $getBuku = Buku::where('id',$hd->Buku->id)->first();
+            $getBuku->stock = $getBuku->stock - $hd->qty;
+            $getBuku->save();
+        }
+
+        return redirect('admin/resend');
+    }
 
     public function returPage(){
         return view('user.retur',[
@@ -92,15 +152,22 @@ class HReturController extends Controller
             Storage::putFileAs('/public/bukti-retur', $req->file('cobaGambar'), $newHeaderRetur->kode_retur.".png");
         }
 
+        $totalRetur = 0;
         for ($i=0; $i < count($req->maxBuku); $i++) {
             $getDetail = DTrans::where('id',$req->idDetail[$i])->first();
 
             $newDetailRetur = new DRetur;
             $newDetailRetur->id_retur = $newHeaderRetur->id;
             $newDetailRetur->id_buku = $getDetail->id_buku;
+            $newDetailRetur->harga = $getDetail->harga;
             $newDetailRetur->qty = $req->jumlahBuku[$i];
+            $newDetailRetur->subtotal = $req->jumlahBuku[$i]*$getDetail->harga;
             $newDetailRetur->save();
+            $totalRetur += $newDetailRetur->subtotal;
         }
+
+        $newHeaderRetur->total = $totalRetur;
+        $newHeaderRetur->save();
 
         return redirect('retur');
     }

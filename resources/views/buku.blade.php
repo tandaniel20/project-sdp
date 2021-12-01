@@ -209,10 +209,10 @@
                 </div>
             </div>
         @endif
+    </div>
     @if($errors->any())
         <script>alert('{{ $errors->first() }}')</script>
     @endif
-    </div>
     <script>
         function ubahNilai(){
             var harga

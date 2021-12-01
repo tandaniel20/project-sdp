@@ -179,6 +179,9 @@ Route::prefix('admin')->group(function(){
 
     Route::prefix('resend')->group(function(){
         Route::get('/', [AdminViewController::class, 'resend']);
+        Route::get('/{id}', [HReturController::class, 'adminResend']);
+        Route::get('/{id}/accept', [HReturController::class, 'adminResendAccept']);
+        Route::get('/{id}/reject', [HReturController::class, 'adminResendReject']);
     });
 
     Route::prefix('voucher')->group(function(){

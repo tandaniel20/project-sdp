@@ -297,6 +297,7 @@ class HTransController extends Controller
         $history->id_user = $header->id_user;
         $history->kredit = $header->total;
         $history->debit = 0;
+        $history->status = 1;
         $history->keterangan = "Pengantaran ".$header->id_pemesanan." Dibatalkan";
         $history->save();
 

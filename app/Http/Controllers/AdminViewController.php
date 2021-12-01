@@ -143,9 +143,15 @@ class AdminViewController extends Controller
     }
 
     public function resend(){
-        return view('admin.resend',[
-            'title' => "Resend"
-        ]);
+        $firstHeader = HRetur::where('status',1)->first();
+        if ($firstHeader == null){
+            return view('admin.resend',[
+                "pemesanan" => HRetur::where('status','>=',1)->get(),
+                "current" => HRetur::where('status','>=',1)->first(),
+                "title" => "Resend",
+            ]);
+        }
+        return redirect('admin/resend/'.$firstHeader->id);
     }
 
     public function voucher(){
