@@ -20,7 +20,7 @@ class HReturController extends Controller
     public function adminResend($id){
         return view('admin.resend',[
             'current' => HRetur::where('id',$id)->first(),
-            'pemesanan' => HRetur::where('status', '>=', 1)->get(),
+            'pemesanan' => HRetur::where('status', '>=', 1)->where('status', '<', 99)->get(),
             'title' => "Resend",
         ]);
     }
@@ -33,13 +33,13 @@ class HReturController extends Controller
         // kembalikan uangnya dalam bentuk point
 
         $user = User::where('id', $header->id_user)->first();
-        $user->point = $user->point + $header->total;
-        $user->saldo_refund = $user->saldo_refund + $header->total;
+        $user->point = $user->point + $header->total + 10000;
+        $user->saldo_refund = $user->saldo_refund + $header->total + 10000;
         $user->save();
 
         $history = new PointHistory;
         $history->id_user = $header->id_user;
-        $history->kredit = $header->total;
+        $history->kredit = $header->total + 10000;
         $history->debit = 0;
         $history->status = 1;
         $history->keterangan = "Resend ".$header->kode_retur." dikembalikan dalam bentuk Point.";

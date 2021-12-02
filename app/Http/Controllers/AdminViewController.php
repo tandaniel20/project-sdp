@@ -146,8 +146,8 @@ class AdminViewController extends Controller
         $firstHeader = HRetur::where('status',1)->first();
         if ($firstHeader == null){
             return view('admin.resend',[
-                "pemesanan" => HRetur::where('status','>=',1)->get(),
-                "current" => HRetur::where('status','>=',1)->first(),
+                "pemesanan" => HRetur::where('status','>=',1)->where('status', '<', 99)->get(),
+                "current" => HRetur::where('status','>=',1)->where('status', '<', 99)->first(),
                 "title" => "Resend",
             ]);
         }

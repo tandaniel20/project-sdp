@@ -8,8 +8,8 @@
                 <div class="card" style="">
                     <ul class="list-group list-group-flush">
                         @foreach ($pemesanan as $p)
-                            <a href="/admin/retur/{{ $p["id"] }}" style="text-decoration:none;"><li class="list-group-item text-white {{ $p["id"]==$current["id"]? 'active':'' }}
-                            @if ($p["status"] == 99)
+                            <a href="/admin/resend/{{ $p["id"] }}" style="text-decoration:none;"><li class="list-group-item text-white {{ $p["id"]==$current["id"]? 'active':'' }}
+                            @if ($p["status"] == 3)
                                 bg-danger
                             @elseif ($p["status"] == 1)
                                 bg-warning
@@ -61,7 +61,7 @@
                                         Refund
                                     </button>
                                 @elseif ($current->status == 3)
-                                    <span class="text-warning">Resent as Point</span>
+                                    <span class="text-danger">Resent as Point</span>
                                 @else
                                     <span class="text-success">Resent</span>
                                 @endif
@@ -79,7 +79,7 @@
                                         </div>
                                         <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                        <a href="/admin/retur/{{ $current["id"] }}/reject"><button type="button" class="btn btn-primary">Refund</button></a>
+                                        <a href="/admin/resend/{{ $current["id"] }}/reject"><button type="button" class="btn btn-primary">Refund</button></a>
                                         </div>
                                     </div>
                                     </div>

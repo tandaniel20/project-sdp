@@ -20,8 +20,7 @@
                 <tr>
                     <th scope="col">Retur</th>
                     <th scope="col">Tanggal</th>
-                    <th scope="col">ID Pemesanan Lama</th>
-                    <th scope="col">ID Pemesanan Baru</th>
+                    <th scope="col">ID Pemesanan</th>
                     <th scope="col">Status</th>
                     <th scope="col">Detail</th>
                 </tr>
@@ -32,13 +31,6 @@
                         <th scope="row" class="align-middle">{{ $r->kode_retur }}</th>
                         <th scope="row" class="align-middle">{{ $r->created_at }}</th>
                         <td class="align-middle">{{ $r->id_pemesanan_lama }}</td>
-                        <td class="align-middle">
-                            @if ($r->id_pemesanan_baru != NULL)
-                                {{ $r->id_pemesanan_baru }}
-                            @else
-                                -
-                            @endif
-                        </td>
                         <td class="align-middle">
                             @if ($r->status == 0)
                                 Menunggu Respons Admin

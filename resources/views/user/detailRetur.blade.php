@@ -31,6 +31,14 @@
                 <div class="col-10">: {{ $header->Alamat->jalan }}, Kota {{ $header->Alamat->kota }} - {{ $header->Alamat->provinsi }}, KODE POS : {{ $header->Alamat->kodepos }}</div>
             </div>
             <div class="row">
+                <div class="col-2">ID Pemesanan</div>
+                <div class="col-10">: {{ $header->id_pemesanan_lama }}</div>
+            </div>
+            <div class="row">
+                <div class="col-2">Value Retur</div>
+                <div class="col-10">: {{ "Rp " . number_format($header->total,0,',','.') }}</div>
+            </div>
+            <div class="row">
                 <div class="col-2">Status</div>
                 <div class="col-10">
                     @if ($header->status == 0)
