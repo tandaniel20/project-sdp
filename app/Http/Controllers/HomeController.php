@@ -19,7 +19,7 @@ class HomeController extends Controller
         // dump($current_date);
         // update
         // $updateDPromo = DB::table('d_promo')->where('id_promo',2)->where('id_buku',1)->update(['tanggal_exp'=>"2021-11-14 20:03:05"]);
-        $listBuku = Buku::where('status_deleted',0);
+        $listBuku = Buku::where('status_deleted',0)->get();
         $listPromo = [];
         foreach ($listBuku as $b) {
             $promo = DPromo::where('id_buku', $b["id"])->where('tanggal_exp','>=',Carbon::now()->toDateTimeString())->orderBy('harga_promo', 'ASC')->first();
