@@ -52,6 +52,7 @@
                             <li><a class="dropdown-item" href="/point">My Point</a></li>
                             <li><a class="dropdown-item" href="/wishlist">Wishlist</a></li>
                             <li><a class="dropdown-item" href="/retur">Retur</a></li>
+                            <li><a class="dropdown-item" href="/laporanuser">Laporan</a></li>
                             <li><a class="dropdown-item" href="/logout-user">Keluar</a></li>
                         </ul>
                     </li>
@@ -75,7 +76,7 @@
                             Masuk
                         </a>
                         <div class="dropdown-menu dropdown-menu-end p-4" id="modalLogin">
-                            <form action="/login-user" method="POST">
+                            <form action="/login-user" method="POST" class="">
                                 @csrf
                                 <div class="form-group">
                                     <label for="exampleDropdownFormEmail2">Email</label>
@@ -91,7 +92,7 @@
                                         <span style='color: red'>{{ $message }}</span>
                                     @enderror
                                 </div>
-                                <div class="text-center my-2">
+                                <div class="text-center my-2" >
                                     <button type="submit" class="btn btn-primary">Sign in</button>
                                 </div>
                             </form>

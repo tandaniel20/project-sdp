@@ -33,13 +33,13 @@ class HReturController extends Controller
         // kembalikan uangnya dalam bentuk point
 
         $user = User::where('id', $header->id_user)->first();
-        $user->point = $user->point + $header->total + 10000;
-        $user->saldo_refund = $user->saldo_refund + $header->total + 10000;
+        $user->point = $user->point + $header->total;
+        $user->saldo_refund = $user->saldo_refund + $header->total;
         $user->save();
 
         $history = new PointHistory;
         $history->id_user = $header->id_user;
-        $history->kredit = $header->total + 10000;
+        $history->kredit = $header->total;
         $history->debit = 0;
         $history->status = 1;
         $history->keterangan = "Resend ".$header->kode_retur." dikembalikan dalam bentuk Point.";
@@ -78,6 +78,28 @@ class HReturController extends Controller
         return view('user.retur',[
             'kategori' => Kategori::all(),
             'retur' => HRetur::where('id_user', Auth::user()->id)->get(),
+        ]);
+    }
+
+
+    public function searchreturPage(Request $request){
+        return view('user.retur',[
+            'kategori' => Kategori::all(),
+            'retur' => HRetur::where('id_user', Auth::user()->id)->whereBetween('created_at', [$request->from, $request->to,])->get(),
+        ]);
+    }
+
+    public function laporanAdminPage(){
+        return view('admin.laporanRetur',[
+            'title' => "Laporan Pengeluaran",
+            'retur' => HRetur::where('status','>=',0)->get(),
+        ]);
+    }
+
+    public function laporanAdminPageSearch(Request $request){
+        return view('admin.laporanRetur',[
+            'title' => "Laporan Pengeluaran",
+            'retur' => HRetur::where('status','>=',0)->whereBetween('created_at', [$request->from, $request->to,])->get(),
         ]);
     }
 

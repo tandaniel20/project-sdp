@@ -105,6 +105,16 @@
                 Manajemen Kode Voucher
                 </a>
             </li>
+            <li>
+                <a href="/admin/laporanadmin/pemesanan" class="nav-link {{ $title === "Laporan Pemasukan" ? "active" : "text-white" }}">
+                Laporan Pemasukan
+                </a>
+            </li>
+            <li>
+                <a href="/admin/laporanadmin/retur" class="nav-link {{ $title === "Laporan Pengeluaran" ? "active" : "text-white" }}">
+                Laporan Pengeluaran
+                </a>
+            </li>
             </ul>
             <hr>
             <div class="dropdown">
