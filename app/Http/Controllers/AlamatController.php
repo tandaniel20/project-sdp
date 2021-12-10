@@ -106,6 +106,7 @@ class AlamatController extends Controller
     public function deletealamat($id){
         $data = Alamat::find($id);
         $data->status_deleted = 1;
+        $data->save();
         echo "<script>alert('Sukses Delete Alamat')</script>";
         return redirect('alamat');
     }

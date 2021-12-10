@@ -115,6 +115,7 @@ class BukuController extends Controller
         $buku = Buku::find($id);
         // dd($kategori);
         $buku->status_deleted = 1;
+        $buku->save();
         $bukuKategori = Buku_Kategori::where('id_buku',$id)->delete();
         return redirect('admin/buku');
     }

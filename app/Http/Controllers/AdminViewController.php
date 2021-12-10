@@ -46,7 +46,7 @@ class AdminViewController extends Controller
     public function buku(){
         return view('admin.buku',[
             'title' => "Buku",
-            'buku' => Buku::all()
+            'buku' => Buku::where('status_deleted', 0)->get(),
         ]);
     }
 
