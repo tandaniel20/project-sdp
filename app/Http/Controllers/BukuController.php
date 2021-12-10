@@ -114,7 +114,7 @@ class BukuController extends Controller
     public function delete($id){
         $buku = Buku::find($id);
         // dd($kategori);
-        $buku->delete();
+        $buku->status_deleted = 1;
         $bukuKategori = Buku_Kategori::where('id_buku',$id)->delete();
         return redirect('admin/buku');
     }

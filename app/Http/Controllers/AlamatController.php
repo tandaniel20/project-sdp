@@ -105,7 +105,7 @@ class AlamatController extends Controller
     }
     public function deletealamat($id){
         $data = Alamat::find($id);
-        $data->delete();
+        $data->status_deleted = 1;
         echo "<script>alert('Sukses Delete Alamat')</script>";
         return redirect('alamat');
     }
@@ -147,7 +147,7 @@ class AlamatController extends Controller
     {
         return view('user.alamat',[
             'title' => "Alamat",
-            'alamat' => Alamat::where('id_user', Auth::user()->id)->get(),
+            'alamat' => Alamat::where('id_user', Auth::user()->id)->where('status_deleted', 0)->get(),
             'kategori' => Kategori::all(),
         ]);
     }

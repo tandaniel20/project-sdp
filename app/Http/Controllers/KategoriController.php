@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Buku_Kategori;
 use App\Models\Kategori;
 use Illuminate\Http\Request;
 
@@ -89,6 +90,7 @@ class KategoriController extends Controller
         $kategori = Kategori::find($id);
         // dd($kategori);
         $kategori->delete();
+        $buku_kategori = Buku_Kategori::where('id_kategori',$id)->delete();
         return redirect('admin/kategori');
     }
 

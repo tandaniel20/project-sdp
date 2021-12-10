@@ -24,6 +24,7 @@ class CreateAlamatsTable extends Migration
             $table->String("kelurahan");
             $table->String("kodepos");
             $table->String("jalan");
+            $table->boolean("status_deleted")->default(0);
             $table->timestamps();
         });
     }

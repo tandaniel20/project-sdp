@@ -26,6 +26,7 @@ class CreateBukusTable extends Migration
             $table->string('cover');
             $table->text('deskripsi');
             $table->integer('stock')->default(25);
+            $table->boolean("status_deleted")->default(0);
             $table->timestamps();
             $table->softDeletes();
         });

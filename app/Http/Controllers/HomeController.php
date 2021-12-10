@@ -19,7 +19,7 @@ class HomeController extends Controller
         // dump($current_date);
         // update
         // $updateDPromo = DB::table('d_promo')->where('id_promo',2)->where('id_buku',1)->update(['tanggal_exp'=>"2021-11-14 20:03:05"]);
-        $listBuku = Buku::all();
+        $listBuku = Buku::where('status_deleted',0);
         $listPromo = [];
         foreach ($listBuku as $b) {
             $promo = DPromo::where('id_buku', $b["id"])->where('tanggal_exp','>=',Carbon::now()->toDateTimeString())->orderBy('harga_promo', 'ASC')->first();
@@ -39,7 +39,9 @@ class HomeController extends Controller
         $listBuku = [];
         foreach ($idBuku as $row) {
             $buku = Buku::where('id',$row["id_buku"])->first();
-            array_push($listBuku, $buku);
+            if ($buku->status_deleted == 0){
+                array_push($listBuku, $buku);
+            }
         }
         $listPromo = [];
         foreach ($listBuku as $b) {
@@ -64,7 +66,9 @@ class HomeController extends Controller
         $listBuku = [];
         foreach ($listPromo as $p) {
             $buku = Buku::where('id',$p["id_buku"])->first();
-            array_push($listBuku, $buku);
+            if ($buku->status_deleted == 0){
+                array_push($listBuku, $buku);
+            }
         }
         return view('home',[
             'buku' => $listBuku,
@@ -75,7 +79,7 @@ class HomeController extends Controller
     }
 
     public function homeSearch(Request $request){
-        $listBuku = Buku::where('judul', 'like', "%".$request->searchKey."%")->get();
+        $listBuku = Buku::where('judul', 'like', "%".$request->searchKey."%")->where('status_deleted', 0)->get();
         $listPromo = [];
         foreach ($listBuku as $b) {
             $promo = DPromo::where('id_buku', $b["id"])->where('tanggal_exp','>=',Carbon::now()->toDateTimeString())->orderBy('harga_promo', 'ASC')->first();
