@@ -15,6 +15,7 @@
 <div class="container-fluid" style="text-align: center;">
     <form action="/updatealamat" method="post">
         @csrf
+        <input type="hidden" name="id" value="{{ $alamat->id }}">
         <div class="card text-center">
             <div class="card-header">
                 <h2>Update Alamat</h2>
@@ -22,22 +23,10 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-3" style="text-align: right;">
-                        ID
-                    </div>
-                    <div class="col" style="text-align: left; vertical-align: middle;">
-                        <input class="w-50" type="number" name="id" id="" placeholder="ID" value="{{ old('id') }}">
-                    </div>
-                    @error('id')
-                        <span style='color: red'>{{ $message }}</span>
-                    @enderror
-                </div>
-                <br>
-                <div class="row">
-                    <div class="col-3" style="text-align: right;">
                         Penerima
                     </div>
                     <div class="col" style="text-align: left; vertical-align: middle;">
-                        <input class="w-50" type="text" name="penerima" id="" placeholder="Penerima" value="{{ old('penerima') }}">
+                        <input class="w-50" type="text" name="penerima" id="" placeholder="Penerima" value="{{ $alamat->penerima }}">
                     </div>
                     @error('penerima')
                         <span style='color: red'>{{ $message }}</span>
@@ -49,7 +38,7 @@
                         Nomor Hp
                     </div>
                     <div class="col" style="text-align: left; vertical-align: middle;">
-                        <input type="number" class="w-50" name="nohp" id="" placeholder="No Hp" value="{{ old('No Hp') }}">
+                        <input type="number" class="w-50" name="nohp" id="" placeholder="No Hp" value="{{ $alamat->nohp }}">
                     </div>
                     @error('nohp')
                         <span style='color: red'>{{ $message }}</span>
@@ -61,7 +50,7 @@
                         Provinsi
                     </div>
                     <div class="col" style="text-align: left; vertical-align: middle;">
-                        <input class="w-50" type="text" name="provinsi" id="" placeholder="Provinsi" value="{{ old('provinsi') }}">
+                        <input class="w-50" type="text" name="provinsi" id="" placeholder="Provinsi" value="{{ $alamat->provinsi }}">
                     </div>
                     @error('provinsi')
                         <span style='color: red'>{{ $message }}</span>
@@ -73,7 +62,7 @@
                         Kota
                     </div>
                     <div class="col" style="text-align: left; vertical-align: middle;">
-                        <input class="w-50" type="text" name="kota" id="" placeholder="kota" value="{{ old('kota') }}">
+                        <input class="w-50" type="text" name="kota" id="" placeholder="kota" value="{{ $alamat->kota }}">
                     </div>
                     @error('kota')
                         <span style='color: red'>{{ $message }}</span>
@@ -85,7 +74,7 @@
                         Kecamatan
                     </div>
                     <div class="col" style="text-align: left; vertical-align: middle;">
-                        <input type="text" class="w-50" name="kecamatan" id="" placeholder="Kecamatan" value="{{ old('kecamatan') }}">
+                        <input type="text" class="w-50" name="kecamatan" id="" placeholder="Kecamatan" value="{{ $alamat->kecamatan }}">
                     </div>
                     @error('kecamatan')
                         <span style='color: red'>{{ $message }}</span>
@@ -97,7 +86,7 @@
                         Kelurahan
                     </div>
                     <div class="col" style="text-align: left; vertical-align: middle;">
-                        <input type="text" class="w-50" name="kelurahan" id="" placeholder="Kelurahan" value="{{ old('kelurahan') }}">
+                        <input type="text" class="w-50" name="kelurahan" id="" placeholder="Kelurahan" value="{{ $alamat->kelurahan }}">
                     </div>
                     @error('kelurahan')
                         <span style='color: red'>{{ $message }}</span>
@@ -109,7 +98,7 @@
                         Kode Pos
                     </div>
                     <div class="col" style="text-align: left; vertical-align: middle;">
-                        <input type="number" class="w-50" name="kodepos" id="" placeholder="Kode Pos" value="{{ old('kodepos') }}">
+                        <input type="number" class="w-50" name="kodepos" id="" placeholder="Kode Pos" value="{{ $alamat->kodepos }}">
                     </div>
                     @error('kodepos')
                         <span style='color: red'>{{ $message }}</span>
@@ -121,7 +110,7 @@
                         Jalan
                     </div>
                     <div class="col" style="text-align: left; vertical-align: middle;">
-                        <input class="w-50" type="text" name="jalan" id="" placeholder="Jalan" value="{{ old('jalan') }}">
+                        <input class="w-50" type="text" name="jalan" id="" placeholder="Jalan" value="{{ $alamat->jalan }}">
                     </div>
                     @error('jalan')
                         <span style='color: red'>{{ $message }}</span>

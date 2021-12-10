@@ -223,14 +223,8 @@ Route::get('/keAddAlamat', function()
 Route::post('/AddAlamat', [AlamatController::class,'prosesData']);
 Route::get('/alamat', [AlamatController::class,'alamat']);
 Route::get('/deletealamat/{id}', [AlamatController::class,'deletealamat']);
-Route::get('/keupdatealamat/{id}', function()
-{
-    return view('user.updateAlamat',[
-        'title' => "Alamat",
-        'alamat' => Alamat::all(),
-        'kategori' => Kategori::all(),
-    ]);
-});
+Route::get('/keupdatealamat/{id}', [AlamatController::class, 'toUpdate']);
+
 Route::post('/updatealamat', [AlamatController::class,'updatealamat']);
 // Route::get('tabledit', 'AlamatController@index');
 // Route::post('tabledit/action', 'AlamatController@action')->name('tabledit.action');

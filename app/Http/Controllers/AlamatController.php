@@ -152,6 +152,14 @@ class AlamatController extends Controller
         ]);
     }
 
+    public function toUpdate($id){
+        return view('user.updateAlamat',[
+            'title' => "Alamat",
+            'alamat' => Alamat::where('id',$id)->first(),
+            'kategori' => Kategori::all(),
+        ]);
+    }
+
     /**
      * Display a listing of the resource.
      *

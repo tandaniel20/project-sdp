@@ -49,7 +49,31 @@
                 <td>{{$alamat->kodepos}}</td>
                 <td>{{$alamat->jalan}}</td>
                 <td><a href="/keupdatealamat/{{ $alamat["id"] }}" class="btn btn-warning">Update</a></td>
-                <td><a href="/deletealamat/{{ $alamat["id"] }}" class="btn btn-danger">Delete</a></td>
+                <td>
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModalAlamat" style="float: left">
+                        Delete
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModalAlamat" tabindex="-1" aria-labelledby="exampleModalLabelAlamat" aria-hidden="true">
+                        <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabelAlamat">Delete Alamat</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                Apakah anda yakin ingin membuang Alamat?
+                            </div>
+                            <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <a href="/deletealamat/{{ $alamat["id"] }}"><button type="button" class="btn btn-primary">Delete</button></a>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </td>
             </tr>
             @endforeach
         </tbody>
