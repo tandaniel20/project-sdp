@@ -11,7 +11,7 @@
             <input type="datetime-local" name="from">
             <span> ke </span>
             <input type="datetime-local" name="to">
-            <button type="submit">Search</button>
+            <button type="submit" class="btn btn-primary">Search</button>
         </form>
 
     </div>

@@ -19,6 +19,50 @@ use Illuminate\Support\Facades\Storage;
 class HTransController extends Controller
 {
 
+    public function bukuTerlaris(){
+        $transaksi = HTrans::where('status','>=',2)->where('status','<=',3)->get();
+        $listIDTerlaris = [];
+        foreach ($transaksi as $th) { // foreach transaksi header
+            foreach ($th->Detail as $td) { // foreach transaksi detail
+                // cek apakah sudah ada di $list
+                if (array_key_exists($td->id_buku, $listIDTerlaris)){
+                    $listIDTerlaris[$td->id_buku] += $td->qty;
+                }else{
+                    $listIDTerlaris[$td->id_buku] = $td->qty;
+                }
+            }
+        }
+        arsort($listIDTerlaris);
+        // dd($listIDTerlaris);
+        return view('admin.bukuTerlaris',[
+            'title' => 'Buku Terlaris',
+            'listIDTerlaris' => $listIDTerlaris,
+            'buku' => Buku::all(),
+        ]);
+    }
+
+    public function bukuTerlarisSearch(Request $request){
+        $transaksi = HTrans::where('status','>=',2)->where('status','<=',3)->whereBetween('created_at', [$request->from, $request->to,])->get();
+        $listIDTerlaris = [];
+        foreach ($transaksi as $th) { // foreach transaksi header
+            foreach ($th->Detail as $td) { // foreach transaksi detail
+                // cek apakah sudah ada di $list
+                if (array_key_exists($td->id_buku, $listIDTerlaris)){
+                    $listIDTerlaris[$td->id_buku] += $td->qty;
+                }else{
+                    $listIDTerlaris[$td->id_buku] = $td->qty;
+                }
+            }
+        }
+        arsort($listIDTerlaris);
+        // dd($listIDTerlaris);
+        return view('admin.bukuTerlaris',[
+            'title' => 'Buku Terlaris',
+            'listIDTerlaris' => $listIDTerlaris,
+            'buku' => Buku::all(),
+        ]);
+    }
+
     public function pemesananDetail($id){
         $header = HTrans::where('id',$id)->first();
         $detail = DTrans::where('id_trans',$id)->get();

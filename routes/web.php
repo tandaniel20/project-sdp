@@ -138,6 +138,8 @@ Route::prefix('admin')->group(function(){
     Route::get('/', [AdminViewController::class,'home']);
 
     Route::get('/recentReview', [RatingController::class,'adminRatingPage']);
+    Route::get('/bukuTerlaris', [HTransController::class, 'bukuTerlaris']);
+    Route::get('/bukuTerlaris/search', [HTransController::class, 'bukuTerlarisSearch']);
 
     Route::prefix('kategori')->group(function(){
         Route::get('/', [AdminViewController::class,'kategori']);

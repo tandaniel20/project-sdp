@@ -186,6 +186,11 @@
                 </a>
             </li>
             <li>
+                <a href="/admin/bukuTerlaris/" class="nav-link {{ $title === "Buku Terlaris" ? "active" : "text-white" }}">
+                Buku Terlaris
+                </a>
+            </li>
+            <li>
                 <a href="/admin/recentReview" class="nav-link {{ $title === "Recent Review" ? "active" : "text-white" }}">
                 Recent Review
                 </a>

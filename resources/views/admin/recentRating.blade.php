@@ -10,9 +10,6 @@
         <div class="row">
             @foreach ($reviews as $r)
                 <div class="card">
-                    {{-- <div class="card-body">
-
-                    </div> --}}
                     <div class="card-body">
                         <span class="text-muted">{{ $r->User->name }} at {{ $r->updated_at }}</span>
                         <div class="w-25">
