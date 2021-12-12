@@ -37,6 +37,13 @@ class RatingController extends Controller
         return redirect('buku/'.$id.'/detail');
     }
 
+    public function adminRatingPage(){
+        return view('admin.recentRating', [
+            'title' => 'Recent Review',
+            'reviews' => Rating::orderBy('updated_at', 'desc')->get(),
+        ]);
+    }
+
     /**
      * Display a listing of the resource.
      *

@@ -136,6 +136,9 @@ Route::prefix('retur')->group(function(){
 
 Route::prefix('admin')->group(function(){
     Route::get('/', [AdminViewController::class,'home']);
+
+    Route::get('/recentReview', [RatingController::class,'adminRatingPage']);
+
     Route::prefix('kategori')->group(function(){
         Route::get('/', [AdminViewController::class,'kategori']);
         Route::get('/add', [AdminViewController::class,'addKategori']);

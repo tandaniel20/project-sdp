@@ -7,8 +7,78 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     {{-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script> --}}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+    <!-- Font Awesome Icon Library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Admin | {{ $title }}</title>
     <style>
+        .checkedStar {
+            color: goldenrod;
+        }
+
+        .btn-login {
+        font-size: 0.9rem;
+        letter-spacing: 0.05rem;
+        padding: 0.75rem 1rem;
+        }
+
+        .btn-google {
+        color: white !important;
+        background-color: #ea4335;
+        }
+
+        .btn-facebook {
+        color: white !important;
+        background-color: #3b5998;
+        }
+
+        a:link {
+            text-decoration: none;
+        }
+
+        .linkBuku{
+            color: #000000;
+        }
+
+        /* *{
+            font-family: 'Nunito Sans';
+        } */
+
+        .rate {
+            float: left;
+            height: 46px;
+            padding: 0 10px;
+        }
+        .rate:not(:checked) > input {
+            position:absolute;
+            top:-9999px;
+        }
+        .rate:not(:checked) > label {
+            float:right;
+            width:1em;
+            overflow:hidden;
+            white-space:nowrap;
+            cursor:pointer;
+            font-size:30px;
+            color:#ccc;
+        }
+        .rate:not(:checked) > label:before {
+            content: '★ ';
+        }
+        .rate > input:checked ~ label {
+            color: #ffc700;
+        }
+        .rate:not(:checked) > label:hover,
+        .rate:not(:checked) > label:hover ~ label {
+            color: #deb217;
+        }
+        .rate > input:checked + label:hover,
+        .rate > input:checked + label:hover ~ label,
+        .rate > input:checked ~ label:hover,
+        .rate > input:checked ~ label:hover ~ label,
+        .rate > label:hover ~ input:checked ~ label {
+            color: #c59b08;
+        }
+
         .card-img-top {
             width: 100%;
             height: 10vw;
@@ -113,6 +183,11 @@
             <li>
                 <a href="/admin/laporanadmin/retur" class="nav-link {{ $title === "Laporan Pengeluaran" ? "active" : "text-white" }}">
                 Laporan Pengeluaran
+                </a>
+            </li>
+            <li>
+                <a href="/admin/recentReview" class="nav-link {{ $title === "Recent Review" ? "active" : "text-white" }}">
+                Recent Review
                 </a>
             </li>
             </ul>
